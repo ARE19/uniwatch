@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ device.name }} raw logs · {{ app_name() }}{% endblock %}
+{% block content %}
+<h1>{{ device.name }} <span class="muted">· {{ device.client.name }}</span></h1>
+<p class="muted">Latest {{ rows | length }} lines exactly as received. Times in {{ device.client.timezone }}. Full search arrives in Phase 4.</p>
+<section class="card">
+  <table class="dense">
+    <thead><tr><th>Received</th><th>Via</th><th>Raw</th></tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr><td class="nowrap">{{ r.ts_received | ts(device.client.timezone) }}</td><td>{{ r.transport }}{% if r.truncated %} · truncated{% endif %}</td><td><code>{{ r.raw }}</code></td></tr>
+    {% else %}
+      <tr><td colspan="3" class="muted">Nothing received yet.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+<p><a href="/sources">← Log sources</a></p>
+{% endblock %}

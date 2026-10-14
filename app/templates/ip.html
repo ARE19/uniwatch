@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}{{ ip }} · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>{% if identity and identity[0].hostname %}{{ identity[0].hostname }} <span class="muted">· {{ ip }}</span>
+      {% else %}{{ ip }} <span class="muted">· {{ "internal" if internal else "external" }}</span>{% endif %}</h1>
+  <nav class="segmented"><a href="/logs?range=30d&amp;ip={{ ip | urlencode }}">Open in Log View</a></nav>
+</div>
+<div class="grid">
+  <section class="card">
+    <h2>Summary <span class="muted">last 30 days</span></h2>
+    <dl class="kv">
+      <dt>Type</dt><dd>{% if internal %}Internal (private / reserved address){% else %}External (public internet){% endif %}</dd>
+      {% if geo %}
+        <dt>Country</dt><dd>{{ geo.country or "unknown" }}</dd>
+        <dt>Network</dt><dd>{% if geo.asn %}AS{{ geo.asn }}{% endif %} {{ geo.as_org or "" }}</dd>
+      {% endif %}
+      <dt>Events</dt><dd>{{ summary.n }}</dd>
+      {% if summary.first %}<dt>First seen</dt><dd>{{ summary.first | ts(scope_tz) }}</dd><dt>Last seen</dt><dd>{{ summary.last | ts(scope_tz) }}</dd>{% endif %}
+    </dl>
+  </section>
+  {% if identity %}
+  <section class="card">
+    <h2>Identity <span class="muted">from the UniFi controller</span></h2>
+    {% set i = identity[0] %}
+    <dl class="kv">
+      <dt>Hostname</dt><dd>{{ i.hostname or "–" }}</dd>
+      <dt>MAC</dt><dd><code>{{ i.mac }}</code> {% if i.vendor %}<span class="muted">{{ i.vendor }}</span>{% endif %}</dd>
+      <dt>Connection</dt><dd>{% if i.is_wired %}wired{% else %}WiFi{% if i.ssid %} “{{ i.ssid }}”{% endif %}{% if i.ap %} via {{ i.ap }}{% endif %}{% endif %}
+        {% if i.network %}<span class="muted">· network {{ i.network }}</span>{% endif %}</dd>
+      <dt>Seen</dt><dd>{{ i.first_seen | ts_short(scope_tz) }} → {{ i.last_seen | ts_short(scope_tz) }} <span class="muted">({{ i.client }})</span></dd>
+    </dl>
+  </section>
+  {% endif %}
+  <section class="card">
+    <h2>Security <span class="muted">last 30 days</span></h2>
+    <div class="tiles mini">
+      <a class="tile tile-link" href="/logs?range=30d&amp;type=security&amp;ip={{ ip | urlencode }}"><span class="tile-label">IDS/IPS alerts</span><span class="tile-value">{{ security.ids }}</span></a>
+      <a class="tile tile-link" href="/logs?range=30d&amp;ip={{ ip | urlencode }}&amp;q=result%3Dblocked"><span class="tile-label">Blocked</span><span class="tile-value">{{ security.blocked }}</span></a>
+      <a class="tile tile-link" href="/logs?range=30d&amp;ip={{ ip | urlencode }}&amp;q=result%3Dfailure"><span class="tile-label">Failed logins/VPN</span><span class="tile-value">{{ security.failed }}</span></a>
+      <div class="tile"><span class="tile-label">Threat-intel hits</span><span class="tile-value">{{ security.intel }}</span></div>
+    </div>
+    {% if top_ids %}<table class="dense"><thead><tr><th>Signature</th><th class="num">Hits</th><th>Last</th></tr></thead><tbody>
+      {% for t in top_ids %}<tr><td>{{ t.rule }}</td><td class="num">{{ t.n }}</td><td class="nowrap">{{ t.last | ts_short(scope_tz) }}</td></tr>{% endfor %}
+    </tbody></table>{% endif %}
+  </section>
+  {% if vpn %}
+  <section class="card">
+    <h2>VPN sessions <span class="muted">using this address</span></h2>
+    <table class="dense"><thead><tr><th>User</th><th>As</th><th>Start</th><th>End</th><th>Firewall</th></tr></thead><tbody>
+      {% for s in vpn %}<tr><td><a href="/vpn/user?name={{ s.user_name | urlencode }}">{{ s.user_name | person }}</a></td>
+        <td>{{ "user's source" if s.as_source else "VPN address" }}</td>
+        <td class="nowrap">{{ s.started_at | ts_short(scope_tz) if s.started_at else "" }}</td>
+        <td class="nowrap">{{ s.ended_at | ts_short(scope_tz) if s.ended_at else s.status }}</td><td>{{ s.device }}</td></tr>{% endfor %}
+    </tbody></table>
+  </section>
+  {% endif %}
+  <section class="card">
+    <h2>On the network <span class="muted">latest DHCP / WiFi sightings</span></h2>
+    {% if host_info %}
+    <table class="dense"><thead><tr><th>When</th><th>Seen as</th><th>MAC</th><th>Name</th><th>WiFi</th></tr></thead><tbody>
+      {% for h in host_info %}<tr><td class="nowrap">{{ h.ts | ts(scope_tz) }}</td><td>{{ h.action }} <span class="muted">({{ h.device }})</span></td>
+        <td>{{ h.mac or "" }}</td><td>{{ h.hostname or h.client_hostname or "" }}</td>
+        <td>{% if h.ssid %}{{ h.ssid }}{% if h.ap %} via {{ h.ap }}{% endif %}{% endif %}</td></tr>{% endfor %}
+    </tbody></table>
+    {% else %}<p class="muted">{{ "No DHCP or WiFi events for this address." if internal else "Not applicable to external addresses." }}</p>{% endif %}
+  </section>
+  {% if internal %}
+  <section class="card">
+    <h2>Websites &amp; apps <span class="muted">last 7 days</span></h2>
+    {% if web %}<table class="dense"><thead><tr><th>App / website</th><th class="num">Data</th><th class="num">Connections / lookups</th><th>Last hour seen</th></tr></thead><tbody>
+      {% for w in web %}<tr><td>{% if w.is_app %}<strong>{{ w.name }}</strong>{% else %}{{ w.name }}{% endif %}</td>
+        <td class="num">{{ w.bytes | bsize if w.bytes else "" }}</td><td class="num">{{ "{:,}".format(w.n) }}</td>
+        <td class="nowrap">{{ w.last | ts_short(scope_tz) }}</td></tr>{% endfor %}
+    </tbody></table>
+    <p class="small"><a href="/insights?view=web&amp;range=24h&amp;ip={{ ip }}">All websites &amp; apps for this device →</a></p>
+    {% else %}<p class="muted">No connections or DNS lookups recorded for this device yet.</p>{% endif %}
+  </section>
+  {% endif %}
+  <section class="card">
+    <h2>By category</h2>
+    {% if by_cat %}<table class="dense"><tbody>{% for c in by_cat %}<tr><td>{{ c.category }}</td><td>{{ c.n }}</td></tr>{% endfor %}</tbody></table>
+    {% else %}<p class="muted">No events.</p>{% endif %}
+  </section>
+  <section class="card">
+    <h2>Top peers</h2>
+    {% if peers %}<table class="dense"><tbody>{% for x in peers %}<tr><td><a href="/ip/{{ x.peer }}">{{ x.peer }}</a></td><td>{{ x.n }}</td></tr>{% endfor %}</tbody></table>
+    {% else %}<p class="muted">No two-ended events (source and destination) for this address.</p>{% endif %}
+  </section>
+  <section class="card wide">
+    <h2>Recent events</h2>
+    <table class="dense logtable">
+      {% set raw = False %}{% set more = False %}
+      <thead>{% include "logs_head.html" %}</thead>
+      <tbody>{% include "logs_rows.html" %}</tbody>
+    </table>
+    <div id="detail"></div>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}All devices · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>All devices <span class="muted">· {{ scope_label }}</span></h1>
+  <span><a class="button button-secondary" href="/devices.xlsx?q={{ f.q | urlencode }}&amp;status={{ f.status }}&amp;product={{ f.product | urlencode }}&amp;updates={{ f.updates }}&amp;lifecycle={{ f.lifecycle }}">Export to Excel</a>
+  <a class="button" href="/sources/add">+ Add device</a></span>
+</div>
+<section class="tiles" aria-label="Device summary">
+  <a class="tile tile-link" href="/devices"><span class="tile-label">Devices</span><span class="tile-value">{{ summary.total }}</span></a>
+  <a class="tile tile-link" href="/devices?status=online"><span class="tile-label">Online</span><span class="tile-value">{{ summary.online }}</span></a>
+  <a class="tile tile-link {{ 'sev-high' if summary.offline }}" href="/devices?status=offline"><span class="tile-label">Offline</span><span class="tile-value">{{ summary.offline }}</span></a>
+  <a class="tile tile-link" href="/devices?updates=1"><span class="tile-label">Firmware updates</span><span class="tile-value">{{ summary.updates }}</span></a>
+  <a class="tile tile-link {{ 'sev-medium' if summary.eol }}" href="/devices?lifecycle=eol"><span class="tile-label">End of life</span><span class="tile-value">{{ summary.eol }}</span></a>
+</section>
+<section class="card">
+  <form class="filters" method="get" action="/devices">
+    <input name="q" value="{{ f.q }}" placeholder="Name, model, IP, MAC, client…" aria-label="Search devices">
+    <select name="status" aria-label="Status" data-autosubmit>
+      <option value="">Any status</option>
+      <option value="online" {% if f.status == "online" %}selected{% endif %}>Online</option>
+      <option value="offline" {% if f.status == "offline" %}selected{% endif %}>Offline</option>
+    </select>
+    <select name="product" aria-label="Type" data-autosubmit>
+      <option value="">All types</option>
+      {% for p in products %}<option {% if f.product == p %}selected{% endif %}>{{ p }}</option>{% endfor %}
+    </select>
+    {% if f.updates %}<input type="hidden" name="updates" value="1">{% endif %}
+    {% if f.lifecycle %}<input type="hidden" name="lifecycle" value="{{ f.lifecycle }}">{% endif %}
+    <button type="submit">Filter</button>
+    {% if f.q or f.status or f.product or f.updates or f.lifecycle %}<a href="/devices">Clear</a>{% endif %}
+    <span class="muted small">{{ rows | length }} shown</span>
+  </form>
+  <table class="dense">
+    <thead><tr><th>Client</th><th>Device</th><th>Type</th><th>Model</th><th>Serial</th><th>IP</th><th>MAC</th><th>Firmware</th><th>Status</th><th class="num">CPU</th><th class="num">Memory</th><th class="num">Uptime</th><th class="num">Clients</th><th>Logs</th><th>Reported by</th></tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td>{{ r.client }}</td>
+        <td><strong>{{ r.name or "—" }}</strong></td>
+        <td>{{ r.product }}</td>
+        <td>{{ r.model or "" }}{% if r.eol %} <span class="badge warn" title="UniFi marks this model end of life">EOL</span>{% elif r.lts %} <span class="badge" title="UniFi long-term support model">LTS</span>{% endif %}</td>
+        <td class="nowrap">{% if r.serial %}<code class="muted">{{ r.serial }}</code>{% endif %}</td>
+        <td class="nowrap">{% if r.ip %}<code>{{ r.ip }}</code>{% endif %}</td>
+        <td class="nowrap">{% if r.mac %}<code class="muted">{{ r.mac }}</code>{% endif %}</td>
+        <td>{{ r.firmware or "" }}{% if r.upgradable %} <span class="badge warn" title="Upgrade available{% if r.firmware_latest %}: {{ r.firmware_latest }}{% endif %}">▲ update</span>{% endif %}</td>
+        <td>{% if r.connected %}<span class="state state-up">● online</span>{% elif r.connected is sameas false %}<span class="state state-down">▼ offline</span>{% else %}<span class="muted">–</span>{% endif %}</td>
+        <td class="num">{{ "%.0f %%" | format(r.cpu) if r.cpu is not none else "" }}</td>
+        <td class="num">{{ "%.0f %%" | format(r.mem) if r.mem is not none else "" }}</td>
+        <td class="num nowrap">{% if r.uptime %}{{ (r.uptime // 86400) }}d {{ (r.uptime % 86400) // 3600 }}h{% endif %}</td>
+        <td class="num">{{ r.clients_now if r.clients_now is not none else "" }}</td>
+        <td>{% if r.log_device_id %}<a href="/sources/raw?device_id={{ r.log_device_id }}">{{ "● receiving" if r.logging else "registered" }}</a>
+            {% elif r.registrable %}<a class="small" href="/sources/add?register={{ r.ip or '' }}&amp;name={{ (r.name or '') | urlencode }}&amp;model={{ (r.model or '') | urlencode }}&amp;vendor=unifi&amp;client={{ r.client_id }}"
+               title="Make this device a log source: syslog from {{ r.ip }} is then accepted and filed under it">Register</a>
+            {% elif r.via %}<span class="muted small" title="Remote site: this device's logs reach the server from the gateway's public IP and are filed under {{ r.via }}">via {{ r.via }}</span>{% endif %}</td>
+        <td class="muted small">{{ r.via or "" }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="15" class="muted">No devices{% if f.q or f.status or f.product or f.updates or f.lifecycle %} match the filter{% endif %}.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p class="muted small">From the polled UniFi controllers (every minute: CPU, memory, uptime and connected clients are live
+    values) and UniFi Site Manager, plus registered log sources.
+    “Register” makes a device a log source (its syslog is then accepted and filed under it); it is offered only where the
+    device can send from its own address (same network as this server). At remote sites, devices' logs arrive through the
+    gateway (“via …”).</p>
+</section>
+
+<section class="card">
+  <h2>Firmware by model</h2>
+  <table class="dense">
+    <thead><tr><th>Type</th><th>Model</th><th class="num">Devices</th><th>Firmware in use</th><th class="num">Can update</th><th>Latest offered</th><th>Lifecycle</th><th class="num">Sites</th></tr></thead>
+    <tbody>{% for m in models %}
+      <tr><td>{{ m.product }}</td><td><strong>{{ m.model }}</strong></td><td class="num">{{ m.n }}</td>
+        <td class="small">{% for v, n in m.versions | dictsort %}<code>{{ v }}</code>{% if m.versions | length > 1 %} ×{{ n }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+        <td class="num">{% if m.updates %}<a href="/devices?updates=1&amp;q={{ m.model | urlencode }}">{{ m.updates }}</a>{% else %}0{% endif %}</td>
+        <td class="small">{{ m.latest or "" }}</td><td>{% if m.eol %}<span class="badge warn">End of life</span>{% endif %}</td>
+        <td class="num">{{ m.sites | length }}</td></tr>
+    {% else %}<tr><td colspan="8" class="muted">No controller-reported devices.</td></tr>{% endfor %}</tbody>
+  </table>
+  <p class="muted small">Several firmware versions for one model usually means some devices missed an update. "End of life" and
+    "LTS" are UniFi's own flags for the model. Serial numbers and lifecycle come from the controllers polled every minute.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Maintenance windows · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Maintenance windows <span class="muted">· {{ scope_label }}</span></h1>
+  <nav class="segmented"><a href="/sources">Devices</a><a href="/sources/maintenance" aria-current="true">Maintenance windows</a></nav>
+</div>
+<p class="muted">Planned downtime. While a window is active the device shows as <em>maintenance</em> instead of down,
+  and the time is excluded from availability and uptime reports. Leave the device empty to cover the whole client.</p>
+<section class="card">
+  <table class="dense">
+    <thead><tr><th>Client</th><th>Device</th><th>Starts</th><th>Ends</th><th>Reason</th><th>By</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    {% for m in rows %}
+      <tr>
+        <td>{{ m.client }}</td><td>{{ m.device or "all devices" }}</td>
+        <td class="nowrap">{{ m.starts_at | ts(m.timezone) }}</td><td class="nowrap">{{ m.ends_at | ts(m.timezone) }}</td>
+        <td>{{ m.reason }}</td><td>{{ m.created_by or "" }}</td>
+        <td>{{ "active" if m.active else ("finished" if m.past else "scheduled") }}</td>
+        <td><form method="post" action="/sources/maintenance/{{ m.id }}/delete" class="inline-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link" type="submit">Delete</button></form></td>
+      </tr>
+    {% else %}
+      <tr><td colspan="8" class="muted">No maintenance windows.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+<section class="card narrow">
+  <h2>Schedule a window</h2>
+  <form method="post" action="/sources/maintenance">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Client
+      <select name="client_id" required>{% for c in clients %}<option value="{{ c.id }}" {% if scope_selected and scope_selected.id == c.id %}selected{% endif %}>{{ c.name }}</option>{% endfor %}</select>
+    </label>
+    <label>Device
+      <select name="device_id"><option value="">All devices of the client</option>
+        {% for d in devices %}<option value="{{ d.id }}">{{ d.name }} ({{ d.client }})</option>{% endfor %}</select>
+    </label>
+    <label>Starts (client's local time) <input type="datetime-local" name="starts" required></label>
+    <label>Ends (client's local time) <input type="datetime-local" name="ends" required></label>
+    <label>Reason <input name="reason" maxlength="300" placeholder="e.g. firmware upgrade"></label>
+    <button type="submit">Schedule</button>
+  </form>
+</section>
+{% endblock %}

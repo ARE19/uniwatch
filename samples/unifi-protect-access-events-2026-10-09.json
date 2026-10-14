@@ -1,0 +1,337 @@
+{
+ "('access', 'accessed', 'Full Session', None)": {
+  "site": "MargieHK",
+  "event": {
+   "id": "6ac36700037c1703e4083ef1",
+   "modelKey": "event",
+   "type": "access",
+   "start": 1791190784891,
+   "end": 1791270047152,
+   "score": 0,
+   "smartDetectTypes": [],
+   "camera": null,
+   "partition": null,
+   "user": "69d80387036ddb03e400040c",
+   "metadata": {
+    "ip": "11.162.174.120",
+    "userName": "Unifi Owner",
+    "clientPlatform": "web",
+    "ramDescription": ""
+   },
+   "thumbnail": "e-6ac36700037c1703e4083ef1",
+   "heatmap": "e-6ac36700037c1703e4083ef1",
+   "timestamp": 1791230416021,
+   "isFavorite": false,
+   "favoriteObjectIds": null,
+   "description": {
+    "eventMetadata": {
+     "eventType": "access",
+     "category": "adminActivity",
+     "subCategory": "accessed",
+     "severity": "medium",
+     "title": "Full Session",
+     "deviceEventClassId": 2008
+    },
+    "messageRaw": "{userLink} accessed UniFi Protect using the web for 22h 1m 2s.",
+    "messageKeys": [
+     {
+      "key": "userLink",
+      "text": "Unifi Owner",
+      "style": [
+       "link"
+      ],
+      "action": "viewUsers"
+     }
+    ]
+   },
+   "category": "admin",
+   "subCategory": "Accessed"
+  }
+ },
+ "('adminActivity', 'deviceSettings', 'Device List Viewed', 'deviceListViewed')": {
+  "site": "CTS KL",
+  "event": {
+   "id": "6ac5c0fb002b9503e419ee07",
+   "modelKey": "event",
+   "type": "adminActivity",
+   "start": 1791344891039,
+   "end": null,
+   "score": 0,
+   "smartDetectTypes": [],
+   "camera": null,
+   "partition": null,
+   "user": "68ef1eed03886a03e41362b3",
+   "metadata": {
+    "userName": "Bob Lim",
+    "clientData": {},
+    "userAction": "deviceListViewed",
+    "clientPlatform": "web",
+    "ramDescription": ""
+   },
+   "thumbnail": "e-6ac5c0fb002b9503e419ee07",
+   "heatmap": "e-6ac5c0fb002b9503e419ee07",
+   "timestamp": null,
+   "isFavorite": false,
+   "favoriteObjectIds": null,
+   "description": {
+    "eventMetadata": {
+     "eventType": "adminActivity",
+     "category": "adminActivity",
+     "subCategory": "deviceSettings",
+     "severity": "medium",
+     "title": "Device List Viewed",
+     "deviceEventClassId": 2308
+    },
+    "messageRaw": "{userLink} viewed the Device list.",
+    "messageKeys": [
+     {
+      "key": "userLink",
+      "text": "Bob Lim",
+      "style": [
+       "link"
+      ],
+      "action": "viewUsers"
+     },
+     {
+      "key": "deviceLink",
+      "text": "unknown device",
+      "style": []
+     }
+    ]
+   },
+   "category": null
+  }
+ },
+ "('adminActivity', 'recordingsClips', 'Camera Timeline Viewed', 'cameraTimelineViewed')": {
+  "site": "CTS KL",
+  "event": {
+   "id": "6ab9c81e00699503e4110375",
+   "modelKey": "event",
+   "type": "adminActivity",
+   "start": 1790560286103,
+   "end": null,
+   "score": 0,
+   "smartDetectTypes": [],
+   "camera": "64af6c3603ae2e03e40003f9",
+   "partition": null,
+   "user": "64f984f802656503e4004f25",
+   "metadata": {
+    "userName": "Alice Chan",
+    "clientData": {
+     "end": 1790560285961,
+     "start": 1790559877601,
+     "timelineFragments": [
+      {
+       "end": 1790552012217.285,
+       "start": 1790332152133
+      },
+      {
+       "end": 1790554689501.974,
+       "start": 1790332152133
+      },
+      {
+       "end": 1790552003029.683,
+       "start": 1790332152133
+      }
+     ]
+    },
+    "userAction": "cameraTimelineViewed",
+    "clientPlatform": "web",
+    "ramDescription": ""
+   },
+   "thumbnail": "e-6ab9c81e00699503e4110375",
+   "heatmap": "e-6ab9c81e00699503e4110375",
+   "timestamp": null,
+   "isFavorite": false,
+   "favoriteObjectIds": null,
+   "description": {
+    "eventMetadata": {
+     "eventType": "adminActivity",
+     "category": "adminActivity",
+     "subCategory": "recordingsClips",
+     "severity": "medium",
+     "title": "Camera Timeline Viewed",
+     "deviceEventClassId": 2308,
+     "timelineFragments": [
+      {
+       "id": "6ab9c81e00699503e4110375_1790332152133_1790552012217.285",
+       "end": 1790552012217.285,
+       "start": 1790332152133,
+       "messageRaw": "Viewed 2d 13h 4m 20s of {deviceLink} Timeline from 18:29:12 to 07:33:32. {viewLink}",
+       "messageKeys": [
+        {
+         "key": "deviceLink",
+         "text": "CTSKL-CCTV1 - Lobby",
+         "style": [
+          "link"
+         ],
+         "action": "viewDeviceDetails",
+         "params": {
+          "deviceId": "64af6c3603ae2e03e40003f9"
+         }
+        },
+        {
+         "key": "viewLink",
+         "text": "View",
+         "style": [
+          "link"
+         ],
+         "action": "viewCameraTimelapse",
+         "params": {
+          "cameraId": "64af6c3603ae2e03e40003f9",
+          "start": 1790332152133
+         }
+        }
+       ]
+      },
+      {
+       "id": "6ab9c81e00699503e4110375_1790332152133_1790554689501.974",
+       "end": 1790554689501.974,
+       "start": 1790332152133,
+       "messageRaw": "Viewed 2d 13h 48m 57s of {deviceLink} Timeline from 18:29:12 to 08:18:09. {viewLink}",
+       "messageKeys": [
+        {
+         "key": "deviceLink",
+         "text": "CTSKL-CCTV1 - Lobby",
+         "style": [
+          "link"
+         ],
+         "action": "viewDeviceDetails",
+         "params": {
+          "deviceId": "64af6c3603ae2e03e40003f9"
+         }
+        },
+        {
+         "key": "viewLink",
+         "text": "View",
+         "style": [
+          "link"
+         ],
+         "action": "viewCameraTimelapse",
+         "params": {
+          "cameraId": "64af6c3603ae2e03e40003f9",
+          "start": 1790332152133
+         }
+        }
+       ]
+      },
+      {
+       "id": "6ab9c81e00699503e4110375_1790332152133_1790552003029.683",
+       "end": 1790552003029.683,
+       "start": 1790332152133,
+       "messageRaw": "Viewed 2d 13h 4m 10s of {deviceLink} Timeline from 18:29:12 to 07:33:23. {viewLink}",
+       "messageKeys": [
+        {
+         "key": "deviceLink",
+         "text": "CTSKL-CCTV1 - Lobby",
+         "style": [
+          "link"
+         ],
+         "action": "viewDeviceDetails",
+         "params": {
+          "deviceId": "64af6c3603ae2e03e40003f9"
+         }
+        },
+        {
+         "key": "viewLink",
+         "text": "View",
+         "style": [
+          "link"
+         ],
+         "action": "viewCameraTimelapse",
+         "params": {
+          "cameraId": "64af6c3603ae2e03e40003f9",
+          "start": 1790332152133
+         }
+        }
+       ]
+      }
+     ]
+    },
+    "messageRaw": "{userLink} viewed the timeline of {deviceLink} for 6m 48s.",
+    "messageKeys": [
+     {
+      "key": "userLink",
+      "text": "Alice Chan",
+      "style": [
+       "link"
+      ],
+      "action": "viewUsers"
+     },
+     {
+      "key": "deviceLink",
+      "text": "CTSKL-CCTV1 - Lobby",
+      "style": [
+       "link"
+      ],
+      "action": "viewDeviceDetails",
+      "params": {
+       "deviceId": "64af6c3603ae2e03e40003f9"
+      }
+     }
+    ]
+   },
+   "category": null
+  }
+ },
+ "('adminActivity', 'deviceSettings', 'Camera Settings Opened', 'cameraSettingsOpened')": {
+  "site": "TSP-HK",
+  "event": {
+   "id": "6aa791b50252de03e4033326",
+   "modelKey": "event",
+   "type": "adminActivity",
+   "start": 1789366709593,
+   "end": null,
+   "score": 0,
+   "smartDetectTypes": [],
+   "camera": "69eb2963004fbb03e400fa99",
+   "partition": null,
+   "user": "69def823029b9303e400040b",
+   "metadata": {
+    "userName": "UniFi User",
+    "clientData": {},
+    "userAction": "cameraSettingsOpened",
+    "clientPlatform": "web",
+    "ramDescription": ""
+   },
+   "thumbnail": "e-6aa791b50252de03e4033326",
+   "heatmap": "e-6aa791b50252de03e4033326",
+   "timestamp": null,
+   "isFavorite": false,
+   "favoriteObjectIds": null,
+   "description": {
+    "eventMetadata": {
+     "eventType": "adminActivity",
+     "category": "adminActivity",
+     "subCategory": "deviceSettings",
+     "severity": "medium",
+     "title": "Camera Settings Opened",
+     "deviceEventClassId": 2308
+    },
+    "messageRaw": "{userLink} opened {deviceLink}.",
+    "messageKeys": [
+     {
+      "key": "userLink",
+      "text": "UniFi User",
+      "style": [
+       "link"
+      ],
+      "action": "viewUsers"
+     },
+     {
+      "key": "deviceLink",
+      "text": "TSPHK-FRONT",
+      "style": [
+       "link"
+      ],
+      "action": "viewDeviceDetails",
+      "params": {
+       "deviceId": "69eb2963004fbb03e400fa99"
+      }
+     }
+    ]
+   },
+   "category": null
+  }
+ }
+}

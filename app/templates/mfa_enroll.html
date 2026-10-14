@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Set up two-factor · {{ app_name() }}{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <h1>Set up two-factor sign-in</h1>
+  <p>Two-factor sign-in is required. Scan this code with an authenticator app (Microsoft Authenticator, Google Authenticator, 1Password…), then enter the 6-digit code it shows.</p>
+  {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+  <div class="qr">{{ qr | safe }}</div>
+  <p class="muted">Can't scan? Enter this key manually: <code id="totp-secret">{{ secret }}</code></p>
+  <form method="post" action="/mfa" hx-boost="false">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>6-digit code <input name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]{6,7}" required autofocus></label>
+    <button type="submit">Confirm and continue</button>
+  </form>
+</section>
+{% endblock %}

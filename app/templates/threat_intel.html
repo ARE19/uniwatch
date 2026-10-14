@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Threat Intel · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Threat Intel <span class="muted">· {{ scope_label }}</span></h1>
+  <form method="get" action="/threat-intel" class="inline-search">
+    <input name="q" value="{{ lookup.q if lookup else '' }}" placeholder="Look up an IP or domain…" aria-label="Look up an IP or domain">
+    <button type="submit">Look up</button>
+  </form>
+</div>
+{% if lookup %}
+<section class="card">
+  <h2>Lookup: <code>{{ lookup.q }}</code></h2>
+  {% if lookup.hits %}<p class="error">Listed by {{ lookup.hits | length }} feed(s):</p>
+    <ul>{% for h in lookup.hits %}<li>{{ h.name }} <span class="muted">({{ h.match }})</span></li>{% endfor %}</ul>
+  {% else %}<p class="ok">Not on any loaded threat list.</p>{% endif %}
+</section>
+{% endif %}
+
+<section class="card">
+  <h2>Matches in your logs <span class="muted">last 7 days</span></h2>
+  <table class="dense">
+    <thead><tr><th>Indicator</th><th>Client</th><th>Device</th><th>Feeds</th><th>What it did</th><th class="num">Events</th><th>First / last seen</th></tr></thead>
+    <tbody>
+    {% for m in matches %}
+      <tr><td>{% if m.side != "domain" %}<a href="/ip/{{ m.value }}">{{ m.value }}</a>{% else %}{{ m.value }}{% endif %}
+          <span class="muted small">{{ m.side }}{% if m.country %} · {{ m.country }}{% endif %}</span></td>
+        <td>{{ m.client }}</td><td>{{ m.devices }}</td>
+        <td class="small">{{ (m.feeds | fromjson_list) | join(", ") }}</td><td class="small">{{ m.actions or "" }}</td>
+        <td class="num"><a href="/logs?range=7d&amp;action=ioc-match&amp;ip={{ m.value if m.side != 'domain' else '' }}">{{ m.hits }}</a></td>
+        <td class="nowrap small">{{ m.first | ts_short(scope_tz) }}<br>{{ m.last | ts_short(scope_tz) }}</td></tr>
+    {% else %}<tr><td colspan="7" class="muted">No addresses or domains in your logs are on the loaded threat lists.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="card">
+  <h2>Feeds</h2>
+  <table class="dense">
+    <thead><tr><th>Feed</th><th>Format</th><th class="num">Indicators</th><th>Last refresh</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    {% for f in feeds %}
+      <tr><td>{{ f.name }}<br><span class="muted small">{{ f.url }}</span></td><td>{{ f.format }}</td>
+        <td class="num">{{ "{:,}".format(f.indicators) }}</td>
+        <td class="nowrap">{{ f.last_fetched | ts_short(scope_tz) if f.last_fetched else "never" }}</td>
+        <td>{% if not f.enabled %}<span class="muted">disabled</span>{% elif f.last_error %}<span class="status-silent" title="{{ f.last_error }}">▲ {{ f.last_error[:60] }}</span>{% else %}<span class="status-ok">● ok</span>{% endif %}</td>
+        <td class="actions">{% if is_admin %}{% for act, label in [("refresh", "Refresh now"), ("toggle", "Disable" if f.enabled else "Enable"), ("delete", "Delete")] %}
+          <form method="post" action="/threat-intel/feeds/{{ f.id }}/{{ act }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link" type="submit">{{ label }}</button></form>{% endfor %}{% endif %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p class="muted small">Free public feeds only, refreshed every 6 hours. New events are checked about every 45 seconds; a match adds a
+    high-severity <code>ioc-match</code> event and raises the “Threat intel match” alert.</p>
+</section>
+{% if is_admin %}
+<section class="card narrow">
+  <h2>Add a feed</h2>
+  <form method="post" action="/threat-intel/feeds">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Name <input name="name" required></label>
+    <label>URL (https) <input name="url" required></label>
+    <label>Format <select name="format"><option value="ip_list">One IP or CIDR per line</option><option value="hostfile">Hosts file (IP domain)</option><option value="spamhaus_json">Spamhaus DROP JSON lines</option></select></label>
+    <button type="submit">Add feed</button>
+  </form>
+</section>
+{% endif %}
+{% endblock %}

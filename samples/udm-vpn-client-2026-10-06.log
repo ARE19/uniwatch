@@ -1,0 +1,27 @@
+<14>Oct  6 17:37:56 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65374: EVT_VPN_ClientDisconnected server 11.124.200.216:1194 (via tunovpnc1 192.168.200.1/24) on /vpn/openvpn/raws/1
+<30>Oct  6 17:37:56 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link DOWN
+<30>Oct  6 17:37:56 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Lost carrier
+<14>Oct  6 17:37:59 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65375: EVT_VPN_ClientFailed server on /vpn/openvpn/raws/1
+<14>Oct  6 17:37:59 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65376: EVT_VPN_ClientConnecting server on /vpn/openvpn/raws/1
+<30>Oct  6 17:38:01 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link UP
+<30>Oct  6 17:38:01 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained IPv6LL
+<14>Oct  6 17:38:03 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65377: EVT_VPN_ClientConnected server 11.124.200.216:1194 (via tunovpnc1 192.168.200.1/24) on /vpn/openvpn/raws/1
+<14>Oct  6 17:39:01 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65378: EVT_VPN_ClientDisconnected server 11.124.200.216:1194 (via tunovpnc1 192.168.200.1/24) on /vpn/openvpn/raws/1
+<30>Oct  6 17:39:01 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link DOWN
+<30>Oct  6 17:39:01 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Lost carrier
+<14>Oct  6 17:39:04 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65379: EVT_VPN_ClientFailed server on /vpn/openvpn/raws/1
+<14>Oct  6 17:39:05 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65380: EVT_VPN_ClientConnecting server on /vpn/openvpn/raws/1
+<30>Oct  6 17:39:05 NW-HK NW-HK ubios-udapi-server[1852010]: 2026-10-06 17:39:05 TCP connection established with [AF_INET]11.124.200.216:1194
+<30>Oct  6 17:39:06 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link UP
+<30>Oct  6 17:39:07 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained IPv6LL
+<14>Oct  6 17:39:07 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65381: EVT_VPN_ClientConnected server 11.124.200.216:1194 (via tunovpnc1 192.168.200.1/24) on /vpn/openvpn/raws/1
+<14>Oct  6 17:40:06 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65382: EVT_VPN_ClientDisconnected server 11.124.200.216:1194 (via tunovpnc1 192.168.200.1/24) on /vpn/openvpn/raws/1
+<30>Oct  6 17:40:06 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link DOWN
+<30>Oct  6 17:40:06 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Lost carrier
+<30>Oct  6 17:40:08 NW-HK NW-HK ubios-udapi-server[1852010]: 2026-10-06 17:40:08 TCP connection established with [AF_INET]11.124.200.216:1194
+<14>Oct  6 17:40:09 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65383: EVT_VPN_ClientFailed server on /vpn/openvpn/raws/1
+<14>Oct  6 17:40:09 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65384: EVT_VPN_ClientConnecting server on /vpn/openvpn/raws/1
+<30>Oct  6 17:40:10 NW-HK NW-HK ubios-udapi-server[1855747]: 2026-10-06 17:40:10 TCP connection established with [AF_INET]11.124.200.216:1194
+<30>Oct  6 17:40:11 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link UP
+<30>Oct  6 17:40:11 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained IPv6LL
+<14>Oct  6 17:40:11 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65385: EVT_VPN_ClientConnected server 11.124.200.216:1194 (via tunovpnc1 192.168.200.1/24) on /vpn/openvpn/raws/1

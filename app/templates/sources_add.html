@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Add device · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Add device</h1>
+  <a href="/sources">← Log sources</a>
+</div>
+{% if errors %}<ul class="error" role="alert">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+<section class="card narrow">
+  {% if not clients %}<p class="notice">Create a client first (Clients page, admin only).</p>{% endif %}
+  <p class="muted">A device whose syslog this server should accept. Its <em>syslog source IP</em> is the address the logs
+    arrive from (for a remote site: its public WAN IP).</p>
+  <form method="post" action="/sources/devices">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Client
+      <select name="client_id" required>
+        {% for c in clients %}<option value="{{ c.id }}" {% if form.client_id == c.id %}selected{% endif %}>{{ c.name }} ({{ c.slug }})</option>{% endfor %}
+      </select>
+    </label>
+    <label>Device name <input name="name" value="{{ form.name or '' }}" required></label>
+    <label>Vendor
+      <select name="vendor">{% for v in vendors %}<option value="{{ v }}" {% if form.vendor == v %}selected{% endif %}>{{ v }}</option>{% endfor %}</select>
+    </label>
+    <label>Model <input name="model" value="{{ form.model or '' }}"></label>
+    <label>Site <input name="site" value="{{ form.site or '' }}"></label>
+    <label>Syslog source IP <input name="syslog_source_ip" value="{{ form.syslog_source_ip or '' }}"></label>
+    <label>Management IP <input name="mgmt_ip" value="{{ form.mgmt_ip or '' }}"></label>
+    <button type="submit">Add device</button>
+  </form>
+</section>
+{% endblock %}

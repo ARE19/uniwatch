@@ -1,0 +1,13 @@
+{
+ "source": "CTS KL (Network 10.6.106) via the Site Manager connector, 2026-10-09. rest/networkconf entries with purpose site-vpn (trimmed: only the fields used; no keys) and GET v2/api/site/default/vpn/connections. Names as shown in the UniFi UI.",
+ "networkconf": [
+  {"_id": "69203f787c640768c37d4411", "name": "CTSKL-PartnerNet", "purpose": "site-vpn", "vpn_type": "ipsec-vpn", "enabled": true,
+   "ipsec_interface": "wan2", "ipsec_peer_ip": "11.229.44.205", "ifname": "vti64"},
+  {"_id": "69bb618d931fd4a41c870dbe", "name": "S2S CTSKL/CTSHK", "purpose": "site-vpn", "vpn_type": "ipsec-vpn", "enabled": true,
+   "ipsec_interface": "wan", "ipsec_peer_ip": "11.145.11.27", "ifname": "vti65", "ipsec_tunnel_ip": "10.255.255.2/24"}
+ ],
+ "connections": {"connections": [
+  {"assoc_time": 1789771774, "network_id": "69203f787c640768c37d4411", "notes": [], "remote_ip": "11.229.44.205", "status": "CONNECTED", "type": "ipsec-vpn"},
+  {"network_id": "69bb618d931fd4a41c870dbe", "notes": [], "status": "DISCONNECTED", "type": "ipsec-vpn"}
+ ]}
+}

@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ r.client.name }} · {{ r.type }}</title>
+<style>
+  /* House style of the MSP's Word documents (app/brand.py): Montserrat 9 pt, red table headers and rules,
+     dark-teal headings, logo + grey title in the page header, "MSP – Confidential / Page x of y" footer. */
+  @font-face { font-family: "Montserrat"; src: url("fonts/Montserrat-Regular.ttf"); font-weight: normal; }
+  @font-face { font-family: "Montserrat"; src: url("fonts/Montserrat-Bold.ttf"); font-weight: bold; }
+  @page { size: A4; margin: 30mm 20mm 22mm;
+    @top-center { content: element(pagehead); width: 100%; vertical-align: bottom; padding-bottom: 3mm; }
+    @bottom-left { content: "{{ brand.CONFIDENTIAL }}"; width: 50%; border-top: 0.75pt solid {{ brand.RED }}; padding-top: 2mm;
+                   vertical-align: top; font-family: Montserrat, "DejaVu Sans", sans-serif; font-size: 8pt; color: {{ brand.FOOTER_TEXT }}; }
+    @bottom-right { content: "Page " counter(page) " of " counter(pages); width: 50%; text-align: right; border-top: 0.75pt solid {{ brand.RED }};
+                    padding-top: 2mm; vertical-align: top; font-family: Montserrat, "DejaVu Sans", sans-serif; font-size: 8pt; color: {{ brand.FOOTER_TEXT }}; } }
+  @page cover { margin: 0; @top-center { content: none; } @bottom-left { content: none; border: 0; } @bottom-right { content: none; border: 0; } }
+  body { margin: 0; font-family: Montserrat, "DejaVu Sans", sans-serif; font-size: 9pt; color: #000; line-height: 1.35; }
+  .pagehead { position: running(pagehead); width: 100%; border-bottom: 0.75pt solid {{ brand.RED }}; padding-bottom: 1.5mm; }
+  .pagehead img { height: 10mm; vertical-align: bottom; }
+  .pagehead .t { float: right; margin-top: 5mm; font-size: 9pt; color: {{ brand.HEADER_TEXT }}; }
+
+  .cover { page: cover; position: relative; width: 210mm; height: 297mm; color: #fff;
+           background: {% if cover_uri %}#0b1a45 url("{{ cover_uri }}") no-repeat center / cover{% else %}linear-gradient(160deg, #0b1a45 0%, {{ brand.RED_DARK }} 70%, {{ brand.RED }} 100%){% endif %}; }
+  .cover div { position: absolute; }
+  .cover .brand { top: 36mm; left: 25.4mm; font-size: 26pt; letter-spacing: 0.5pt; }
+  .cover .bar { top: 80mm; left: 23.4mm; width: 169mm; min-height: 29mm; box-sizing: border-box; padding: 5mm 6mm;
+                background: linear-gradient(to right, {{ brand.RED_DARK }}, {{ brand.RED }}); font-size: 20pt; line-height: 1.3; }
+  .cover .when { top: 148mm; left: 25.4mm; font-size: 15pt; }
+  .cover .gen { top: 148mm; left: 105mm; font-size: 15pt; }
+  .cover .co { top: 215mm; left: 25.4mm; font-size: 12pt; }
+  .cover .addr { top: 233mm; left: 25.4mm; font-size: 12pt; line-height: 1.5; }
+  .cover .tel { top: 233mm; left: 138mm; font-size: 12pt; line-height: 1.5; }
+
+  h1 { font-size: 14pt; font-weight: bold; color: {{ brand.HEADING }}; margin: 0 0 3mm; }
+  h2 { font-size: 14pt; font-weight: bold; color: {{ brand.HEADING }}; margin: 6mm 0 3mm; page-break-after: avoid; }
+  h3 { font-size: 12pt; font-weight: bold; color: {{ brand.HEADING }}; margin: 5mm 0 2mm; page-break-after: avoid; }
+  .meta { color: #555; margin-bottom: 4mm; }
+  table { width: 100%; border-collapse: collapse; margin: 1mm 0 4mm; }
+  th, td { text-align: left; padding: 1.4mm 2mm; border: 0.5pt solid {{ brand.BORDER }}; vertical-align: top; }
+  th { background: {{ brand.RED }}; color: #fff; font-weight: bold; }
+  tr:nth-child(even) td { background: {{ brand.ROW_TINT }}; }
+  td.n, th.n { text-align: right; }
+  tr { page-break-inside: avoid; }
+  table.details td:first-child { font-weight: bold; width: 35%; }
+  table.details ol { margin: 0; padding-left: 4.5mm; }
+  .bar { display: inline-block; height: 2.2mm; background: {{ brand.GOOD }}; vertical-align: middle; }
+  .bad { color: {{ brand.RED }}; font-weight: bold; }
+  .muted { color: #777; }
+  .note { color: #555; font-size: 8pt; }
+  h2.generic { page-break-before: always; }
+  h2.first { page-break-before: avoid; }
+  .intro { margin: 0 0 3mm; }
+  table.kpis { border-collapse: separate; border-spacing: 2mm 0; margin: 0 -2mm 4mm; table-layout: fixed; }
+  table.kpis td { border: 0.5pt solid {{ brand.BORDER }}; border-top: 1.5pt solid {{ brand.RED }}; padding: 2mm 2.5mm;
+                  background: {{ brand.ROW_TINT }}; vertical-align: top; }
+  .kpi-label { color: #52514e; font-size: 7.5pt; }
+  .kpi-value { font-size: 13pt; font-weight: bold; color: {{ brand.HEADING }}; margin-top: 0.8mm; }
+  .kpi-note { color: #898781; font-size: 7pt; }
+  .st-good .kpi-value { color: {{ brand.GOOD }}; }
+  .st-warning .kpi-value { color: #b54708; }
+  .findings { margin: 0 0 4mm; padding: 0; list-style: none; }
+  .findings li { margin: 0 0 1.2mm; padding-left: 0; }
+  .prio { display: inline-block; min-width: 13mm; font-size: 7pt; font-weight: bold; text-transform: uppercase; }
+  .prio-critical, .prio-high { color: {{ brand.RED }}; }
+  .prio-medium { color: #b54708; }
+  .prio-low { color: #52514e; }
+  .block { page-break-inside: avoid; margin-bottom: 3mm; }
+  table.pie, table.pie td { border: 0; padding: 0; width: auto; background: none !important; }
+  table.pie td.pie-svg { padding-right: 6mm; vertical-align: middle; }
+  table.pie-legend td { border: 0; border-bottom: 0.3pt solid #eee; padding: 0.8mm 2mm; font-size: 8pt; background: none !important; }
+  table.pies, table.pies > tr > td, table.pies > tbody > tr > td { border: 0; padding: 0 3mm 0 0; vertical-align: top; background: none !important; }
+  .pie-stack { text-align: center; }
+  .pie-stack svg { display: block; margin: 1mm auto 2mm; }
+  .pie-stack table.pie-legend { width: auto; margin: 0 auto; text-align: left; }
+  .sw { display: inline-block; width: 2.6mm; height: 2.6mm; border-radius: 0.6mm; margin-right: 1.5mm; vertical-align: -0.3mm; }
+  .lg { margin-right: 4mm; font-size: 8pt; color: #52514e; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="pagehead"><img src="{{ logo_uri }}" alt=""><span class="t">{{ r.client.name }} – {{ bundle_titles.get(r.type, r.sections[0].title) }}</span></div>
+
+<div class="cover">
+  <div class="brand">{{ brand.COMPANY_SHORT }}</div>
+  <div class="bar">{{ r.client.name }} – Uniwatch Report<br>{{ bundle_titles.get(r.type, r.sections[0].title) }}</div>
+  <div class="when">{{ r.start | local(tz, "%d %b %Y") }} – {{ (r.end - one_second) | local(tz, "%d %b %Y") }}</div>
+  <div class="gen">Generated {{ r.generated | local(tz, "%d %b %Y") }}</div>
+  <div class="co">{{ brand.COMPANY }}</div>
+  <div class="addr">{% for l in brand.ADDRESS %}{{ l }}<br>{% endfor %}</div>
+  <div class="tel">{% for l in brand.PHONES %}{{ l }}<br>{% endfor %}</div>
+</div>
+
+<h1>Report details</h1>
+<table class="details">
+  <tr><th>Client</th><th>{{ r.client.name }}</th></tr>
+  <tr><td>Report</td><td>{{ bundle_titles.get(r.type, r.sections[0].title) }}</td></tr>
+  <tr><td>Period</td><td>{{ r.start | local(tz, "%Y-%m-%d %H:%M") }} – {{ r.end | local(tz, "%Y-%m-%d %H:%M") }}</td></tr>
+  <tr><td>Time zone</td><td>{{ tz }}</td></tr>
+  <tr><td>Generated</td><td>{{ r.generated | local(tz) }}</td></tr>
+  {% if r.sections | length > 1 %}<tr><td>Contents</td><td><ol>{% for s in r.sections %}<li>{{ s.title }}</li>{% endfor %}</ol></td></tr>{% endif %}
+  <tr><td>Prepared by</td><td>{{ brand.COMPANY }}</td></tr>
+</table>
+
+{% for s in r.sections %}
+{% if s.generic %}
+<h2 class="generic{% if loop.first %} first{% endif %}">{{ loop.index }}. {{ s.title }}</h2>
+<p class="intro">{{ s.intro }}</p>
+{% if s.kpis %}
+<table class="kpis"><tr>
+  {% for k in s.kpis[:4] %}<td class="{% if k.status %}st-{{ k.status }}{% endif %}"><div class="kpi-label">{{ k.label }}</div>
+    <div class="kpi-value">{{ k.value }}</div>{% if k.note %}<div class="kpi-note">{{ k.note }}</div>{% endif %}</td>{% endfor %}
+</tr></table>
+{% if s.kpis | length > 4 %}<table class="kpis"><tr>
+  {% for k in s.kpis[4:8] %}<td class="{% if k.status %}st-{{ k.status }}{% endif %}"><div class="kpi-label">{{ k.label }}</div>
+    <div class="kpi-value">{{ k.value }}</div>{% if k.note %}<div class="kpi-note">{{ k.note }}</div>{% endif %}</td>{% endfor %}
+</tr></table>{% endif %}
+{% endif %}
+{% if s.findings and s.type != "executive_summary" %}
+<h3>Findings</h3>
+<ul class="findings">{% for f in s.findings %}<li><span class="prio prio-{{ f[0] }}">{{ f[0] }}</span>{{ f[1] }}</li>{% endfor %}</ul>
+{% endif %}
+{% for b in s.blocks | pair_pies %}
+<div class="block">
+  {% if b.kind == "pies" %}<table class="pies"><tr>{% for p in b.pies %}<td style="width: {{ 100 // (b.pies | length) }}%">
+    <h3>{{ p.title }}</h3>{{ render_chart(p, stacked=True) | safe }}</td>{% endfor %}</tr></table>
+  {% elif b.kind == "chart" %}<h3>{{ b.title }}</h3>{{ render_chart(b) | safe }}
+  {% elif b.kind == "table" %}{% if b.rows %}<h3>{{ b.title }}</h3>
+    <table><tr>{% for h in b.headers %}<th{% if loop.index0 in b.num %} class="n"{% endif %}>{{ h }}</th>{% endfor %}</tr>
+      {% for row in b.rows[:60] %}<tr>{% for v in row %}<td{% if loop.index0 in b.num %} class="n"{% endif %}>{{ v }}</td>{% endfor %}</tr>{% endfor %}
+    </table>{% if b.rows | length > 60 %}<p class="note">{{ b.rows | length - 60 }} more rows in the Excel file.</p>{% endif %}
+  {% endif %}
+  {% elif b.kind == "note" %}<p class="note">{{ b.text }}</p>{% endif %}
+</div>
+{% endfor %}
+{% else %}
+<h2>{{ loop.index }}. {{ s.title }}</h2>
+
+{% if s.type == "internet_usage" %}
+  <p class="note">Measured on each gateway WAN port every minute from the controller's traffic counters. Download = received
+    from the internet. 95th percentile = the rate exceeded only 5 % of the time (the usual ISP billing measure).</p>
+  {% if s.wans %}
+  <table>
+    <tr><th>WAN</th><th class="n">Download</th><th class="n">Upload</th><th class="n">Avg ↓ / ↑ Mbps</th>
+        <th class="n">95th % ↓ / ↑ Mbps</th><th class="n">Peak ↓ / ↑ Mbps</th><th class="n">Availability</th></tr>
+    {% for w in s.wans %}
+    <tr><td>{{ w.device }} · {{ w.label or w.wan }} <span class="muted">{{ w.wan }}</span></td>
+      <td class="n">{{ w.rx | gb }}</td><td class="n">{{ w.tx | gb }}</td>
+      <td class="n">{{ "%.1f / %.1f" | format(w.avg_rx_mbps, w.avg_tx_mbps) }}</td>
+      <td class="n">{{ "%.1f / %.1f" | format(w.p95_rx_mbps, w.p95_tx_mbps) }}</td>
+      <td class="n">{{ "%.1f / %.1f" | format(w.peak_rx_mbps, w.peak_tx_mbps) }}</td>
+      <td class="n {% if w.availability is not none and w.availability < 0.999 %}bad{% endif %}">{{ w.availability | pct or "–" }}</td></tr>
+    {% endfor %}
+  </table>
+  {% for w in s.wans %}
+    <h3>{{ w.device }} · {{ w.label or w.wan }} — daily traffic
+      <span class="muted">(<span style="color:#2a78d6">■</span> download <span style="color:#eb6834">■</span> upload)</span></h3>
+    {{ daily_svg(w.days) | safe }}
+    <table><tr><th>Date</th><th class="n">Download</th><th class="n">Upload</th><th class="n">Peak ↓ Mbps</th><th class="n">Peak ↑ Mbps</th></tr>
+      {% for d in w.days %}<tr><td>{{ d.date }}</td><td class="n">{{ d.rx | gb }}</td><td class="n">{{ d.tx | gb }}</td>
+        <td class="n">{{ "%.1f" | format(d.peak_rx) }}</td><td class="n">{{ "%.1f" | format(d.peak_tx) }}</td></tr>{% endfor %}
+    </table>
+    <p class="note">Packets in/out {{ "{:,}".format(w.prx) }} / {{ "{:,}".format(w.ptx) }} · drops {{ "{:,}".format(w.drops) }} ·
+      errors {{ "{:,}".format(w.errors) }} · {{ w.outages | length }} outage(s), {{ w.down_s | human }} down.</p>
+  {% endfor %}
+  {% else %}<p class="muted">No WAN traffic was recorded in this period.</p>{% endif %}
+
+{% elif s.type == "device_uptime" %}
+  <p class="note">Availability = up ÷ (up + unplanned down). Maintenance windows and periods with no data are excluded.</p>
+  <table>
+    <tr><th>Device</th><th>Model</th><th>Firmware</th><th class="n">Availability</th><th class="n">Downtime</th><th class="n">Maintenance</th><th class="n">No data</th><th class="n">Outages</th></tr>
+    {% for d in s.devices %}
+    <tr><td>{{ d.name }}</td><td>{{ d.model }}</td><td>{{ d.firmware }}</td>
+      <td class="n {% if d.availability is not none and d.availability < 0.999 %}bad{% endif %}">{{ d.availability | pct or "no data" }}</td>
+      <td class="n">{{ d.down_s | human }}</td><td class="n">{{ d.maintenance_s | human }}</td><td class="n">{{ d.no_data_s | human }}</td><td class="n">{{ d.drops }}</td></tr>
+    {% endfor %}
+  </table>
+  {% for d in s.devices if d.outages %}
+    <h3>{{ d.name }} — outages</h3>
+    <table><tr><th>Start</th><th>End</th><th class="n">Duration</th></tr>
+      {% for a, b in d.outages[:200] %}<tr><td>{{ a | local(tz) }}</td><td>{{ b | local(tz) }}</td><td class="n">{{ (b - a).total_seconds() | human }}</td></tr>{% endfor %}
+    </table>
+    {% if d.outages | length > 200 %}<p class="note">{{ d.outages | length - 200 }} more in the Excel file.</p>{% endif %}
+  {% endfor %}
+
+{% elif s.type == "vpn_uptime" %}
+  <p class="note">Availability = up ÷ (up + down). Time with no logs from the device ("no data") and maintenance windows are excluded.</p>
+  {% if s.tunnels %}
+  <table>
+    <tr><th>Device</th><th>Tunnel</th><th>Peer</th><th class="n">Availability</th><th class="n">Drops</th><th class="n">Downtime</th><th class="n">No data</th></tr>
+    {% for t in s.tunnels %}
+    <tr><td>{{ t.device }}</td><td>{{ t.tunnel }}</td><td>{{ t.peer or "" }}</td>
+      <td class="n {% if t.availability is not none and t.availability < 0.999 %}bad{% endif %}">{{ t.availability | pct or "no data" }}</td>
+      <td class="n">{{ t.drops }}</td><td class="n">{{ t.down_s | human }}</td><td class="n">{{ t.unknown_s | human }}</td></tr>
+    {% endfor %}
+  </table>
+  {% for t in s.tunnels if t.outages %}
+    <h3>{{ t.device }} / {{ t.tunnel }} — longest drops</h3>
+    <table><tr><th>Start</th><th>End</th><th class="n">Duration</th></tr>
+      {% for a, b in t.longest %}<tr><td>{{ a | local(tz) }}</td><td>{{ b | local(tz) }}</td><td class="n">{{ (b - a).total_seconds() | human }}</td></tr>{% endfor %}
+    </table>
+    {% if t.outages | length > t.longest | length %}<p class="note">Longest {{ t.longest | length }} of {{ t.outages | length }} drops; every drop is in the Excel file.</p>{% endif %}
+  {% endfor %}
+  {% else %}<p class="muted">No VPN tunnel state recorded in this period.</p>{% endif %}
+
+{% elif s.type == "vpn_sessions" %}
+  {% if s.sessions %}
+  <h3>By user</h3>
+  <table><tr><th>User</th><th class="n">Sessions</th><th class="n">Total connected</th></tr>
+    {% for u in s.users %}<tr><td>{{ u.user }}</td><td class="n">{{ u.sessions }}</td><td class="n">{{ u.total_s | human }}</td></tr>{% endfor %}
+  </table>
+  <h3>Sessions</h3>
+  <table><tr><th>User</th><th>Source IP</th><th>VPN address</th><th>Start</th><th>End</th><th class="n">Duration</th><th>Status</th></tr>
+    {% for x in s.sessions[:500] %}<tr><td>{{ x.user_name or "" }}</td><td>{{ x.source_ip or "" }}</td><td>{{ x.assigned_ip or "" }}</td>
+      <td>{{ x.started_at | local(tz) if x.started_at else "not logged" }}</td><td>{{ x.ended_at | local(tz) }}</td>
+      <td class="n">{{ x.duration_s | human }}</td><td>{{ x.status }}</td></tr>{% endfor %}
+  </table>
+  {% else %}<p class="muted">No remote-access VPN sessions were logged in this period.</p>{% endif %}
+  {% if s.failed_sources %}
+  <h3>Failed VPN connection attempts by source</h3>
+  <table><tr><th>Source IP</th><th>Country</th><th>Network</th><th class="n">Attempts</th></tr>
+    {% for f in s.failed_sources %}<tr><td>{{ f.ip }}</td><td>{{ f.country or "" }}</td><td>{{ f.org or "" }}</td><td class="n">{{ f.n }}</td></tr>{% endfor %}
+  </table>
+  {% endif %}
+
+{% elif s.type == "device_traffic" %}
+  {% for d in s.devices %}
+    <h3>{{ d.device }} <span class="muted">({{ "{:,}".format(d.events) }} events)</span></h3>
+    {% if d.sources %}
+    <table><tr><th>Top sources</th><th>Country</th><th class="n">Events</th><th class="n">Blocked/failed</th></tr>
+      {% for x in d.sources %}<tr><td>{{ x.ip }}</td><td>{{ x.country or "" }}</td><td class="n">{{ "{:,}".format(x.events) }}</td><td class="n">{{ x.blocked or "" }}</td></tr>{% endfor %}
+    </table>{% endif %}
+    {% if d.destinations %}
+    <table><tr><th>Top destinations</th><th>Port</th><th>Country</th><th class="n">Events</th><th class="n">Blocked/failed</th></tr>
+      {% for x in d.destinations %}<tr><td>{{ x.ip }}</td><td>{{ x.port or "" }}</td><td>{{ x.country or "" }}</td><td class="n">{{ "{:,}".format(x.events) }}</td><td class="n">{{ x.blocked or "" }}</td></tr>{% endfor %}
+    </table>{% endif %}
+    {% if not d.sources and not d.destinations %}<p class="muted">No addressed events from this device.</p>{% endif %}
+  {% endfor %}
+  <p class="note">UniFi devices do not log application or website identity; this report lists addresses and ports only.</p>
+{% endif %}
+{% endif %}
+{% endfor %}
+</body>
+</html>

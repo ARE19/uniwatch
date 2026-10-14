@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Storage & forwarding · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head"><h1>Storage &amp; forwarding</h1></div>
+
+<section class="card">
+  <h2>Per-client storage</h2>
+  <p class="muted small">Estimated on-disk size = each client's share of raw-log bytes and of event rows, applied to the actual
+    compressed size of the tables. Data older than the retention period is deleted every 6 hours.</p>
+  <table class="dense">
+    <thead><tr><th>Client</th><th class="num">Log lines</th><th class="num">Events</th><th class="num">Est. size</th><th>Quota use</th><th>Retention (days) / quota (GB)</th></tr></thead>
+    <tbody>
+    {% for u in usage %}
+      <tr><td>{{ u.name }}</td><td class="num">{{ "{:,}".format(u.lines|int) }}</td><td class="num">{{ "{:,}".format(u.events|int) }}</td>
+        <td class="num">{{ "%.1f MB" | format(u.est_bytes / 1048576) }}</td>
+        <td>{% if u.used_pct is not none %}<span class="meter {{ 'crit' if u.used_pct >= 100 else ('hot' if u.used_pct >= 80 else '') }}"><span class="track"><span class="fill" style="width: {{ [u.used_pct, 100] | min }}%"></span></span><span class="v">{{ "%.1f" | format(u.used_pct) }} %</span></span>{% else %}<span class="muted">no quota</span>{% endif %}</td>
+        <td><form method="post" action="/admin/storage/clients/{{ u.id }}" class="inline-edit">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <input type="number" name="retention_days" min="1" max="3650" value="{{ u.retention_days }}" aria-label="Retention days for {{ u.name }}">
+          <input type="number" name="quota_gb" min="0.1" step="0.1" value="{{ u.quota_gb if u.quota_gb else '' }}" placeholder="none" aria-label="Quota GB for {{ u.name }}">
+          <button type="submit" class="link">Save</button></form></td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="card">
+  <h2>Log forwarding</h2>
+  <table class="dense">
+    <thead><tr><th>Name</th><th>Destination</th><th>Format</th><th>Scope</th><th class="num">Sent</th><th>Last sent</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    {% for t in targets %}
+      <tr><td>{{ t.name }}</td><td><code>{{ t.protocol }}://{{ t.host }}:{{ t.port }}</code></td><td>{{ t.format }}{% if t.format != "raw" %} · ≥ {{ t.min_severity }}{% endif %}</td>
+        <td>{{ t.client or "all clients" }}</td><td class="num">{{ "{:,}".format(t.sent_count) }}</td>
+        <td class="nowrap">{{ t.last_sent_at | ts_short(scope_tz) if t.last_sent_at else "—" }}</td>
+        <td>{% if not t.enabled %}<span class="muted">disabled</span>{% elif t.last_error %}<span class="status-silent" title="{{ t.last_error }}">▲ {{ t.last_error[:50] }}</span>{% else %}<span class="status-ok">● ok</span>{% endif %}</td>
+        <td class="actions">{% for act, label in [("test", "Send test"), ("toggle", "Disable" if t.enabled else "Enable"), ("delete", "Delete")] %}
+          <form method="post" action="/admin/storage/forwarding/{{ t.id }}/{{ act }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link" type="submit">{{ label }}</button></form>{% endfor %}</td></tr>
+    {% else %}<tr><td colspan="8" class="muted">No forwarding targets.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+  <p class="muted small">Forwarding starts from the moment a target is added (history is not replayed). Outbound connections go from this
+    server to the destination; no inbound ports are opened.</p>
+</section>
+<section class="card narrow">
+  <h2>Add forwarding target</h2>
+  <form method="post" action="/admin/storage/forwarding">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Name <input name="name" required></label>
+    <label>Host <input name="host" required placeholder="siem.example.com"></label>
+    <label>Port <input type="number" name="port" min="1" max="65535" value="514"></label>
+    <label>Protocol <select name="protocol"><option value="udp">UDP</option><option value="tcp">TCP</option><option value="tls">TCP + TLS</option></select></label>
+    <label>Format <select name="format"><option value="cef">CEF (normalised events)</option><option value="json">JSON (normalised events)</option><option value="raw">Raw (original lines)</option></select></label>
+    <label>Minimum severity (CEF/JSON) <select name="min_severity">{% for s in ["low", "medium", "high", "critical"] %}<option>{{ s }}</option>{% endfor %}</select></label>
+    <label>Client <select name="client_id"><option value="">All clients</option>{% for c in scope_clients %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}</select></label>
+    <button type="submit">Add</button>
+  </form>
+</section>
+{% endblock %}

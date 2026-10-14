@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block title %}Log View · {{ app_name() }}{% endblock %}
+{% block head %}<script src="/static/logs.js" defer></script>{% endblock %}
+{% macro hidden_except() -%}{# varargs = parameter names to leave out #}
+  {%- for k, v in lq.to_params() if k not in varargs %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor -%}
+  {%- if raw and "view" not in varargs %}<input type="hidden" name="view" value="raw">{% endif -%}
+{%- endmacro %}
+{% block content %}
+<div class="page-head">
+  <h1>Log View <span class="muted">· {{ scope_label }}</span></h1>
+  <nav class="segmented" aria-label="View">
+    <a href="/logs?{{ lq.qs() }}" {% if not raw %}aria-current="true"{% endif %}>Formatted</a>
+    <a href="/logs?{{ lq.qs(view='raw') }}" {% if raw %}aria-current="true"{% endif %}>Raw</a>
+    <a href="/logs/config-changes">Config changes</a>
+  </nav>
+</div>
+
+<nav class="tabs logtabs" aria-label="Log type">
+  <a href="/logs?{{ lq.qs(type=None, cols=None) }}" {% if not lq.logtype %}aria-current="page"{% endif %}>All</a>
+  {%- for key, (label, cats) in logtypes.items() %}
+  <a href="/logs?{{ lq.qs(type=key, cols=None) }}" {% if lq.logtype == key %}aria-current="page"{% endif %}>{{ label }}</a>
+  {%- endfor %}
+</nav>
+
+<div class="card logbar">
+  <form method="get" action="/logs" class="logbar-row" id="logfilter">
+    {{ hidden_except("device", "range", "from", "to", "q", "group") }}
+    <label class="visually-hidden" for="lf-device">Device</label>
+    <select id="lf-device" name="device" data-autosubmit>
+      <option value="">All devices</option>
+      {% for d in devices %}<option value="{{ d.id }}" {% if d.id in lq.devices %}selected{% endif %}>{{ d.name }}{% if not scope_selected %} ({{ d.client }}){% endif %}</option>{% endfor %}
+    </select>
+    <label class="visually-hidden" for="lf-range">Time range</label>
+    <select id="lf-range" name="range" data-custom-toggle>
+      {% for p in presets %}<option value="{{ p }}" {% if lq.range == p %}selected{% endif %}>{{ preset_labels[p] }}</option>{% endfor %}
+      <option value="custom" {% if lq.range == "custom" %}selected{% endif %}>Custom…</option>
+    </select>
+    <span class="custom-range" {% if lq.range != "custom" %}hidden{% endif %}>
+      <label>From <input type="datetime-local" name="from" value="{{ lq.from_s }}" step="1"></label>
+      <label>To <input type="datetime-local" name="to" value="{{ lq.to_s }}" step="1"></label>
+    </span>
+    <label class="visually-hidden" for="lf-group">Group by</label>
+    <select id="lf-group" name="group" data-autosubmit title="Group results by a field">
+      <option value="">No grouping</option>
+      {% for k, label in groupable.items() %}<option value="{{ k }}" {% if lq.group == k %}selected{% endif %}>Group by {{ label }}</option>{% endfor %}
+    </select>
+    <span class="range-text muted" title="Times in {{ scope_tz }}">{{ range_from | ts(scope_tz) }} – {{ range_to | ts(scope_tz) }}</span>
+
+    <span class="logbar-tools">
+      <details class="menu">
+        <summary>Custom views</summary>
+        <div class="menu-body">
+          {% for s in saved %}
+          <div class="menu-item">
+            <a href="/logs?{{ s.query }}">{{ s.name }}</a>{% if s.shared %} <small class="muted">shared</small>{% endif %}
+            {% if s.mine %}<button form="del-{{ s.id }}" class="link" type="submit" aria-label="Delete view {{ s.name }}">×</button>{% endif %}
+          </div>
+          {% else %}<p class="muted small">No custom views yet.</p>{% endfor %}
+          <div class="menu-sep"></div>
+          <strong class="small">Create custom view</strong>
+          <p class="muted small">Saves this tab, time range, device, search and columns.</p>
+          <input form="save-view" name="name" placeholder="View name" required maxlength="100" aria-label="View name">
+          <label class="inline small"><input form="save-view" type="checkbox" name="shared" value="true"> share with team</label>
+          <button form="save-view" type="submit">Save view</button>
+        </div>
+      </details>
+      <a class="button-secondary button-small" href="/logs?{{ lq.qs(view='raw' if raw else None) }}" title="Run the search again">↻ Refresh</a>
+      <details class="menu">
+        <summary>Columns</summary>
+        <div class="menu-body cols-menu">
+          <p class="muted small">Columns for this tab. Save a custom view to keep them.</p>
+          {% set current = lq.columns() %}
+          {% for key, (label, _) in columns.items() %}
+          <label class="inline"><input form="cols-form" type="checkbox" name="cols" value="{{ key }}" {% if key in current %}checked{% endif %}> {{ label }}</label>
+          {% endfor %}
+          <div class="menu-actions">
+            <button form="cols-form" type="submit">Apply</button>
+            <a href="/logs?{{ lq.qs(cols=None, view='raw' if raw else None) }}">Default columns</a>
+          </div>
+        </div>
+      </details>
+      <details class="menu menu-right">
+        <summary>More</summary>
+        <div class="menu-body">
+          <a class="menu-item" href="/logs/export.csv?{{ lq.qs() }}" download>Export CSV</a>
+          <label class="menu-item inline"><input type="checkbox" id="live" data-tail="/logs/tail?{{ lq.qs(view='raw' if raw else None) }}"> Live tail</label>
+          <a class="menu-item" href="/logs?{{ lq.qs(view=None if raw else 'raw') }}">{{ "Formatted view" if raw else "Raw log lines" }}</a>
+          <a class="menu-item" href="/logs/config-changes">Configuration changes</a>
+        </div>
+      </details>
+    </span>
+
+    <div class="searchbar">
+      <details class="menu fieldmenu">
+        <summary title="Add a filter" aria-label="Add a filter">⊕</summary>
+        <div class="menu-body fields-menu">
+          <p class="small"><strong>Filter on a field</strong> — click to add it to the search.</p>
+          <ul>
+            {% for name, f in fields.items() %}
+            <li><button type="button" class="link" data-insert="{{ name }}=">{{ name }}</button>
+              <span class="muted small">{{ f.label }}{% if f.help %} · {{ f.help }}{% endif %}</span></li>
+            {% endfor %}
+          </ul>
+          <p class="muted small">Operators: <code>=</code> <code>!=</code> <code>~</code> (contains) <code>&gt;</code> <code>&lt;</code> for numbers ·
+            <code>*</code> wildcard · <code>a,b</code> any of · quote values with spaces · words without a field search the message.
+            Right-click a value in the table to filter by it.</p>
+        </div>
+      </details>
+      <label class="visually-hidden" for="lf-q">Search</label>
+      <input id="lf-q" name="q" value="{{ lq.q }}" autocomplete="off" spellcheck="false"
+             placeholder="srcip=192.168.1.27  dstport=443  app=YouTube  remote=*.microsoft.com  action!=flow  or any text">
+      <button type="submit" aria-label="Search">Search</button>
+      {% if lq.q %}<a class="button-secondary button-small" href="/logs?{{ lq.qs(q=None, view='raw' if raw else None) }}" title="Clear the search">✕</a>{% endif %}
+    </div>
+  </form>
+  <form id="cols-form" method="get" action="/logs" hidden>{{ hidden_except("cols") }}</form>
+  <form id="save-view" method="post" action="/logs/saved" hidden>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <input type="hidden" name="query" value="{{ lq.qs() }}">
+  </form>
+  {% for s in saved if s.mine %}
+  <form id="del-{{ s.id }}" method="post" action="/logs/saved/{{ s.id }}/delete" hidden data-confirm="Delete the view “{{ s.name }}”?">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  </form>
+  {% endfor %}
+
+  {% set legacy = lq.legacy_filters() %}
+  {% if legacy or lq.terms %}
+  <div class="active-filters" aria-label="Active filters">
+    {% for t in lq.terms %}<span class="chip">{{ t.field }} {{ t.op }} {{ t.values | join(", ") }}</span>{% endfor %}
+    {% for label, value, link in legacy %}<span class="chip">{{ label }} = {{ value }} <a href="/logs?{{ link }}" aria-label="Remove {{ label }} filter">×</a></span>{% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% if lq.errors %}<ul class="error" role="alert">{% for e in lq.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+
+{% if histogram %}
+<div class="card histo" aria-label="Events over time">
+  {% set total = histogram | sum(attribute="n") %}
+  <div class="histo-head muted small">{{ "{:,}".format(total) }} events · each bar = {{ (histogram[0].step // 60) if histogram[0].step < 3600 else (histogram[0].step // 3600) }} {{ "min" if histogram[0].step < 3600 else "h" }} · click a bar to zoom in</div>
+  <div class="histo-bars">
+    {% for b in histogram %}<a class="hbar{% if not b.n %} empty{% endif %}" href="/logs?{{ b.link }}{% if raw %}&amp;view=raw{% endif %}"
+       title="{{ b.t | ts_short(scope_tz) }}: {{ '{:,}'.format(b.n) }} events"><span style="height: {{ b.h }}%"></span></a>{% endfor %}
+  </div>
+</div>
+{% endif %}
+{% if lq.group %}
+<section class="card">
+  <h2>Grouped by {{ groupable[lq.group] }} <span class="muted">{{ groups | length }} value{{ "s" if groups | length != 1 }} (top 200) ·
+    <a href="/logs?{{ lq.qs(group=None) }}">show events</a></span></h2>
+  <table class="dense groups"><thead><tr><th>{{ groupable[lq.group] }}</th><th class="num">Events</th><th></th><th class="num">Data</th><th>Last</th><th></th></tr></thead><tbody>
+  {% for g in groups %}<tr>
+    <td>{% if g.v is none %}<span class="muted">(empty)</span>{% elif lq.group in ("srcip", "dstip") %}<a href="/ip/{{ g.v }}">{{ g.v }}</a>{% else %}{{ g.v }}{% endif %}</td>
+    <td class="num">{{ "{:,}".format(g.n) }}</td>
+    <td class="barcell"><span class="bartrack"><span class="bar" style="width: {{ g.h }}%"></span></span></td>
+    <td class="num nowrap">{{ g.bytes | bsize if g.bytes else "" }}</td>
+    <td class="nowrap">{{ g.last | ts_short(scope_tz) }}</td>
+    <td class="nowrap">{% if g.drill %}<a href="/logs?{{ g.drill }}">show events</a> · <a href="/logs?{{ g.exclude }}">exclude</a>{% endif %}</td></tr>
+  {% else %}<tr><td colspan="6" class="muted">No events match.</td></tr>{% endfor %}
+  </tbody></table>
+</section>
+{% else %}
+<div class="logview">
+  <section class="card results">
+    <table class="dense logtable">
+      <thead>{% include "logs_head.html" %}</thead>
+      <tbody id="logrows">
+        {% include "logs_rows.html" %}
+      </tbody>
+    </table>
+    {% if not rows and not lq.errors %}<p class="muted">No events match. Widen the time range or remove filters.</p>{% endif %}
+  </section>
+  <aside class="card detail" id="detail" aria-live="polite"></aside>
+</div>
+{% endif %}
+<div class="ctxmenu" id="ctxmenu" role="menu" hidden></div>
+{% endblock %}

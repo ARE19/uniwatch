@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Configuration changes · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Configuration changes <span class="muted">· {{ scope_label }}</span></h1>
+  <nav class="segmented" aria-label="View">
+    <a href="/logs">Formatted</a><a href="/logs?view=raw">Raw</a><a href="/logs/config-changes" aria-current="true">Config changes</a>
+  </nav>
+</div>
+<form class="card filterbar" method="get" action="/logs/config-changes">
+  <label>Time
+    <select name="range">{% for p in presets %}<option value="{{ p }}" {% if p == range %}selected{% endif %}>Last {{ p }}</option>{% endfor %}</select>
+  </label>
+  <label>Admin <input name="admin" value="{{ admin }}"></label>
+  <div class="actions-row"><button type="submit">Filter</button></div>
+</form>
+<section class="card">
+  <table class="dense">
+    <thead><tr><th>When</th><th>Client</th><th>Device</th><th>Admin</th><th>From</th><th>Change</th><th></th></tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td class="nowrap">{{ r.ts | ts(scope_tz) }}</td><td>{{ r.client }}</td><td>{{ r.device }}</td>
+        <td>{{ r.admin_user or "" }}</td>
+        <td>{% if r.source_ip %}<a href="/ip/{{ r.source_ip }}">{{ r.source_ip }}</a>{% endif %}</td>
+        <td>{{ r.summary }}
+          <details><summary>All fields</summary><pre class="json">{{ r.details | tojson(indent=2) }}</pre></details></td>
+        <td>{% if r.event_id %}<a href="/logs?range=30d&amp;action=config-change">In Log View</a>{% endif %}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="7" class="muted">No configuration changes in this period.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

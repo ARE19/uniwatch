@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Audit log · {{ app_name() }}{% endblock %}
+{% block content %}
+<h1>Audit log</h1>
+<form class="filters" method="get" action="/admin/audit">
+  <label>Action
+    <select name="action">
+      <option value="">All</option>
+      {% for a in actions %}<option value="{{ a }}" {% if a == action %}selected{% endif %}>{{ a }}</option>{% endfor %}
+    </select>
+  </label>
+  <label>Username <input name="username" value="{{ username }}"></label>
+  <button type="submit">Filter</button>
+</form>
+<section class="card">
+  <table class="dense">
+    <thead><tr><th>Time ({{ default_tz() }})</th><th>User</th><th>Action</th><th>Result</th><th>Target</th><th>IP</th><th>Details</th></tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr class="{{ '' if r.success else 'fail' }}">
+        <td>{{ r.ts | ts }}</td>
+        <td>{{ r.username or "" }}</td>
+        <td>{{ r.action }}</td>
+        <td>{{ "ok" if r.success else "FAILED" }}</td>
+        <td>{{ r.target or "" }}</td>
+        <td>{{ r.ip or "" }}</td>
+        <td><code>{{ r.details | tojson if r.details else "" }}</code></td>
+      </tr>
+    {% else %}
+      <tr><td colspan="7" class="muted">No entries.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Report packs · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head"><h1>Report packs</h1></div>
+{% if errors %}<ul class="error" role="alert">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+{% if installed %}<p class="ok" role="status">Installed: {{ installed }}. Its reports are now on the Reports page.</p>{% endif %}
+{% if removed %}<p class="ok" role="status">Removed: {{ removed }}.</p>{% endif %}
+
+<section class="card">
+  <h2>Installed packs</h2>
+  <table class="dense">
+    <thead><tr><th>Pack</th><th>Version</th><th>Licensed to</th><th>Valid until</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    {% for p in rows %}
+      <tr>
+        <td>{{ p.name }}{% if p.description %}<br><small class="muted">{{ p.description }}</small>{% endif %}</td>
+        <td>{{ p.version }}</td>
+        <td>{{ p.customer or "–" }}{% if p.edition %} <small class="muted">({{ p.edition }})</small>{% endif %}</td>
+        <td class="nowrap">{{ p.expires or ("no end date" if p.customer else "–") }}</td>
+        <td>{% if p.problem %}<span class="status-silent">▲ not in use: {{ p.problem }}</span>
+            {% elif p.id in loaded %}<span class="status-ok">● in use</span>
+            {% else %}<span class="status-silent">▲ could not be loaded (see the server log)</span>{% endif %}</td>
+        <td><form method="post" action="/admin/packs/{{ p.id }}/remove" class="inline-form"
+                  data-confirm="Remove the pack {{ p.name }}? Its report types disappear; reports already generated stay.">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link danger" type="submit">Remove</button></form></td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="muted">No report packs are installed. The built-in network reports are always available.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="card narrow">
+  <h2>Install or renew</h2>
+  {% if enabled %}
+  <p class="muted small">A pack comes as two files: the pack (<code>.uwpack</code>) and your licence (<code>.uwlic</code>).
+    To renew, upload only the new licence file.</p>
+  <form method="post" action="/admin/packs" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Pack file <input type="file" name="pack" accept=".uwpack"></label>
+    <label>Licence file <input type="file" name="licence" accept=".uwlic"></label>
+    <button type="submit">Upload</button>
+  </form>
+  <p class="muted small">Both files are checked against the pack publisher's signature before anything is installed;
+    a file that was changed or comes from someone else is refused.</p>
+  {% else %}
+  <p class="muted">Report packs are switched off on this server: <code>PACK_PUBLIC_KEY</code> is not set in <code>.env</code>.</p>
+  {% endif %}
+</section>
+{% endblock %}

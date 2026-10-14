@@ -1,0 +1,67 @@
+Oct 06 16:35:08 NW-HK CEF:0|Ubiquiti|UniFi Network|10.6.106|544|Network Accessed|4|UNIFIcategory=Audit UNIFIhost=NW HK UNIFIaccessMethod=web UNIFIadmin=Unifi Owner src=11.26.85.18 UNIFIutcTime=2026-10-06T08:35:08.815Z msg=Unifi Owner accessed UniFi Network using the web. Source IP: 11.26.85.18
+Oct 06 16:35:18 NW-HK CEF:0|Ubiquiti|UniFi Network|10.6.106|546|Config Modified|5|UNIFIcategory=Audit UNIFIhost=NW HK UNIFIsettingsChanges=port: 514 UNIFIaccessMethod=web UNIFIsettingsSection=System UNIFIsettingsEntry=rsyslogd UNIFIadmin=Unifi Owner src=11.26.85.18 UNIFIutcTime=2026-10-06T08:35:18.633Z msg=Unifi Owner made a change to  in System settings. Source IP: 11.26.85.18
+<30>Oct  6 16:26:06 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: MEM usage flows=1629 dying=22 dns=404 ifaces=18 dnsResolv=372 routines=543
+<27>Oct  6 16:25:09 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15638: Link not found
+<27>Oct  6 16:34:55 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15647: Link not found
+<28>Oct  6 16:33:34 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to send request to coredns: Post "http://localhost/api/get_domain_by_ip": dial unix /run/utm/.cd_dl.sock: connect: resource temporarily unavailable
+<14>Oct  6 16:35:23 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: : mca-monitor[9465]: mca-monitor.do_monitor(): mcad.setparam in progress, elapsed=2 (max=300)
+<30>Oct  6 16:29:01 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | connect | Successful connection
+<28>Oct  6 16:33:01 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | fail | WebSocket Connection 192.168.1.1:7442 - "" / 0 websocketpp.transport.asio.socket:8 TLS handshake failed
+<28>Oct  6 16:28:31 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | fail | WebSocket Connection 192.168.1.1:7442 - "" / 0 websocketpp.transport.asio.socket:8 TLS handshake failed
+<30>Oct  6 16:30:01 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | connect | Successful connection
+<13>Oct  6 16:32:24 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T16:32:24+08:00","unix_milli_timestamp":1791275544120,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sessions.bugsnag.com","ip":"192.168.1.27","mac":"9c:eb:e8:5b:92:35","src_ip":"192.168.1.27","src_port":49752,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+<13>Oct  6 16:31:07 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T16:31:07+08:00","unix_milli_timestamp":1791275467456,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"default.exp-tas.com","ip":"10.172.16.125","mac":"30:9c:23:50:fd:c1","src_ip":"10.172.16.125","src_port":56826,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+<13>Oct  6 16:32:54 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T16:32:54+08:00","unix_milli_timestamp":1791275574293,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sstats.adobe.com","ip":"192.168.1.54","mac":"00:d8:61:a7:03:24","src_ip":"192.168.1.54","src_port":63425,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+<13>Oct  6 16:25:09 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T16:25:09+08:00","unix_milli_timestamp":1791275109757,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sstats.adobe.com","ip":"192.168.1.199","mac":"00:d8:61:63:07:9c","src_ip":"192.168.1.199","src_port":60895,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+<30>Oct  6 16:29:12 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.393596' (uid=0 pid=1683982 comm="timedatectl show -p NTPSynchronized --value ")
+<30>Oct  6 16:32:30 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+<30>Oct  6 16:29:12 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+<30>Oct  6 16:31:23 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.393625' (uid=0 pid=1688088 comm="timedatectl show -p NTPSynchronized --value ")
+<30>Oct  6 16:27:25 NW-HK NW-HK dnsmasq[2022865]: using nameserver 1.1.1.1#53
+<30>Oct  6 16:32:45 NW-HK NW-HK dnsmasq[2022865]: reading /run/resolv.conf.d/main
+<30>Oct  6 16:25:14 NW-HK NW-HK dnsmasq[2022865]: using nameserver 1.1.1.1#53
+<30>Oct  6 16:30:41 NW-HK NW-HK dnsmasq[2022865]: using nameserver 1.1.1.1#53
+<30>Oct  6 16:30:44 NW-HK NW-HK earlyoom[1786]: mem avail:  1243 of  3946 MiB (31.52%), swap free: 6158 of 7167 MiB (85.91%)
+<30>Oct  6 16:32:44 NW-HK NW-HK earlyoom[1786]: mem avail:  1304 of  3946 MiB (33.07%), swap free: 6158 of 7167 MiB (85.92%)
+<30>Oct  6 16:29:44 NW-HK NW-HK earlyoom[1786]: mem avail:  1282 of  3946 MiB (32.49%), swap free: 6157 of 7167 MiB (85.91%)
+<30>Oct  6 16:26:44 NW-HK NW-HK earlyoom[1786]: mem avail:  1263 of  3946 MiB (32.02%), swap free: 6157 of 7167 MiB (85.91%)
+<4>Oct  6 16:26:38 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: kernel: [2813014.254391] SCANNING, suspend MSDU transmission ...
+<4>Oct  6 16:26:39 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: kernel: [2813034.009135] SYNC - End of SCAN, restore to 20MHz channel 1, Total BSS[255]
+<4>Oct  6 16:26:38 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2812861.257529] MtCmdChannelSwitch: control_chl = 6,control_ch2=0, central_chl = 6 DBDCIdx= 0, Band= 0
+<4>Oct  6 16:26:37 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: kernel: [2813031.833449] SCANNING, suspend MSDU transmission ...
+<30>Oct  6 16:26:20 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: mcad: mcad[20980]: wireless_agg_stats.log_sta_anomalies(): bssid=d2:21:f9:aa:1e:a4 radio=rai0 vap=rai1 sta=2e:c8:19:6a:82:cc satisfaction_now=70 anomalies=low_phy_rate
+<28>Oct  6 16:35:21 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: mcad: mcad[20980]: ace_reporter.reporter_save_config(): ipv6_ll_inform_url: (null)
+<30>Oct  6 16:28:24 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: mcad: mcad[20980]: wireless_agg_stats.log_sta_anomalies(): bssid=d2:21:f9:aa:1e:a4 radio=rai0 vap=rai1 sta=2e:c8:19:6a:82:cc satisfaction_now=70 anomalies=low_phy_rate
+<28>Oct  6 16:35:20 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: mcad: mcad[20403]: ace_reporter.reporter_save_config(): use_aes_gcm: true
+<30>Oct  6 16:33:55 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15647 seen, reloading interface list
+<30>Oct  6 16:35:00 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15648 seen, reloading interface list
+<30>Oct  6 16:30:40 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15644 seen, reloading interface list
+<30>Oct  6 16:25:14 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15639 seen, reloading interface list
+<85>Oct  6 16:33:51 NW-HK NW-HK sudo[1692208]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+<85>Oct  6 16:29:08 NW-HK NW-HK sudo[1683866]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+<45>Oct  6 16:27:14 NW-HK NW-HK syslog-ng[1148779]: Syslog connection established; fd='21', server='AF_INET(192.168.1.50:5141)', local='AF_INET(0.0.0.0:0)'
+<43>Oct  6 16:26:14 NW-HK NW-HK syslog-ng[1148779]: I/O error occurred while writing; fd='15', error='Connection refused (111)'
+<45>Oct  6 16:26:14 NW-HK NW-HK syslog-ng[1148779]: Syslog connection broken; fd='15', server='AF_INET(192.168.1.50:5141)', time_reopen='60'
+<45>Oct  6 16:35:26 NW-HK NW-HK syslog-ng[1148779]: syslog-ng shutting down; version='3.28.1'
+<28>Oct  6 16:30:38 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1686966, but reception only permitted for main PID 2131
+<30>Oct  6 16:27:08 NW-HK NW-HK systemd[1]: systemd-timedated.service: Succeeded.
+<30>Oct  6 16:27:09 NW-HK NW-HK systemd[1]: Started Time & Date Service.
+<30>Oct  6 16:29:12 NW-HK NW-HK systemd[1]: Starting Time & Date Service...
+<30>Oct  6 16:33:55 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link UP
+<30>Oct  6 16:26:19 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained IPv6LL
+<30>Oct  6 16:32:45 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Lost carrier
+<30>Oct  6 16:32:45 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link DOWN
+<13>Oct  6 16:26:43 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: syswrapper[18014]: Trigger rrm scan(3): sleep 3;iwpriv ra0 set ApScanChannel=active:1:120; sleep 1;
+<13>Oct  6 16:26:40 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[7634]: Trigger rrm scan(3): sleep 2;iwpriv ra0 set ApScanChannel=active:6:120; sleep 1;
+<13>Oct  6 16:35:20 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: syswrapper[9989]: Creating /var/run/need_cfg_save
+<13>Oct  6 16:26:43 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[7634]: mtk_rrm_scan radio done
+<14>Oct  6 16:28:30 NW-HK NW-HK ubios-udapi-server[2131]: wan-failover-interfaces: wf-interfaces-container controls 'tunovpnc1' as a WAN interface
+<14>Oct  6 16:25:12 NW-HK NW-HK ubios-udapi-server[2131]: signal-out-notifier: Sending to NET Signal-EVT_VPN-65108: EVT_VPN_ClientConnecting server on /vpn/openvpn/raws/1
+<30>Oct  6 16:34:58 NW-HK NW-HK ubios-udapi-server[1692239]: 2026-10-06 16:34:58 net_route_v4_best_gw query: dst 0.0.0.0
+<30>Oct  6 16:25:12 NW-HK NW-HK ubios-udapi-server[1677793]: 2026-10-06 16:25:12 TCP connection established with [AF_INET]11.124.200.216:1194
+<30>Oct  6 16:31:51 NW-HK NW-HK ubnt-idsips-daemon[2996]: 2026-10-06T16:31:51.295+0800	Info: Service[UnixGrpcServer] received: AskUpdateRuleset event,
+<30>Oct  6 16:26:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 16:26:56.618 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+<30>Oct  6 16:31:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 16:31:56.627 <I>: No face data to store [face_data_client.cpp:297]
+<30>Oct  6 16:26:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 16:26:56.623 <I>: No face data to store [face_data_client.cpp:297]
+<30>Oct  6 16:31:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 16:31:56.622 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+<30>Oct  6 16:35:25 NW-HK NW-HK utm-content-filtering-services.sh[1696407]: add ipv6 address to lo

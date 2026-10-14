@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}CCTV access log · {{ app_name() }}{% endblock %}
+{% block content %}
+{% macro q(r=range, k=kind, u=sel_user, c=sel_camera) %}/cctv?range={{ r }}&amp;kind={{ k }}{% if u %}&amp;user={{ u | urlencode }}{% endif %}{% if c %}&amp;camera={{ c | urlencode }}{% endif %}{% endmacro %}
+<div class="page-head">
+  <h1>CCTV access log <span class="muted">· {{ scope_label }}</span></h1>
+  <nav class="segmented" aria-label="Time range">
+    {% for r in ranges %}<a href="{{ q(r=r) }}" {% if r == range %}aria-current="true"{% endif %}>{{ r }}</a>{% endfor %}
+  </nav>
+</div>
+
+<div class="tiles" aria-label="Summary">
+  <div class="tile"><span class="tile-label">Protect sign-ins</span><span class="tile-value">{{ "{:,}".format(stats.sessions) }}</span></div>
+  <div class="tile"><span class="tile-label">People</span><span class="tile-value">{{ stats.users }}</span></div>
+  <div class="tile"><span class="tile-label">Recordings viewed</span><span class="tile-value">{{ "{:,}".format(stats.recordings) }}</span></div>
+  <div class="tile"><span class="tile-label">Source IPs</span><span class="tile-value">{{ stats.ips }}</span></div>
+</div>
+
+<section class="card">
+  <div class="card-head">
+    <h2>Activity</h2>
+    <nav class="segmented" aria-label="Kind">
+      {% for k, lbl in kinds.items() %}<a href="{{ q(k=k) }}" {% if k == kind %}aria-current="true"{% endif %}>{{ lbl }}</a>{% endfor %}
+    </nav>
+  </div>
+  <form method="get" action="/cctv" class="filters">
+    <input type="hidden" name="range" value="{{ range }}"><input type="hidden" name="kind" value="{{ kind }}">
+    <label>Person <select name="user"><option value="">Everyone</option>{% for u in users %}<option {% if u == sel_user %}selected{% endif %}>{{ u }}</option>{% endfor %}</select></label>
+    <label>Camera <select name="camera"><option value="">All cameras</option>{% for c in cameras %}<option {% if c == sel_camera %}selected{% endif %}>{{ c }}</option>{% endfor %}</select></label>
+    <button type="submit">Filter</button>{% if sel_user or sel_camera %} <a href="{{ q(u='', c='') }}">clear</a>{% endif %}
+  </form>
+  {% if rows %}
+  <table class="dense">
+    <thead><tr><th>Time (site time)</th>{% if not scope_selected %}<th>Site</th>{% endif %}<th>Person</th><th>What</th><th>Camera</th>
+      <th class="num">Duration</th><th>From</th></tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td class="nowrap">{{ r.local }}{% if r.local_end %}<span class="muted small"> – {{ r.local_end }}</span>{% endif %}</td>
+        {% if not scope_selected %}<td>{{ r.client }}</td>{% endif %}
+        <td><a href="{{ q(u=r.user_name) }}">{{ r.user_name or "?" }}</a></td>
+        <td>{{ r.message }}</td>
+        <td>{% if r.camera_name %}<a href="{{ q(c=r.camera_name) }}">{{ r.camera_name }}</a>{% endif %}</td>
+        <td class="num nowrap">{{ r.dur }}</td>
+        <td class="nowrap">{% if r.ip %}<a href="/ip/{{ r.ip }}">{{ r.ip }}</a>{% endif %}{% if r.platform %} <span class="muted small">{{ r.platform }}</span>{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if rows | length >= limit %}<p class="muted small">Showing the latest {{ limit }}; narrow the time range or filter by person or camera.</p>{% endif %}
+  {% else %}<p class="muted">No CCTV access in this period.</p>{% endif %}
+  <p class="muted small">From UniFi Protect's own activity log, collected every 5 minutes through UniFi Site Manager. "Recordings viewed" =
+    a person opened a camera's timeline (recorded video); the duration is how long they watched. Sign-in sessions show from when to when.</p>
+</section>
+
+{% if consoles %}
+<section class="card">
+  <h2>Sites</h2>
+  <table class="dense">
+    <thead><tr><th>Site</th><th>UniFi Protect</th><th>Version</th><th>Last checked</th></tr></thead>
+    <tbody>{% for c in consoles %}
+      <tr><td>{{ c.client }}</td>
+        <td>{% if c.status == "ok" %}<span class="status-ok">● collecting</span>{% elif c.status == "no protect" %}<span class="muted">not installed</span>{% elif c.status == "denied" %}<span class="status-silent">▲ no access (Site Manager owner)</span>{% else %}<span class="status-silent" title="{{ c.status }}">▲ {{ c.status[:60] }}</span>{% endif %}</td>
+        <td>{{ c.version or "" }}</td><td class="nowrap">{{ c.last_sync | ts_short(scope_tz) }}</td></tr>
+    {% endfor %}</tbody>
+  </table>
+  <p class="muted small">Every site is checked; one that installs UniFi Protect later starts collecting by itself.</p>
+</section>
+{% endif %}
+{% endblock %}

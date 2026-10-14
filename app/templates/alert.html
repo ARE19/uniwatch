@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Alert #{{ a.id }} · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1><span class="sev sev-{{ a.severity }}"><i aria-hidden="true">■</i> {{ a.severity }}</span> {{ a.title }}</h1>
+  <nav class="segmented"><a href="/event-monitor">← Alerts</a></nav>
+</div>
+<div class="grid">
+  <section class="card">
+    <h2>Alert #{{ a.id }} <span class="muted">{{ a.status }}</span></h2>
+    <p>{{ a.message }}</p>
+    <dl class="kv">
+      <dt>Client</dt><dd>{{ a.client }}</dd>
+      {% if a.device %}<dt>Device</dt><dd>{{ a.device }}</dd>{% endif %}
+      <dt>Rule</dt><dd>{{ a.rule_name }}</dd>
+      <dt>First seen</dt><dd>{{ a.first_seen | ts(a.timezone) }}</dd>
+      <dt>Last seen</dt><dd>{{ a.last_seen | ts(a.timezone) }} <span class="muted">({{ a.count }}×)</span></dd>
+      {% if a.acknowledged_by %}<dt>Acknowledged</dt><dd>{{ a.acknowledged_by }} · {{ a.acknowledged_at | ts(a.timezone) }}</dd>{% endif %}
+      {% if a.resolved_at %}<dt>Resolved</dt><dd>{{ a.resolved_at | ts(a.timezone) }}</dd>{% endif %}
+    </dl>
+    <div class="rule-actions">
+      {% if a.status == "open" %}<form method="post" action="/event-monitor/alerts/{{ a.id }}/ack"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><input type="hidden" name="next" value="/event-monitor/alerts/{{ a.id }}"><button type="submit">Acknowledge</button></form>{% endif %}
+      {% if a.status != "resolved" %}<form method="post" action="/event-monitor/alerts/{{ a.id }}/resolve"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><input type="hidden" name="next" value="/event-monitor/alerts/{{ a.id }}"><button type="submit" class="button-secondary">Resolve</button></form>{% endif %}
+      {% if a.incident_id %}<a class="button-secondary button-small" href="/incidents/{{ a.incident_id }}">Incident #{{ a.incident_id }}</a>
+      {% else %}<form method="post" action="/incidents/from-alert/{{ a.id }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit" class="button-secondary">Open incident</button></form>{% endif %}
+      <a class="button-secondary button-small" href="/logs?{{ related }}">Related events →</a>
+    </div>
+  </section>
+  <section class="card">
+    <h2>Notifications</h2>
+    <table class="dense"><thead><tr><th>When</th><th>Kind</th><th>Channel</th><th>Result</th></tr></thead><tbody>
+    {% for n in notifications %}<tr><td class="nowrap">{{ n.sent_at | ts_short(a.timezone) }}</td><td>{{ n.kind }}</td><td>{{ n.channel or "–" }}</td><td>{{ n.status }}</td></tr>
+    {% else %}<tr><td colspan="4" class="muted">None sent.</td></tr>{% endfor %}
+    </tbody></table>
+  </section>
+</div>
+<section class="card">
+  <h2>Comments</h2>
+  {% for c in comments %}
+  <div class="comment"><div class="muted small">{{ c.username }} · {{ c.ts | ts_short(a.timezone) }}</div><p>{{ c.body }}</p></div>
+  {% else %}<p class="muted">No comments yet.</p>{% endfor %}
+  <form method="post" action="/event-monitor/alerts/{{ a.id }}/comment" class="comment-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Add a comment <textarea name="body" rows="3" maxlength="4000" required placeholder="What you checked, what you found, what was done…"></textarea></label>
+    <button type="submit">Add comment</button>
+  </form>
+</section>
+{% endblock %}

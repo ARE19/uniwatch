@@ -1,0 +1,50 @@
+{#- One row per event; the columns come from lq.columns(). Cells with a value carry data-f / data-v so a right-click
+    can add "field = value" (or !=) to the search. -#}
+{%- macro flag(cc) -%}
+  {%- if cc and cc | length == 2 -%}<span class="cc" title="Country: {{ cc }}">{{ cc }}</span> {% endif -%}
+{%- endmacro -%}
+{%- macro endpoint(ip, port, country) -%}
+  {%- if ip -%}{{ flag(country) }}<a href="/ip/{{ ip }}">{{ ip }}</a>{% if port %}<span class="muted">:{{ port }}</span>{% endif %}{%- endif -%}
+{%- endmacro -%}
+{%- macro cell(c, r, n) -%}
+  {%- set x = r.extra or {} -%}
+  {%- if c == "num" -%}<td class="num muted">{{ n if n is not none else "•" }}</td>
+  {%- elif c == "ts" -%}<td class="nowrap" title="{{ r.ts | ts(scope_tz) }}">{{ r.ts | ts_short(scope_tz) }}</td>
+  {%- elif c == "client" -%}<td>{{ r.client }}</td>
+  {%- elif c == "device" -%}<td data-f="device" data-v="{{ r.device }}">{{ r.device }}</td>
+  {%- elif c == "level" -%}<td data-f="level" data-v="{{ r.severity }}"><span class="sev sev-{{ r.severity }}"><i aria-hidden="true">■</i> {{ r.severity }}</span></td>
+  {%- elif c == "type" -%}<td data-f="type" data-v="{{ r.category }}">{{ r.category }}</td>
+  {%- elif c == "action" -%}<td class="act"{% if r.action %} data-f="action" data-v="{{ r.action }}"{% endif %}>{{ r.action or "" }}{% if r.outcome %} <span class="muted outcome-{{ r.outcome }}">{{ r.outcome }}</span>{% endif %}</td>
+  {%- elif c == "src" -%}<td class="nowrap"{% if r.src_ip %} data-f="srcip" data-v="{{ r.src_ip }}"{% endif %}>{{ endpoint(r.src_ip, r.src_port, r.src_country) }}</td>
+  {%- elif c == "srcname" -%}<td{% if x.src_name %} data-f="srcname" data-v="{{ x.src_name }}"{% endif %}>{{ x.src_name or "" }}</td>
+  {%- elif c == "srcmac" -%}<td class="nowrap"{% if r.src_mac %} data-f="srcmac" data-v="{{ r.src_mac }}"{% endif %}>{{ r.src_mac or "" }}</td>
+  {%- elif c == "user" -%}<td{% if r.user_name %} data-f="user" data-v="{{ r.user_name }}"{% if r.user_name | person != r.user_name %} title="VPN client: {{ r.user_name }}"{% endif %}{% endif %}>{{ r.user_name | person }}</td>
+  {%- elif c == "dst" -%}<td class="nowrap"{% if r.dst_ip %} data-f="dstip" data-v="{{ r.dst_ip }}"{% endif %}>{{ endpoint(r.dst_ip, r.dst_port, r.dst_country) }}</td>
+  {%- elif c == "dstport" -%}<td class="num"{% if r.dst_port %} data-f="dstport" data-v="{{ r.dst_port }}"{% endif %}>{{ r.dst_port or "" }}</td>
+  {%- elif c == "remote" -%}<td class="remote"{% if x.fqdn %} data-f="remote" data-v="{{ x.fqdn }}"{% endif %}>{{ x.fqdn or x.dst_name or "" }}</td>
+  {%- elif c == "app" -%}{% set app = x.app or (r.rule if r.action in ("flow", "dns-query") else none) %}<td{% if app %} data-f="app" data-v="{{ app }}"{% endif %}>{{ app or "" }}</td>
+  {%- elif c == "appcat" -%}<td{% if x.app_category %} data-f="appcat" data-v="{{ x.app_category }}"{% endif %}>{{ x.app_category or "" }}</td>
+  {%- elif c == "service" -%}<td{% if x.service %} data-f="service" data-v="{{ x.service }}"{% endif %}>{{ x.service or "" }}</td>
+  {%- elif c == "proto" -%}<td{% if r.protocol %} data-f="proto" data-v="{{ r.protocol }}"{% endif %}>{{ r.protocol or "" }}</td>
+  {%- elif c == "sent" -%}<td class="num nowrap">{{ r.bytes_out | bsize if r.bytes_out is not none else "" }}</td>
+  {%- elif c == "rcvd" -%}<td class="num nowrap">{{ r.bytes_in | bsize if r.bytes_in is not none else "" }}</td>
+  {%- elif c == "policy" -%}<td{% if r.rule %} data-f="policy" data-v="{{ r.rule }}"{% endif %}>{{ r.rule or "" }}</td>
+  {%- elif c == "network" -%}<td{% if r.interface %} data-f="network" data-v="{{ r.interface }}"{% endif %}>{{ r.interface or "" }}</td>
+  {%- elif c == "process" -%}<td{% if r.process %} data-f="process" data-v="{{ r.process }}"{% endif %}>{{ r.process or "" }}</td>
+  {%- elif c == "msg" -%}<td class="msg">{% if raw %}<code>{{ r.raw }}</code>{% else %}{% if r.process %}<span class="muted">{{ r.process }}:</span> {% endif %}{{ r.message or r.event_name or "" }}{% if r.rule and r.action not in ("flow", "dns-query") %} <span class="muted">[{{ r.rule }}]</span>{% endif %}{% endif %}</td>
+  {%- endif -%}
+{%- endmacro -%}
+{%- set cols = lq.columns(raw) -%}
+{%- set start = n0 if n0 is defined else 0 -%}
+{%- for r in rows %}
+<tr class="logrow" tabindex="0" hx-get="/logs/event/{{ r.id }}?ts={{ r.ts.isoformat() | urlencode }}" hx-target="#detail" hx-trigger="click">
+  {%- set rownum = (start + loop.index) if start is not none else none %}{# before the inner loop shadows `loop` #}
+  {%- for c in cols %}{{ cell(c, r, rownum) }}{% endfor %}
+</tr>
+{%- endfor %}
+{%- if more and rows %}
+<tr class="loadmore"><td colspan="{{ cols | length }}">
+  <button type="button" class="link" hx-get="/logs/rows?{{ lq.qs(view=view or None, before_ts=rows[-1].ts.isoformat(), before_id=rows[-1].id, n0=(start or 0) + rows | length) }}"
+          hx-target="closest tr" hx-swap="outerHTML">Load older events</button>
+</td></tr>
+{%- endif %}

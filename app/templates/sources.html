@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Log sources · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Log sources <span class="muted">· {{ scope_label }}</span></h1>
+  <a class="button" href="/sources/add">+ Add device</a>
+</div>
+{% if errors %}<ul class="error" role="alert">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+
+<section class="card">
+  <h2>Devices</h2>
+  <table>
+    <thead><tr><th>Client</th><th>Device</th><th>Vendor / model</th><th>Firmware</th><th>Syslog source</th><th>Last log (client time)</th><th>State</th><th>Polling</th><th></th></tr></thead>
+    <tbody>
+    {% for d in devices %}
+      <tr>
+        <td>{{ d.client.name }}</td>
+        <td><a href="/sources/raw?device_id={{ d.id }}">{{ d.name }}</a></td>
+        <td>{{ d.vendor }}{% if d.model %} · {{ d.model }}{% endif %}</td>
+        <td>{{ d.firmware or "" }}{% if d.upgradable %} <span class="badge warn" title="Upgrade available{% if d.firmware_latest %}: {{ d.firmware_latest }}{% endif %}">▲ update</span>{% endif %}</td>
+        <td><code>{{ d.syslog_source_ip or "—" }}</code>{% if d.silent_after_minutes %} <span class="muted small" title="Normal silence for this device">quiet ≤ {{ d.silent_after_minutes }} min</span>{% endif %}{% for a in d.alt_source_ips %}<br><code class="muted" title="Additional source address">{{ a }}</code>{% endfor %}
+          <details class="menu ip-edit"><summary class="small">edit</summary>
+            <form method="post" action="/sources/devices/{{ d.id }}/ips" class="menu-body">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+              <label>Source IP <input name="syslog_source_ip" value="{{ d.syslog_source_ip or '' }}"></label>
+              <label>Additional source IPs <span class="muted small">(e.g. second WAN; comma-separated)</span>
+                <input name="alt_source_ips" value="{{ d.alt_source_ips | join(', ') }}"></label>
+              <label>Normal silence (minutes) <span class="muted small">quiet this long is still OK; empty = default</span>
+                <input name="silent_after_minutes" type="number" min="5" max="10080" value="{{ d.silent_after_minutes or '' }}"></label>
+              <button type="submit">Save</button>
+            </form>
+          </details></td>
+        <td>{{ d.last_log_at | ts(d.client.timezone) if d.last_log_at else "never" }}</td>
+        <td>{% set st = states.get(d.id) %}{% if not d.is_active %}<span class="muted">disabled</span>
+            {% elif st %}<span class="state state-{{ 'up' if st.state == 'up' else ('unknown' if st.state == 'maintenance' else 'down') }}" title="{{ st.reason }} since {{ st.started_at | ts(d.client.timezone) }}">{{ {"up": "▲ up", "down": "▼ down", "maintenance": "◆ maintenance"}[st.state] }}</span>
+            {% else %}<span class="muted">–</span>{% endif %}</td>
+        <td>{% if d.poll_config.get("driver") %}{{ d.poll_config.driver }}
+              {% if d.poll_status == "ok" %}<span class="status-ok">● ok</span>{% elif d.poll_status %}<span class="status-silent" title="{{ d.poll_status }}">▲ error</span>{% endif %}
+            {% elif d.id in cloud %}<span class="muted">Site Manager</span>
+              {% if d.poll_config.get("collect_flows") %}<br><span class="status-ok small">● traffic flows</span>{% endif %}
+            {% else %}<span class="muted">syslog only</span>{% endif %}</td>
+        <td class="actions">
+          {% if d.id in cloud and d.poll_config.get("driver") != "unifi" %}
+          <form method="post" action="/sources/devices/{{ d.id }}/flows"
+                data-confirm="{{ 'Stop' if d.poll_config.get('collect_flows') else 'Start' }} collecting traffic flows for {{ d.name }} through UniFi Site Manager?{{ '' if d.poll_config.get('collect_flows') else ' NetFlow from this device will no longer be stored (it would count the same traffic twice).' }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <button type="submit" class="link">{{ "Stop flows" if d.poll_config.get("collect_flows") else "Collect flows" }}</button>
+          </form>
+          {% endif %}
+          <form method="post" action="/sources/devices/{{ d.id }}/active">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <button type="submit" class="link">{{ "Disable" if d.is_active else "Enable" }}</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="9" class="muted">No devices yet.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="card">
+  <h2>Unknown senders</h2>
+  <p class="muted">Syslog from IPs that are not mapped to a device. Their lines are counted here but not stored.</p>
+  <table>
+    <thead><tr><th>Source IP</th><th>Messages</th><th>First seen</th><th>Last seen</th><th>Sample</th><th></th></tr></thead>
+    <tbody>
+    {% for u in unknown %}
+      <tr>
+        <td><code>{{ u.source_ip }}</code> <span class="muted">{{ u.last_transport }}</span></td>
+        <td>{{ u.count }}</td>
+        <td>{{ u.first_seen | ts }}</td>
+        <td>{{ u.last_seen | ts }}</td>
+        <td><code class="sample">{{ u.sample[:300] }}</code></td>
+        <td class="actions">
+          <a href="/sources/add?register={{ u.source_ip }}">Register</a>
+          <form method="post" action="/sources/unknown/ignore">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <input type="hidden" name="source_ip" value="{{ u.source_ip }}">
+            <button type="submit" class="link">Ignore</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="muted">None.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+{% endblock %}

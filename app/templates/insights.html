@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% block title %}Insights · {{ app_name() }}{% endblock %}
+{% block head %}{% if view == "countries" %}<script src="/static/echarts.min.js" defer></script><script src="/static/insights-map.js" defer></script>{% endif %}
+{% if view == "usage" %}<script src="/static/echarts.min.js" defer></script><script src="/static/insights-usage.js" defer></script>{% endif %}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Insights <span class="muted">· {{ scope_label }}</span></h1>
+  <nav class="segmented" aria-label="Time range">
+    {% for r in ranges %}<a href="/insights?view={{ view }}&amp;range={{ r }}" {% if r == range %}aria-current="true"{% endif %}>{{ r }}</a>{% endfor %}
+  </nav>
+</div>
+<nav class="tabs" aria-label="Insight views">
+  {% for key, label in views %}<a href="/insights?view={{ key }}&amp;range={{ range }}" {% if key == view %}aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}
+  <a href="/vpn?range={{ '24h' if range in ('1h', '24h') else range }}">VPN</a>
+</nav>
+{% if view == "countries" and web.map %}
+<section class="card">
+  <div class="card-head">
+    <h2>World map <span class="muted">{{ web.map.unit }} · {{ range }}{% if web.map.staff %} · click a country for its events{% endif %}</span></h2>
+    <nav class="segmented" aria-label="Map shows">
+      <a href="/insights?view=countries&amp;range={{ range }}&amp;map=attacks" {% if web.map.mode == "attacks" %}aria-current="true"{% endif %}>Attack sources</a>
+      <a href="/insights?view=countries&amp;range={{ range }}&amp;map=destinations" {% if web.map.mode == "destinations" %}aria-current="true"{% endif %}>Traffic destinations</a>
+    </nav>
+  </div>
+  <div class="chart map-chart" id="worldmap" role="img" aria-label="World map of {{ web.map.unit }} by country"></div>
+  <script type="application/json" id="worldmap-data">{{ web.map | tojson }}</script>
+  {% if not web.map.data %}<p class="muted small">No country data in this period.</p>{% endif %}
+</section>
+{% endif %}
+{% if view == "usage" and usage %}{% set u = usage %}
+{% macro qs(dev="", item="", kind="") -%}
+/insights?view=usage&amp;range={{ range }}{% if dev %}&amp;dev={{ dev | urlencode }}{% endif %}{% if item %}&amp;item={{ item | urlencode }}&amp;kind={{ kind }}{% endif %}
+{%- endmacro %}
+{% if u.dev or u.item %}
+<p class="crumbs"><a href="{{ qs() }}">All devices</a>
+  {% if u.dev %} › <a href="{{ qs(u.dev) }}">{{ u.focus.label }}</a>{% endif %}
+  {% if u.item %} › {{ u.item }}{% endif %}</p>
+{% endif %}
+<section class="tiles" aria-label="Usage summary">
+  {% if u.focus %}
+  <div class="tile"><span class="tile-label">Device</span><span class="tile-value tile-text">{{ u.focus.label }}</span>
+    <span class="muted small">{{ u.focus.mac or "no MAC reported" }}{% if u.focus.ips %} · {{ u.focus.ips | join(", ") }}{% endif %}</span></div>
+  {% elif u.item %}
+  <div class="tile"><span class="tile-label">{{ "Application" if u.kind == "app" else "Service" }}</span><span class="tile-value tile-text">{{ u.item }}</span></div>
+  {% else %}
+  <div class="tile"><span class="tile-label">Devices</span><span class="tile-value">{{ u.devices | length }}{% if u.devices | length == 50 %}+{% endif %}</span></div>
+  {% endif %}
+  <div class="tile"><span class="tile-label">Download</span><span class="tile-value">{{ u.total_down | bsize }}</span></div>
+  <div class="tile"><span class="tile-label">Upload</span><span class="tile-value">{{ u.total_up | bsize }}</span></div>
+</section>
+<section class="card">
+  <h2>Bandwidth over time <span class="muted">{{ range }} · {% if u.item %}download and upload{% else %}by service (top {{ u.chart.series | length }}){% endif %}</span></h2>
+  <div class="chart usage-chart" id="usage-chart" role="img" aria-label="Bandwidth over time"></div>
+  <script type="application/json" id="usage-data">{{ u.chart | tojson }}</script>
+  {% if u.empty %}<p class="muted">No internet usage data for this selection. It comes from the firewall's traffic flows
+    (UniFi API or NetFlow); sites that send only syslog have none.</p>{% endif %}
+</section>
+{% if not u.dev %}
+<section class="card">
+  <h2>{% if u.item %}Devices using {{ u.item }}{% else %}Devices{% endif %} <span class="muted">by bandwidth · click for its services</span></h2>
+  {% if u.devices %}
+  <table class="dense topn">
+    <thead><tr><th>Device</th><th>MAC</th><th>IP(s)</th><th class="num">Download</th><th class="num">Upload</th><th class="num">Services</th></tr></thead>
+    <tbody>{% set mx = (u.devices | map(attribute="bytes") | max) or 1 %}
+    {% for d in u.devices %}<tr>
+      <td><a href="{{ qs(d.dev) }}">{{ d.label }}</a></td>
+      <td class="nowrap"><code class="muted small">{{ d.mac or "–" }}</code></td>
+      <td class="small">{{ d.ips[:2] | join(", ") }}{% if d.ips | length > 2 %} +{{ d.ips | length - 2 }}{% endif %}</td>
+      <td class="barcell num"><span class="bartrack"><span class="bar" style="width: {{ (100 * d.bytes / mx) | round(1) }}%"></span></span><span class="barval">{{ d.down | bsize }}</span></td>
+      <td class="num nowrap">{{ d.up | bsize }}</td>
+      <td class="num">{{ d.dests }}</td></tr>{% endfor %}
+    </tbody></table>
+  {% else %}<p class="muted">Nothing in this period.</p>{% endif %}
+</section>
+{% endif %}
+<div class="grid usage-grid">
+<section class="card">
+  <h2>Applications{% if u.focus %} <span class="muted">used by {{ u.focus.label }}</span>{% endif %}</h2>
+  {% if u.apps %}
+  <table class="dense topn">
+    <thead><tr><th>Application</th><th>Category</th><th class="num">Download</th><th class="num">Upload</th>{% if not u.dev %}<th class="num">Devices</th>{% endif %}</tr></thead>
+    <tbody>{% set mx = (u.apps | map(attribute="bytes") | max) or 1 %}
+    {% for r in u.apps %}<tr>
+      <td><a href="{{ qs(u.dev, r.k, 'app') }}">{{ r.k }}</a></td><td class="small">{{ r.category }}</td>
+      <td class="barcell num"><span class="bartrack"><span class="bar" style="width: {{ (100 * r.bytes / mx) | round(1) }}%"></span></span><span class="barval">{{ r.down | bsize }}</span></td>
+      <td class="num nowrap">{{ r.up | bsize }}</td>{% if not u.dev %}<td class="num">{{ r.devices }}</td>{% endif %}</tr>{% endfor %}
+    </tbody></table>
+  {% else %}<p class="muted">No identified applications (NetFlow sites show the service owner instead).</p>{% endif %}
+</section>
+<section class="card">
+  <h2>Services{% if u.focus %} <span class="muted">used by {{ u.focus.label }}</span>{% endif %} <span class="muted">· click for its bandwidth{% if not u.dev %} and devices{% endif %}</span></h2>
+  {% if u.sites %}
+  <table class="dense topn">
+    <thead><tr><th>Service</th><th>Category</th><th class="num">Download</th><th class="num">Upload</th>{% if not u.dev %}<th class="num">Devices</th>{% endif %}</tr></thead>
+    <tbody>{% set mx = (u.sites | map(attribute="bytes") | max) or 1 %}
+    {% for r in u.sites %}<tr>
+      <td><a href="{{ qs(u.dev, r.k, 'site') }}">{{ r.k }}</a></td><td class="small">{{ r.category }}</td>
+      <td class="barcell num"><span class="bartrack"><span class="bar" style="width: {{ (100 * r.bytes / mx) | round(1) }}%"></span></span><span class="barval">{{ r.down | bsize }}</span></td>
+      <td class="num nowrap">{{ r.up | bsize }}</td>{% if not u.dev %}<td class="num">{{ r.devices }}</td>{% endif %}</tr>{% endfor %}
+    </tbody></table>
+  {% else %}<p class="muted">Nothing in this period.</p>{% endif %}
+</section>
+</div>
+{% if u.dev %}
+<section class="card" id="history">
+  <h2>Access history <span class="muted">{{ u.focus.label }}{% if u.item %} · {{ u.item }}{% endif %} · latest {{ u.history | length }}{% if u.history | length == u.history_limit %}+{% endif %}, newest first
+    {% if staff %}· <a href="/logs?range={{ range }}&amp;type=traffic&amp;q={{ (('srcmac=' ~ u.focus.mac) if u.focus.mac else ('srcip=' ~ (u.focus.ips[0] if u.focus.ips else ''))) | urlencode }}">full history in Log View →</a>{% endif %}</span></h2>
+  {% if u.history %}
+  <table class="dense topn">
+    <thead><tr><th>Time</th><th>Website / destination</th><th>Application</th><th>Port</th><th class="num">Download</th><th class="num">Upload</th><th>Action</th></tr></thead>
+    <tbody>
+    {% for h in u.history %}<tr>
+      <td class="nowrap">{% if staff %}<a href="/logs/event/{{ h.id }}">{{ h.ts | ts_short(scope_tz) }}</a>{% else %}{{ h.ts | ts_short(scope_tz) }}{% endif %}</td>
+      <td>{% if h.site %}{{ h.site }}{% else %}<code>{{ h.dst }}</code>{% if h.org %} <span class="muted small">{{ h.org }}</span>{% endif %}{% endif %}
+        {% if h.dst_country %} <span class="muted small">{{ h.dst_country }}</span>{% endif %}</td>
+      <td class="small">{{ h.app or "" }}</td>
+      <td class="small nowrap">{{ (h.protocol or "") | upper }}{% if h.dst_port %}/{{ h.dst_port }}{% endif %}</td>
+      <td class="num nowrap">{{ h.down | bsize if h.down else ("–" if h.down is none else "") }}</td>
+      <td class="num nowrap">{{ h.up | bsize if h.up else "" }}</td>
+      <td>{% if h.blocked %}<span class="outcome-blocked">blocked</span>{% else %}<span class="muted">allowed</span>{% endif %}</td></tr>
+    {% endfor %}
+    </tbody></table>
+  <p class="muted small">Connections this device started, as the firewall recorded them. "–" download: NetFlow records each
+    direction separately, so a connection's download is counted in the totals above but not on this line.</p>
+  {% else %}<p class="muted">No connection records for this device in this period.</p>{% endif %}
+</section>
+{% endif %}
+<p class="muted small">Devices are identified by MAC address with their DHCP or controller hostname (IP addresses move between
+  devices). A service is the website name the firewall saw (UniFi traffic flows) or, for NetFlow sites, which carry no names,
+  the network owner of the destination (e.g. Microsoft, Google, Akamai). Hourly data; 30 days are shown per day.</p>
+{% endif %}
+{% for t in tables %}
+<section class="card">
+  <h2>{{ t.title }}</h2>
+  {% if t.rows %}
+  <table class="dense topn">
+    <thead><tr>{% for label, key, kind in t.cols %}<th{% if kind in ("num", "bar", "bytes", "bytesbar") %} class="num"{% endif %}>{{ label }}</th>{% endfor %}</tr></thead>
+    <tbody>
+    {% for r in t.rows %}
+      <tr>
+      {% for label, key, kind in t.cols %}
+        {% set v = r[key] %}
+        {% if kind == "bar" %}
+          <td class="barcell"><span class="bartrack"><span class="bar" style="width: {{ (100 * (v or 0) / t.max) | round(1) if t.max else 0 }}%"></span></span><span class="barval">{{ "{:,}".format(v or 0) }}</span></td>
+        {% elif kind == "bytesbar" %}
+          <td class="barcell"><span class="bartrack"><span class="bar" style="width: {{ (100 * (v or 0) / t.max) | round(1) if t.max else 0 }}%"></span></span><span class="barval">{{ v | bsize }}</span></td>
+        {% elif kind == "bytes" %}<td class="num">{{ v | bsize if v else "" }}</td>
+        {% elif kind == "num" %}<td class="num">{{ "{:,}".format(v) if v else "" }}</td>
+        {% elif kind == "ip" %}<td>{% if v %}{% if staff %}<a href="/ip/{{ v }}">{{ v }}</a>{% else %}{{ v }}{% endif %}{% if r.link is defined and r.link %} <a class="drill" href="{{ r.link }}" title="Show these events in Log View">logs →</a>{% endif %}{% endif %}</td>
+        {% elif kind == "devlink" %}<td><a href="{{ r.link }}">{{ v }}</a>{% if staff %} <a class="drill" href="/ip/{{ v }}">details →</a>{% endif %}</td>
+        {% elif kind == "link" %}<td>{% if r.link is defined and r.link %}<a href="{{ r.link }}">{{ v if v is not none else "(none)" }}</a>{% else %}{{ v if v is not none else "(none)" }}{% endif %}</td>
+        {% elif kind == "time" %}<td class="nowrap">{{ v | ts_short(scope_tz) if v else "" }}</td>
+        {% elif kind == "sev" %}<td><span class="sev sev-{{ v }}"><i aria-hidden="true">■</i> {{ v }}</span></td>
+        {% else %}<td>{{ v if v is not none else "" }}</td>{% endif %}
+      {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p class="muted">Nothing in this period.</p>{% endif %}
+</section>
+{% endfor %}
+{% if view == "web" and web.empty %}
+<p class="notice">No website or app data for {{ scope_selected.name if scope_selected else "these clients" }} in this period.
+  It comes from the firewall's connection records (UniFi API, as for NW-HK, or NetFlow flow records) or from DNS lookups,
+  and this firewall sends neither yet. Its other logs are in
+  <a href="/insights?view=sources&amp;range={{ range }}">Top sources</a>, <a href="/insights?view=countries&amp;range={{ range }}">Countries &amp; map</a>,
+  <a href="/insights?view=threats&amp;range={{ range }}">Threats</a>, <a href="/insights?view=wifi&amp;range={{ range }}">WiFi</a> and the
+  <a href="/vpn?range={{ range if range != '1h' else '24h' }}">VPN monitor</a>.</p>
+{% endif %}
+{% if view == "web" %}
+<p class="muted small">
+  {% if web.src == "flow" %}From the firewall's own connection records (UniFi traffic flows): every connection a device made,
+  with data volume. The website is the name the firewall saw for the destination, and well-known services are mapped to an
+  application and category. Devices running the Microsoft Global Secure Access client tunnel their traffic, so the firewall
+  sees only the tunnel for them.
+  {% else %}From the DNS forwarder: each lookup a device makes, mapped to its website (registrable domain) and, for well-known
+  services, the application and category. DNS shows which services a device used, not data volume.{% endif %}
+  {% if web.have | length > 1 %}Source:
+    {% for a, label in (("flow", "connections"), ("dns-query", "DNS lookups")) %}{% if a == web.src %}<strong>{{ label }}</strong>{% else %}<a href="/insights?view=web&amp;range={{ range }}&amp;src={{ a }}{% if web.ip %}&amp;ip={{ web.ip }}{% endif %}">{{ label }}</a>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}.
+  {% endif %}
+  {% if web.ip %}<a href="/insights?view=web&amp;range={{ range }}&amp;src={{ web.src }}">← all devices</a>{% endif %}</p>
+{% endif %}
+{% if view in ("sources", "destinations", "countries") %}
+<p class="muted small">UniFi gateways do not log application or website identity, so application/website views populate once FortiGate sources are added.</p>
+{% endif %}
+{% endblock %}

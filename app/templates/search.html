@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Search · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Search {% if q %}<span class="muted">· “{{ q }}”</span>{% endif %}</h1>
+</div>
+<form method="get" action="/search" class="card searchpage">
+  <label class="visually-hidden" for="sq">Search</label>
+  <input id="sq" name="q" value="{{ q }}" autofocus placeholder="IP, CIDR, MAC, hostname, user, device or domain">
+  <button type="submit">Search</button>
+</form>
+{% if q %}
+  {% set found = sections | selectattr(2) | list %}
+  {% for title, kind, rows in sections if rows %}
+  <section class="card">
+    <h2>{{ title }} <span class="muted">{{ rows | length }}</span></h2>
+    <table class="dense"><tbody>
+    {% for r in rows %}
+      {% if kind == "devices" %}
+      <tr><td><a href="/sources/raw?device_id={{ r.id }}">{{ r.name }}</a> <span class="muted">{{ r.model }}</span></td>
+          <td>{% if r.ip %}<a href="/ip/{{ r.ip }}">{{ r.ip }}</a>{% endif %}</td><td class="muted">{{ r.client }}</td></tr>
+      {% elif kind == "clients" %}
+      <tr><td>{% if r.ip %}<a href="/ip/{{ r.ip }}">{{ r.hostname or r.ip }}</a>{% else %}{{ r.hostname or "" }}{% endif %}</td>
+          <td><code>{{ r.ip or "" }}</code></td><td class="muted">{{ r.mac or "" }} {{ r.vendor or "" }}</td>
+          <td class="muted">{{ r.network or "" }}</td><td class="nowrap muted">{{ r.last_seen | ts_short(scope_tz) if r.last_seen else "" }}</td>
+          <td class="muted">{{ r.client }}</td></tr>
+      {% elif kind == "users" %}
+      <tr><td><a href="/vpn/user?name={{ r.user_name | urlencode }}" title="VPN client: {{ r.user_name }}">{{ r.user_name | person }}</a></td>
+          <td>{{ r.sessions }} sessions</td><td class="nowrap muted">last {{ r.last | ts_short(scope_tz) if r.last else "" }}</td>
+          <td class="muted">{{ r.client }}</td></tr>
+      {% elif kind == "domains" %}
+      <tr><td><a href="{{ r.link }}">{{ r.domain }}</a></td><td>{{ "{:,}".format(r.n) }} connections/lookups</td>
+          <td class="muted">{{ r.devices }} device{{ "s" if r.devices != 1 }}</td></tr>
+      {% endif %}
+    {% endfor %}
+    </tbody></table>
+  </section>
+  {% endfor %}
+  {% if not found %}<p class="muted">No device, host, VPN user or website matches “{{ q }}”.</p>{% endif %}
+  <p><a href="{{ text_link }}">Search log messages for “{{ q }}” (last 24 hours) →</a></p>
+{% endif %}
+{% endblock %}

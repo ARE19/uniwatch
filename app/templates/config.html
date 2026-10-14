@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Config backups · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Config backups <span class="muted">· {{ scope_label }}</span></h1>
+  <nav class="segmented" aria-label="Period">
+    {% for d in (7, 30, 90, 365) %}<a href="/config?days={{ d }}{% if section %}&amp;section={{ section }}{% endif %}" {% if d == days %}aria-current="true"{% endif %}>{{ d }} days</a>{% endfor %}
+  </nav>
+</div>
+
+<section class="card">
+  <h2>Sites</h2>
+  {% if sites %}<table class="dense"><thead><tr><th>Site</th><th class="num">Sections backed up</th><th>Last change seen</th><th>Last checked</th><th class="num">Changes ({{ days }} days)</th><th></th></tr></thead><tbody>
+    {% for x in sites %}<tr><td><a href="/site/{{ x.id }}">{{ x.name }}</a></td><td class="num">{{ x.sections }}</td>
+      <td class="nowrap">{{ x.last_change | ts_short(x.timezone) }}</td><td class="nowrap">{{ x.last_check | ts_short(x.timezone) if x.last_check else "" }}</td>
+      <td class="num">{{ x.changes }}</td><td><a href="/config/site/{{ x.id }}/backup.json">Download backup</a></td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="muted">No backups yet: the first run takes up to 3 hours after the server starts.</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>Full backups (restorable)</h2>
+  {% if full %}<table class="dense"><thead><tr><th>Site</th><th>Console</th><th>Backup made</th><th>UniFi Network</th><th class="num">Size</th><th>Copied</th><th></th></tr></thead><tbody>
+    {% for b in full %}<tr><td>{{ b.client }}</td><td>{{ b.device }}</td><td class="nowrap">{{ b.taken_at | ts_short(b.timezone) if b.taken_at else "" }}</td>
+      <td>{{ b.version or "" }}</td><td class="num">{{ "%.1f MB" | format(b.size / 1048576) }}</td><td class="nowrap">{{ b.fetched_at | ts_short(b.timezone) }}</td>
+      <td>{% if is_admin %}<a href="/config/full/{{ b.id }}">Download .unf</a>{% else %}<span class="muted small">admins only</span>{% endif %}</td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="muted">No full backups copied yet.</p>{% endif %}
+  <p class="muted small">Local copies of the backup files the consoles make themselves (UniFi → Settings → System → Backups:
+    automatic backups). They hold every setting <strong>including passwords and keys</strong>, can be restored in UniFi, are stored
+    encrypted on the log server's backup disk and can only be downloaded by admins (logged in the audit log). Every backup of the
+    last 3 months is kept (and never fewer than the newest 12 per console). Copied every Sunday 01:30 Hong Kong time, right after the
+    consoles' weekly backup (set it in UniFi: Settings → System → Backups → weekly, Sunday 01:00), with a catch-up check every 6 hours. Only consoles reachable on the server's local network can be copied: through UniFi Site
+    Manager the file download times out.</p>
+</section>
+
+<section class="card">
+  <div class="card-head"><h2>Changes</h2>
+    <form method="get" action="/config" class="filters"><input type="hidden" name="days" value="{{ days }}">
+      <select name="section" data-autosubmit aria-label="Section"><option value="">All sections</option>
+        {% for k, v in labels.items() %}<option value="{{ k }}" {% if k == section %}selected{% endif %}>{{ v }}</option>{% endfor %}</select></form></div>
+  {% if changes %}<table class="dense"><thead><tr><th>Seen</th><th>Site</th><th>Section</th><th>What changed</th><th>Admin (from logs)</th></tr></thead><tbody>
+    {% for c in changes %}<tr><td class="nowrap"><a href="/config/change/{{ c.id }}">{{ c.taken_at | ts_short(c.timezone) }}</a></td><td>{{ c.client }}</td>
+      <td>{{ labels.get(c.section, c.section) }}</td><td class="small"><a href="/config/change/{{ c.id }}">{{ c.summary }}</a></td><td class="small">{{ c.admins or "" }}</td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="muted">No configuration changes in this period.</p>{% endif %}
+  <p class="muted small">Each console's configuration (networks &amp; VPN, Wi-Fi, firewall policies, zones and groups, port forwards,
+    NAT, routes, traffic rules, switch port profiles, RADIUS, dynamic DNS, site settings) is read every 3 hours through UniFi
+    Site Manager; a new version is kept only when something changed. Passwords, pre-shared keys, certificates' private keys and
+    tokens are never stored: they show as "secret changed". "Seen" is when the backup noticed the change (within 3 hours of it);
+    the admin comes from the gateway's own change log around that time.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ status }} · {{ app_name() }}{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <h1>{{ status }}</h1>
+  <p>{{ detail }}</p>
+  <p><a href="/">Back to home</a></p>
+</section>
+{% endblock %}

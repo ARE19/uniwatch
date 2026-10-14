@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}{{ site.name }} · Site overview · {{ app_name() }}{% endblock %}
+{% block content %}
+{% set staff = user.role.name in ("admin", "engineer") %}
+<div class="page-head">
+  <h1>{{ site.name }} <span class="muted">· site overview</span></h1>
+  <span class="muted small">Times: {{ tz }}{% if last_log %} · last log {{ last_log | ts_short(tz) }}{% endif %}</span>
+</div>
+
+<section class="tiles" aria-label="Site health">
+  <div class="tile {{ 'sev-high' if summary.internet == 'down' }}"><span class="tile-label">Internet</span>
+    <span class="tile-value">{% if summary.internet == "up" %}<span class="state state-up">● up</span>{% elif summary.internet == "down" %}<span class="state state-down">▼ down</span>{% else %}–{% endif %}</span>
+    <span class="muted small">{{ isp.isp or "" }}{% if isp.latency is not none %} · {{ isp.latency }} ms{% endif %}{% if isp.loss %} · {{ "%g" | format(isp.loss) }} % loss{% endif %}</span></div>
+  <div class="tile {{ 'sev-high' if summary.vpn_down }}"><span class="tile-label">Site-to-site VPN</span>
+    <span class="tile-value">{{ summary.vpn_total - summary.vpn_down }} / {{ summary.vpn_total }}</span><span class="muted small">up</span></div>
+  <a class="tile tile-link {{ 'sev-high' if summary.dev_offline }}" href="#devices"><span class="tile-label">Devices online</span>
+    <span class="tile-value">{{ summary.dev_total - summary.dev_offline }} / {{ summary.dev_total }}</span>
+    <span class="muted small">{% if summary.updates %}{{ summary.updates }} update{{ "s" if summary.updates > 1 }}{% endif %}{% if summary.eol %} · {{ summary.eol }} end of life{% endif %}</span></a>
+  <a class="tile tile-link {{ 'sev-high' if summary.alerts_high }}" href="#alerts"><span class="tile-label">Open alerts</span>
+    <span class="tile-value">{{ summary.alerts }}</span><span class="muted small">{{ summary.alerts_high }} high · {{ summary.resolved_24h }} resolved in 24 h</span></a>
+  <div class="tile {{ 'sev-medium' if not summary.logs_ok }}"><span class="tile-label">Logs</span>
+    <span class="tile-value">{% if summary.logs_ok %}<span class="state state-up">● receiving</span>{% else %}<span class="state state-down">▲ quiet</span>{% endif %}</span></div>
+  <a class="tile tile-link" href="/cctv"><span class="tile-label">CCTV access (24 h)</span>
+    <span class="tile-value">{% if cctv.status == "ok" %}{{ cctv.sign_ins }}{% else %}–{% endif %}</span>
+    <span class="muted small">{% if cctv.status == "ok" %}sign-ins · {{ cctv.viewed }} recordings viewed{% elif cctv.status == "no protect" %}no UniFi Protect{% elif cctv.status %}{{ cctv.status }}{% endif %}</span></a>
+</section>
+
+<div class="grid">
+<section class="card" id="alerts">
+  <h2>Open alerts</h2>
+  {% if alerts %}<table class="dense"><thead><tr><th>Severity</th><th>Alert</th><th>Since</th><th>Status</th></tr></thead><tbody>
+    {% for a in alerts %}<tr><td><span class="sev sev-{{ a.severity }}"><i aria-hidden="true">■</i> {{ a.severity }}</span></td>
+      <td>{% if staff %}<a href="/event-monitor/alerts/{{ a.id }}">{{ a.title }}</a>{% else %}{{ a.title }}{% endif %}</td>
+      <td class="nowrap">{{ a.first_seen | ts_short(tz) }}</td><td>{{ a.status }}</td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="muted">No open alerts.</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>Internet &amp; WAN</h2>
+  {% if wans %}<table class="dense"><thead><tr><th>Link</th><th>State</th><th>Since</th><th>IP</th></tr></thead><tbody>
+    {% for w in wans %}<tr><td>{{ "Internet" if w.wan_name == "internet" else w.wan_name }}{% if w.label %} <span class="muted">{{ w.label }}</span>{% endif %}</td>
+      <td>{% if w.state == "up" %}<span class="state state-up">● up</span>{% else %}<span class="state state-down">▼ down</span>{% endif %}</td>
+      <td class="nowrap">{{ w.started_at | ts_short(tz) }}</td><td>{% if w.ip %}<code>{{ w.ip }}</code>{% endif %}</td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="muted">No WAN data for this site.</p>{% endif %}
+
+  <h2>Site-to-site VPN</h2>
+  {% if tunnels %}<table class="dense"><thead><tr><th>Tunnel</th><th>State</th><th>Peer</th><th>WAN</th><th>Up since</th></tr></thead><tbody>
+    {% for t in tunnels %}<tr><td>{{ t.name }}</td>
+      <td>{% if t.status == "established" %}<span class="state state-up">● up</span>{% elif t.status == "disabled" %}<span class="muted">disabled</span>{% else %}<span class="state state-down">▼ {{ t.status or "down" }}</span>{% endif %}</td>
+      <td>{% if t.peer %}<code>{{ t.peer }}</code>{% endif %}</td><td>{{ t.interface or "" }}</td>
+      <td class="nowrap">{{ t.established_at | ts_short(tz) if t.established_at else "" }}</td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="muted">No site-to-site VPN.</p>{% endif %}
+</section>
+</div>
+
+<section class="card" id="devices">
+  <div class="card-head"><h2>Devices</h2>{% if staff %}<a href="/devices">All devices &amp; firmware →</a>{% endif %}</div>
+  {% if devices %}<table class="dense"><thead><tr><th>Device</th><th>Type</th><th>Model</th><th>Status</th><th class="num">Clients</th><th>Connected to</th><th>Firmware</th></tr></thead><tbody>
+    {% for d in devices %}<tr><td><strong>{{ d.name or "—" }}</strong></td><td>{{ d.product }}</td>
+      <td>{{ d.model or "" }}{% if d.eol %} <span class="badge warn">EOL</span>{% endif %}</td>
+      <td>{% if d.connected %}<span class="state state-up">● online</span>{% elif d.connected is sameas false %}<span class="state state-down">▼ offline</span>{% else %}<span class="muted">–</span>{% endif %}</td>
+      <td class="num">{{ d.client_count if d.client_count is not none and d.connected else "" }}</td>
+      <td class="small">{% if d.uplink %}{{ d.uplink }}{% if d.uplink_port %} port {{ d.uplink_port }}{% endif %}{% endif %}</td>
+      <td class="small">{{ d.firmware or "" }}{% if d.upgradable %} <span class="badge warn" title="{{ d.firmware_latest or '' }}">▲ update</span>{% endif %}</td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="muted">No devices reported by a controller for this site.</p>{% endif %}
+</section>
+
+<div class="grid">
+<section class="card">
+  <div class="card-head"><h2>Recent configuration changes</h2>{% if staff %}<a href="/logs/config-changes">All →</a>{% endif %}</div>
+  {% if changes %}<table class="dense"><thead><tr><th>When</th><th>Who</th><th>What</th></tr></thead><tbody>
+    {% for x in changes %}<tr><td class="nowrap">{{ x.ts | ts_short(tz) }}</td><td>{{ x.admin_user or "" }}</td><td class="small">{{ x.summary }}</td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="muted">No configuration changes recorded.</p>{% endif %}
+</section>
+
+<section class="card">
+  <div class="card-head"><h2>Reports</h2><a href="/reports">Generate →</a></div>
+  {% if reports %}<table class="dense"><thead><tr><th>Report</th><th>Period</th><th></th></tr></thead><tbody>
+    {% for r in reports %}<tr><td>{{ report_titles.get(r.report_type, r.report_type) }}</td>
+      <td class="nowrap small">{{ r.period_start | ts_short(tz) }} – {{ r.period_end | ts_short(tz) }}</td>
+      <td class="nowrap">{% if r.status == "done" %}<a href="/reports/{{ r.id }}/pdf">PDF</a> · <a href="/reports/{{ r.id }}/xlsx">Excel</a>{% else %}<span class="muted">{{ r.status }}</span>{% endif %}</td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="muted">No reports yet.</p>{% endif %}
+</section>
+</div>
+
+{% if gateways %}<p class="muted small">Log sources: {% for g in gateways %}{{ g.name }}{% if g.state %} ({{ g.state }}){% endif %}{% if not loop.last %}, {% endif %}{% endfor %}.</p>{% endif %}
+{% endblock %}

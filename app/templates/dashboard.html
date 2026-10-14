@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · {{ app_name() }}{% endblock %}
+{% block head %}
+<script src="/static/echarts.min.js" defer></script>
+<script src="/static/dashboard.js" defer></script>
+<script src="/static/dashboard-edit.js" defer></script>
+{% endblock %}
+{% macro chart_widget(id, title, sub, label, table) %}
+  <h2>{{ title }}{% if sub %} <span class="muted">{{ sub }}</span>{% endif %}</h2>
+  {{ caller() if caller else "" }}
+  <div class="chart" id="{{ id }}" role="img" aria-label="{{ label }}"></div>
+  <details><summary>View as table</summary><div class="table-wrap" data-table="{{ table }}"></div></details>
+{% endmacro %}
+{% macro widget_body(item, n) %}
+{% set w = item.w %}
+{% if w == "tiles" %}
+  <h2 class="visually-hidden">Summary</h2>
+  <div class="tiles" aria-label="Summary">
+    <div class="tile"><span class="tile-label">Logs received</span><span class="tile-value" data-tile="lines">–</span></div>
+    <div class="tile"><span class="tile-label">Events</span><span class="tile-value" data-tile="events">–</span></div>
+    {% for sev, label, meaning in (("critical", "Critical", "critical / alert / emergency messages and the most serious security events"),
+                                   ("high", "High", "errors reported by the devices, IDS/IPS detections and threat-intel matches"),
+                                   ("medium", "Medium", "warnings reported by the devices, firewall blocks and configuration changes")) %}
+    <a class="tile tile-link sev-{{ sev }}" title="{{ label }}: {{ meaning }}. Click to see them."
+       href="{% if staff %}/logs?range={{ range }}&amp;severity={{ sev }}{% else %}/insights?view=system&amp;range={{ '24h' if range in ('1h', '6h') else range }}{% endif %}">
+      <span class="tile-label"><i aria-hidden="true">■</i> {{ label }}</span><span class="tile-value" data-tile="{{ sev }}">–</span>
+      <span class="tile-sub muted">view →</span></a>
+    {% endfor %}
+    <a class="tile tile-link" href="/vpn"><span class="tile-label">VPN tunnels up</span><span class="tile-value" data-tile="vpn">–</span><span class="tile-sub muted" data-tile="vpn-drops"></span></a>
+  </div>
+{% elif w == "traffic" %}
+  {% call chart_widget("c-traffic", "Internet throughput", "Mbps, average per interval", "Internet download and upload throughput over time", "traffic") %}
+  <p class="muted small" data-tile="traffic-total"></p>{% endcall %}
+{% elif w == "packets" %}
+  {{ chart_widget("c-packets", "Internet packets", "packets per second", "Internet packets per second received and sent", "packets") }}
+{% elif w == "wan" %}
+  <h2>WAN &amp; internet <span class="muted">per gateway · availability over {{ range }}</span></h2>
+  <div class="table-wrap" data-table="wan"></div>
+{% elif w == "ipsec" %}
+  <h2>Site-to-site VPN <span class="muted"><a href="/vpn?range={{ '24h' if range in ('1h', '6h') else range }}">VPN monitor →</a></span></h2>
+  <div class="table-wrap" data-table="ipsec"></div>
+{% elif w == "health" %}
+  <h2>Device health <span class="muted">latest poll · availability over {{ range }}</span></h2>
+  <div class="table-wrap" data-table="health"></div>
+{% elif w == "receive" %}
+  {{ chart_widget("c-receive", "Log receive monitor", "lines per interval, by device", "Log lines received over time by device", "receive") }}
+{% elif w == "rates" %}
+  {{ chart_widget("c-rates", "Insert rate vs receive rate", "messages per interval", "Received, stored and parsed messages over time", "rates") }}
+{% elif w == "lag" %}
+  {{ chart_widget("c-lag", "Insert lag time", "receive → parsed, ms", "Parser lag over time", "lag") }}
+{% elif w == "severity" %}
+  {{ chart_widget("c-severity", "Events by severity", "", "Events over time by severity", "severity") }}
+{% elif w == "category" %}
+  {{ chart_widget("c-category", "Events by category", "", "Event count by category", "category") }}
+{% elif w == "devices" %}
+  <h2>Log sources</h2>
+  <div class="table-wrap" data-table="devices"></div>
+{% elif w == "apps" %}
+  <h2>Top apps <span class="muted"><a href="/insights?view=web&amp;range={{ range if range != '1h' else '24h' }}">all websites &amp; apps →</a></span></h2>
+  <div class="table-wrap" data-table="apps"></div>
+{% elif w == "sites" %}
+  <h2>Top websites <span class="muted"><a href="/insights?view=web&amp;range={{ range if range != '1h' else '24h' }}">all →</a></span></h2>
+  <div class="table-wrap" data-table="sites"></div>
+{% elif w == "talkers" %}
+  <h2>Top devices by data <span class="muted">internet, from firewall connection records</span></h2>
+  <div class="table-wrap" data-table="talkers"></div>
+{% elif w == "threats" %}
+  <h2>Top threats (IDS/IPS)</h2>
+  <div class="table-wrap" data-table="threats"></div>
+{% elif w == "changes" %}
+  <h2>Recent configuration changes</h2>
+  <div class="table-wrap" data-table="changes"></div>
+{% elif w == "storage" %}
+  <h2>Log storage</h2>
+  <div class="table-wrap" data-table="storage"></div>
+{% elif w == "search" %}
+  {% set sv = searches.get(item.cfg.search_id) %}
+  <h2>{{ sv.name if sv else "Saved search" }} <span class="muted">saved search · {{ range }}</span></h2>
+  <div class="search-widget" data-search="{{ item.cfg.search_id }}">
+    <a class="search-count" data-role="count" href="#">–</a>
+    <div class="chart chart-small" id="c-search-{{ n }}" role="img" aria-label="Matching events over time for {{ sv.name if sv else 'saved search' }}"></div>
+  </div>
+{% endif %}
+{% endmacro %}
+{% block content %}
+{% set staff = user.role.name in ("admin", "engineer") %}
+<div class="page-head">
+  <h1>Dashboard <span class="muted">· {{ scope_label }}</span></h1>
+  <div class="dash-controls">
+    <form method="post" action="/dashboards/select" class="inline-form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label class="visually-hidden" for="dash-pick">Dashboard</label>
+      <select id="dash-pick" name="dashboard" data-autosubmit>
+        <option value="default" {% if not board %}selected{% endif %}>Standard dashboard</option>
+        {% for b in boards %}
+        <option value="{{ b.id }}" {% if board and b.id == board.id %}selected{% endif %}>{{ b.name }}{% if b.shared %} ({% if b.client_name %}shared: {{ b.client_name }}{% else %}shared{% endif %}{% if b.is_default %}, default{% endif %}){% endif %}</option>
+        {% endfor %}
+      </select>
+      <noscript><button type="submit">Open</button></noscript>
+    </form>
+    <button type="button" class="button-secondary" id="dash-edit">Customise</button>
+    <a class="button-secondary button-small" href="/wall" title="Full-screen view rotating through clients">NOC wall</a>
+    <nav class="segmented" aria-label="Time range">
+      {% for r in ranges %}<a href="/?range={{ r }}" {% if r == range %}aria-current="true"{% endif %}>{{ r }}</a>{% endfor %}
+    </nav>
+  </div>
+</div>
+
+<div class="edit-bar" id="edit-bar" hidden>
+  <p><strong>Customising{% if board %} “{{ board.name }}”{% endif %}.</strong>
+    Drag widgets to reorder (or use ◀ ▶), pick a width, remove with ✕, then save.
+    {% if board and not can_edit %}<br><span class="muted">This shared dashboard is read-only for you: saving creates your own copy.</span>{% endif %}</p>
+  <div class="edit-actions">
+    <button type="button" id="edit-add">+ Add widget</button>
+    <button type="button" id="edit-save">Save…</button>
+    <button type="button" class="button-secondary" id="edit-reset">Restore standard widgets</button>
+    <button type="button" class="button-secondary" id="edit-cancel">Cancel</button>
+  </div>
+</div>
+
+<div id="dash" data-range="{{ range }}" data-staff="{{ 'true' if staff else 'false' }}" data-csrf="{{ csrf_token }}"
+     data-board="{{ board.id if board else '' }}" data-board-name="{{ board.name if board else '' }}"
+     data-can-edit="{{ 'true' if can_edit else 'false' }}"
+     data-share="{{ ('client:' ~ board.client_id if board.client_id else 'all') if board and board.shared else 'private' }}"
+     data-default="{{ 'true' if board and board.is_default else 'false' }}">
+  <div class="grid widgets" id="widgets">
+    {% for item in layout %}
+    <section class="card widget w-{{ item.size }}{% if item.w in ('traffic','packets','receive','rates','lag','severity','category') %} chart-card{% endif %}"
+             data-w="{{ item.w }}" data-size="{{ item.size }}" data-cfg='{{ (item.cfg or {}) | tojson }}'>
+      <div class="widget-tools" aria-label="Widget controls">
+        <span class="drag-handle" title="Drag to move" aria-hidden="true">⠿</span>
+        <button type="button" data-act="left" title="Move earlier" aria-label="Move earlier">◀</button>
+        <button type="button" data-act="right" title="Move later" aria-label="Move later">▶</button>
+        {% for s, label in (("third", "⅓"), ("half", "½"), ("full", "Full")) %}
+        <button type="button" data-act="size" data-size="{{ s }}" aria-pressed="{{ 'true' if item.size == s else 'false' }}" title="{{ s | capitalize }} width">{{ label }}</button>
+        {% endfor %}
+        <button type="button" data-act="remove" title="Remove widget" aria-label="Remove widget">✕</button>
+      </div>
+      {{ widget_body(item, loop.index) }}
+    </section>
+    {% else %}
+    <p class="muted">This dashboard has no widgets. Use Customise → Add widget.</p>
+    {% endfor %}
+  </div>
+  <p class="muted small" id="dash-status" aria-live="polite"></p>
+</div>
+
+<dialog id="add-dialog" class="dialog">
+  <form method="dialog">
+    <h2>Add widget</h2>
+    <ul class="widget-catalogue">
+      {% for w in catalogue %}
+      <li>
+        <div><strong>{{ w.title }}</strong>{% if w.staff_only %} <span class="badge">staff</span>{% endif %}<br>
+          <span class="muted small">{{ w.description }}</span></div>
+        {% if w.id == "search" %}
+          {% if searches %}
+          <span class="add-search">
+            <label class="visually-hidden" for="add-search-id">Saved search</label>
+            <select id="add-search-id">{% for sid, sv in searches.items() %}<option value="{{ sid }}">{{ sv.name }}{% if sv.shared and not sv.mine %} (shared){% endif %}</option>{% endfor %}</select>
+            <button type="button" data-add="search" data-size="{{ w.size }}">Add</button>
+          </span>
+          {% else %}<span class="muted small">Save a search in Log View first.</span>{% endif %}
+        {% else %}
+          <button type="button" data-add="{{ w.id }}" data-size="{{ w.size }}" data-title="{{ w.title }}">Add</button>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="dialog-actions"><button value="close" class="button-secondary">Close</button></div>
+  </form>
+</dialog>
+
+<dialog id="save-dialog" class="dialog">
+  <form method="dialog" id="save-form">
+    <h2>Save dashboard</h2>
+    <label>Name <input name="name" maxlength="100" required value="{{ board.name if board else 'My dashboard' }}"></label>
+    {% if staff %}
+    <label>Who can use it
+      <select name="share">
+        <option value="private">Only me</option>
+        <option value="all">Everyone (all staff and client users)</option>
+        {% for c in share_clients %}<option value="client:{{ c.id }}">Users of {{ c.name }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="checkbox"><input type="checkbox" name="is_default"> Make it the default for them
+      <span class="muted small">(users who have not picked a dashboard see it)</span></label>
+    {% endif %}
+    <p class="form-error" id="save-error" role="alert" hidden></p>
+    <div class="dialog-actions">
+      {% if board and can_edit %}<button type="submit" value="update">Save changes</button>{% endif %}
+      <button type="submit" value="new" {% if board and can_edit %}class="button-secondary"{% endif %}>Save as new dashboard</button>
+      <button value="cancel" class="button-secondary" formnovalidate>Cancel</button>
+    </div>
+  </form>
+  {% if board and can_edit %}
+  <form method="post" action="/dashboards/{{ board.id }}/delete" class="delete-form" data-confirm="Delete the dashboard “{{ board.name }}”?">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button type="submit" class="button-danger">Delete this dashboard</button>
+  </form>
+  {% endif %}
+</dialog>
+<script type="application/json" id="default-layout">{{ default_layout | tojson }}</script>
+{% endblock %}

@@ -1,0 +1,2388 @@
+{
+ "_note": "UniFi Site Manager API v1/ea responses for 6 consoles, 2026-10-08, trimmed (no account/user data)",
+ "hosts": [
+  {
+   "id": "076342913A0EB6B1298243FE95EFEB9F28C621446FD2117C4B1EE9CA2534:1483201781",
+   "type": "console",
+   "ipAddress": "11.121.198.37",
+   "owner": true,
+   "lastConnectionStateChange": "2026-07-24T08:47:48Z",
+   "reportedState": {
+    "name": "BNB-HK",
+    "hostname": "BNB-HK",
+    "state": "disconnected",
+    "timezone": "Asia/Hong_Kong",
+    "hardware": {
+     "bom": "113-00917-41",
+     "cpu.id": "411fd073-00000000",
+     "debianCodename": "bullseye",
+     "firmwareVersion": "5.1.19",
+     "hwrev": 234793,
+     "mac": "602232053633",
+     "name": "UniFi Dream Machine SE",
+     "qrid": "VCZZXt",
+     "reboot": "30",
+     "serialno": "602232053633",
+     "shortname": "UDMPROSE",
+     "subtype": "",
+     "sysid": 59948,
+     "upgrade": "310",
+     "uuid": "9a2de21d-7520-5d7f-bbbb-6f9c0f844eb2"
+    },
+    "internetIssues5min": {
+     "periods": [
+      {
+       "index": 5945833
+      }
+     ]
+    },
+    "ip": "11.58.245.74",
+    "mac": "602232053633"
+   }
+  },
+  {
+   "id": "8F9D69B576A4F67003EB3F898CF6BA9757837D8FB6F0C3015B2EEAF5EB61:489879722",
+   "type": "console",
+   "ipAddress": "11.133.111.195",
+   "owner": true,
+   "lastConnectionStateChange": "2026-10-02T19:59:35Z",
+   "reportedState": {
+    "name": "CTS KL",
+    "hostname": "CTS-KL",
+    "state": "connected",
+    "timezone": "Asia/Kuala_Lumpur",
+    "hardware": {
+     "bom": "113-00917-26",
+     "cpu.id": "411fd073-00000000",
+     "debianCodename": "bullseye",
+     "firmwareVersion": "5.1.33",
+     "hwrev": 234778,
+     "isUbios": false,
+     "mac": "60223259F850",
+     "name": "UniFi Dream Machine SE",
+     "qrid": "fjsr5g",
+     "reboot": "30",
+     "serialno": "60223259F850",
+     "shortname": "UDMPROSE",
+     "subtype": "",
+     "sysid": 59948,
+     "upgrade": "310",
+     "uuid": "f42b5c19-d6b3-5667-a9ab-61aea20b8fff"
+    },
+    "internetIssues5min": {
+     "periods": [
+      {
+       "index": 5965554
+      }
+     ]
+    },
+    "ip": "11.185.5.147",
+    "mac": "60223259F850"
+   }
+  },
+  {
+   "id": "F67D8AEB3548A2F5F99343937EE5601F927551C5C3E0EC909F71368273E8:1140664907",
+   "type": "console",
+   "ipAddress": "11.145.54.44",
+   "owner": true,
+   "lastConnectionStateChange": "2026-10-02T19:00:41Z",
+   "reportedState": {
+    "name": "CTS SG",
+    "hostname": "CTSSG",
+    "state": "connected",
+    "timezone": "Asia/Singapore",
+    "hardware": {
+     "bom": "113-00723-11",
+     "cpu.id": "411fd073-00000000",
+     "debianCodename": "bullseye",
+     "firmwareVersion": "5.1.33",
+     "hwrev": 185099,
+     "isUbios": false,
+     "mac": "784558BBD11B",
+     "name": "UniFi Dream Machine Pro",
+     "qrid": "62EW3a",
+     "reboot": "30",
+     "serialno": "784558bbd11b",
+     "shortname": "UDMPRO",
+     "subtype": "",
+     "sysid": 59925,
+     "upgrade": "310",
+     "uuid": "8250e558-33cd-5579-b82a-758b740d5294"
+    },
+    "internetIssues5min": {
+     "periods": [
+      {
+       "index": 5970370
+      }
+     ]
+    },
+    "ip": "11.31.33.170",
+    "mac": "784558BBD11B"
+   }
+  },
+  {
+   "id": "07F7BF83E2699D8A2CB22257DA22815DE37B2217E26472BC98F9CED6234D:1334216004",
+   "type": "console",
+   "ipAddress": "11.191.15.210",
+   "owner": true,
+   "lastConnectionStateChange": "2026-10-02T11:56:42Z",
+   "reportedState": {
+    "name": "CTS UK",
+    "hostname": "CTS-UK",
+    "state": "connected",
+    "timezone": "Europe/London",
+    "hardware": {
+     "bom": "113-01184-16",
+     "cpu.id": "101540e1-00000000",
+     "debianCodename": "bullseye",
+     "firmwareVersion": "4.0.21",
+     "hwrev": 303120,
+     "mac": "942A6F88BFB0",
+     "name": "UniFi Express",
+     "qrid": "Nh0xwi",
+     "reboot": "30",
+     "serialno": "942a6f88bfb0",
+     "shortname": "UX",
+     "subtype": "",
+     "sysid": 42599,
+     "upgrade": "150",
+     "uuid": "690a858f-2f60-5c26-bcf1-cd41de59a4df"
+    },
+    "internetIssues5min": {
+     "periods": [
+      {
+       "index": 5966489
+      }
+     ]
+    },
+    "ip": "10.0.23.12",
+    "mac": "942A6F88BFB0"
+   }
+  },
+  {
+   "id": "3B488BF8127E57E12D08DE721FF099D9C56F435CAA33A801FF021BD63D79:857355635",
+   "type": "console",
+   "ipAddress": "11.171.178.92",
+   "owner": true,
+   "lastConnectionStateChange": "2026-10-02T13:44:11Z",
+   "reportedState": {
+    "name": "MGN HK",
+    "hostname": "MGN-HK",
+    "state": "connected",
+    "timezone": "Asia/Shanghai",
+    "hardware": {
+     "bom": "113-00723-10",
+     "cpu.id": "411fd073-00000000",
+     "debianCodename": "bullseye",
+     "firmwareVersion": "5.1.33",
+     "hwrev": 185098,
+     "isUbios": false,
+     "mac": "68D79AA8D066",
+     "name": "UniFi Dream Machine Pro",
+     "qrid": "h2Mv7x",
+     "reboot": "30",
+     "serialno": "68d79aa8d066",
+     "shortname": "UDMPRO",
+     "subtype": "",
+     "sysid": 59925,
+     "upgrade": "310",
+     "uuid": "33fa842a-f819-5c6f-8a28-b243559e25df"
+    },
+    "internetIssues5min": {
+     "periods": [
+      {
+       "count": 287,
+       "index": 5971118,
+       "wan2_failover_active": true,
+       "wan_downtime": true
+      }
+     ]
+    },
+    "ip": "11.171.178.92",
+    "mac": "68D79AA8D066"
+   }
+  },
+  {
+   "id": "B8300CEEE35811562F1B634C855A5E571DC468CC857475FBCA2C8B3EB16D:1046642031",
+   "type": "console",
+   "ipAddress": "11.162.174.120",
+   "owner": true,
+   "lastConnectionStateChange": "2026-10-03T06:39:15Z",
+   "reportedState": {
+    "name": "NW HK",
+    "hostname": "NW-HK",
+    "state": "connected",
+    "timezone": "Asia/Hong_Kong",
+    "hardware": {
+     "bom": "113-00917-26",
+     "cpu.id": "411fd073-00000000",
+     "debianCodename": "bullseye",
+     "firmwareVersion": "5.1.33",
+     "hwrev": 234778,
+     "isUbios": false,
+     "mac": "D021F9273B58",
+     "name": "UniFi Dream Machine SE",
+     "qrid": "VK0thX",
+     "reboot": "30",
+     "serialno": "d021f9273b58",
+     "shortname": "UDMPROSE",
+     "subtype": "",
+     "sysid": 59948,
+     "upgrade": "310",
+     "uuid": "6ed12660-9139-5be7-8c47-9f875ab5dca7"
+    },
+    "internetIssues5min": {
+     "periods": [
+      {
+       "count": 287,
+       "index": 5971118,
+       "wan2_failover_active": true,
+       "wan_downtime": true
+      }
+     ]
+    },
+    "ip": "11.162.174.120",
+    "mac": "D021F9273B58"
+   }
+  }
+ ],
+ "sites": [
+  {
+   "siteId": "67f762a55ed6031a6c9ac9c4",
+   "hostId": "076342913A0EB6B1298243FE95EFEB9F28C621446FD2117C4B1EE9CA2534:1483201781",
+   "meta": {
+    "desc": "Default",
+    "gatewayMac": "60:22:32:05:36:33",
+    "name": "default",
+    "timezone": "Asia/Hong_Kong"
+   },
+   "statistics": {
+    "counts": {
+     "criticalNotification": 0,
+     "gatewayDevice": 1,
+     "guestClient": 0,
+     "lanConfiguration": 3,
+     "offlineDevice": 0,
+     "offlineGatewayDevice": 0,
+     "offlineWifiDevice": 0,
+     "offlineWiredDevice": 0,
+     "pendingUpdateDevice": 0,
+     "totalDevice": 2,
+     "wanConfiguration": 2,
+     "wifiClient": 8,
+     "wifiConfiguration": 2,
+     "wifiDevice": 1,
+     "wiredClient": 12,
+     "wiredDevice": 0
+    },
+    "gateway": {
+     "hardwareId": "9a2de21d-7520-5d7f-bbbb-6f9c0f844eb2",
+     "inspectionState": "off",
+     "ipsMode": "ips",
+     "ipsSignature": {
+      "rulesCount": 32546,
+      "type": "ET"
+     },
+     "shortname": "UDMPROSE"
+    },
+    "internetIssues": [],
+    "ispInfo": {
+     "asn": 9269,
+     "name": "Hong Kong Broadband Network",
+     "organization": "Hong Kong Broadband Network Ltd."
+    },
+    "percentages": {
+     "txRetry": 4.051247609564322,
+     "wanUptime": 100
+    },
+    "wanMagic": {
+     "available": true,
+     "enabled": false,
+     "subscribed": false,
+     "updateAt": 1781973285000
+    },
+    "wans": {
+     "WAN": {
+      "externalIp": "11.121.198.37",
+      "ispInfo": {
+       "asn": 9269,
+       "name": "Hong Kong Broadband Network",
+       "organization": "Hong Kong Broadband Network Ltd."
+      },
+      "wanIssues": [],
+      "wanUptime": 100
+     },
+     "WAN2": {
+      "externalIp": "11.58.245.74",
+      "ispInfo": {
+       "asn": 4760,
+       "name": "Netvigator",
+       "organization": "HKT Limited"
+      },
+      "wanIssues": [],
+      "wanUptime": 100
+     }
+    }
+   },
+   "permission": "admin",
+   "isOwner": true
+  },
+  {
+   "siteId": "64ad8f7a6d97770af8737c3a",
+   "hostId": "8F9D69B576A4F67003EB3F898CF6BA9757837D8FB6F0C3015B2EEAF5EB61:489879722",
+   "meta": {
+    "desc": "Default",
+    "gatewayMac": "60:22:32:59:f8:50",
+    "name": "default",
+    "timezone": "Asia/Kuala_Lumpur"
+   },
+   "statistics": {
+    "counts": {
+     "criticalNotification": 0,
+     "gatewayDevice": 1,
+     "guestClient": 4,
+     "lanConfiguration": 1,
+     "offlineDevice": 0,
+     "offlineGatewayDevice": 0,
+     "offlineWifiDevice": 0,
+     "offlineWiredDevice": 0,
+     "pendingUpdateDevice": 0,
+     "totalDevice": 9,
+     "wanConfiguration": 2,
+     "wifiClient": 18,
+     "wifiConfiguration": 4,
+     "wifiDevice": 4,
+     "wiredClient": 2,
+     "wiredDevice": 4
+    },
+    "features": [
+     "TEST_AND_CONFIRM",
+     "DEVICE_AUTO_RECOVERY"
+    ],
+    "gateway": {
+     "hardwareId": "f42b5c19-d6b3-5667-a9ab-61aea20b8fff",
+     "inspectionState": "off",
+     "ipsMode": "ips",
+     "ipsSignature": {
+      "rulesCount": 33136,
+      "type": "ET"
+     },
+     "shortname": "UDMPROSE"
+    },
+    "internetIssues": [],
+    "ispInfo": {
+     "asn": 9534,
+     "name": "Maxis Communications",
+     "organization": "Binariang Berhad"
+    },
+    "percentages": {
+     "txRetry": 14.375961325072229,
+     "wanUptime": 100
+    },
+    "wanLoadBalancingMode": "FAILOVER_ONLY",
+    "wanMagic": {
+     "available": true,
+     "enabled": false,
+     "subscribed": false,
+     "updateAt": 1789061563000
+    },
+    "wans": {
+     "WAN": {
+      "externalIp": "11.185.5.147",
+      "failoverPriority": 2,
+      "ispInfo": {
+       "asn": 9534,
+       "name": "Maxis Communications",
+       "organization": "Binariang Berhad"
+      },
+      "portUp": true,
+      "wanIssues": [],
+      "wanUptime": 100
+     },
+     "WAN2": {
+      "externalIp": "11.133.111.195",
+      "failoverPriority": 1,
+      "ispInfo": {
+       "asn": 9930,
+       "name": "TIME Fibre Optic",
+       "organization": "TIME dotCom Berhad No. 14, Jalan Majistret U1/26 Hicom Glenmarie Industrial Park 40150 Shah A"
+      },
+      "portUp": true,
+      "wanIssues": [],
+      "wanUptime": 100
+     }
+    }
+   },
+   "permission": "admin",
+   "isOwner": true
+  },
+  {
+   "siteId": "639bf2fe24503607721cc4bc",
+   "hostId": "3B488BF8127E57E12D08DE721FF099D9C56F435CAA33A801FF021BD63D79:857355635",
+   "meta": {
+    "desc": "Default",
+    "gatewayMac": "68:d7:9a:a8:d0:66",
+    "name": "default",
+    "timezone": "Asia/Shanghai"
+   },
+   "statistics": {
+    "counts": {
+     "criticalNotification": 0,
+     "gatewayDevice": 1,
+     "guestClient": 0,
+     "lanConfiguration": 2,
+     "offlineDevice": 0,
+     "offlineGatewayDevice": 0,
+     "offlineWifiDevice": 0,
+     "offlineWiredDevice": 0,
+     "pendingUpdateDevice": 0,
+     "totalDevice": 3,
+     "wanConfiguration": 2,
+     "wifiClient": 8,
+     "wifiConfiguration": 4,
+     "wifiDevice": 2,
+     "wiredClient": 2,
+     "wiredDevice": 0
+    },
+    "features": [
+     "TEST_AND_CONFIRM",
+     "DEVICE_AUTO_RECOVERY"
+    ],
+    "gateway": {
+     "hardwareId": "33fa842a-f819-5c6f-8a28-b243559e25df",
+     "inspectionState": "off",
+     "ipsMode": "ips",
+     "ipsSignature": {
+      "rulesCount": 33164,
+      "type": "ET"
+     },
+     "shortname": "UDMPRO"
+    },
+    "internetIssues": [
+     {
+      "count": 288,
+      "index": 5971118,
+      "wan2FailoverActive": true,
+      "wanDowntime": true
+     }
+    ],
+    "ispInfo": {
+     "asn": 9269,
+     "name": "Hong Kong Broadband Network",
+     "organization": "Hong Kong Broadband Network Ltd."
+    },
+    "percentages": {
+     "txRetry": 11.596328126470954,
+     "wanUptime": 0
+    },
+    "wanLoadBalancingMode": "FAILOVER_ONLY",
+    "wanMagic": {
+     "available": true,
+     "enabled": false,
+     "subscribed": false,
+     "updateAt": 1789070416000
+    },
+    "wans": {
+     "WAN": {
+      "failoverPriority": 1,
+      "portUp": false,
+      "wanIssues": [
+       {
+        "count": 288,
+        "failover_wan_active": true,
+        "index": 5971118,
+        "wanDowntime": true
+       }
+      ],
+      "wanUptime": 0
+     },
+     "WAN2": {
+      "externalIp": "11.171.178.92",
+      "failoverPriority": 2,
+      "ispInfo": {
+       "asn": 9269,
+       "name": "Hong Kong Broadband Network",
+       "organization": "Hong Kong Broadband Network Ltd."
+      },
+      "portUp": true,
+      "wanIssues": [
+       {
+        "count": 288,
+        "failover_wan_active": true,
+        "index": 5971118
+       }
+      ],
+      "wanUptime": 100
+     }
+    }
+   },
+   "permission": "admin",
+   "isOwner": true
+  },
+  {
+   "siteId": "6412bc7a8f90291721c359e1",
+   "hostId": "B8300CEEE35811562F1B634C855A5E571DC468CC857475FBCA2C8B3EB16D:1046642031",
+   "meta": {
+    "desc": "Default",
+    "gatewayMac": "d0:21:f9:27:3b:58",
+    "name": "default",
+    "timezone": "Asia/Hong_Kong"
+   },
+   "statistics": {
+    "counts": {
+     "criticalNotification": 0,
+     "gatewayDevice": 1,
+     "guestClient": 0,
+     "lanConfiguration": 2,
+     "offlineDevice": 0,
+     "offlineGatewayDevice": 0,
+     "offlineWifiDevice": 0,
+     "offlineWiredDevice": 0,
+     "pendingUpdateDevice": 0,
+     "totalDevice": 5,
+     "wanConfiguration": 2,
+     "wifiClient": 17,
+     "wifiConfiguration": 3,
+     "wifiDevice": 3,
+     "wiredClient": 21,
+     "wiredDevice": 1
+    },
+    "features": [
+     "TEST_AND_CONFIRM",
+     "DEVICE_AUTO_RECOVERY"
+    ],
+    "gateway": {
+     "hardwareId": "6ed12660-9139-5be7-8c47-9f875ab5dca7",
+     "inspectionState": "off",
+     "ipsMode": "ids",
+     "ipsSignature": {
+      "rulesCount": 33136,
+      "type": "ET"
+     },
+     "shortname": "UDMPROSE"
+    },
+    "internetIssues": [
+     {
+      "count": 288,
+      "index": 5971118,
+      "wan2FailoverActive": true,
+      "wanDowntime": true
+     }
+    ],
+    "ispInfo": {
+     "asn": 9269,
+     "name": "Hong Kong Broadband Network",
+     "organization": "Hong Kong Broadband Network Ltd."
+    },
+    "percentages": {
+     "txRetry": 8.910215229290174,
+     "wanUptime": 0
+    },
+    "wanLoadBalancingMode": "FAILOVER_ONLY",
+    "wanMagic": {
+     "available": true,
+     "enabled": false,
+     "subscribed": false,
+     "updateAt": 1789056900000
+    },
+    "wans": {
+     "WAN": {
+      "failoverPriority": 1,
+      "portUp": false,
+      "wanIssues": [
+       {
+        "count": 288,
+        "failover_wan_active": true,
+        "index": 5971118,
+        "wanDowntime": true
+       }
+      ],
+      "wanUptime": 0
+     },
+     "WAN2": {
+      "externalIp": "11.162.174.120",
+      "failoverPriority": 2,
+      "ispInfo": {
+       "asn": 9269,
+       "name": "Hong Kong Broadband Network",
+       "organization": "Hong Kong Broadband Network Ltd."
+      },
+      "portUp": true,
+      "wanIssues": [
+       {
+        "count": 288,
+        "failover_wan_active": true,
+        "index": 5971118
+       }
+      ],
+      "wanUptime": 100
+     }
+    }
+   },
+   "permission": "admin",
+   "isOwner": true
+  },
+  {
+   "siteId": "600ee7a82f47b30522dbcb38",
+   "hostId": "F67D8AEB3548A2F5F99343937EE5601F927551C5C3E0EC909F71368273E8:1140664907",
+   "meta": {
+    "desc": "Default",
+    "gatewayMac": "78:45:58:bb:d1:1b",
+    "name": "default",
+    "timezone": "Asia/Singapore"
+   },
+   "statistics": {
+    "counts": {
+     "criticalNotification": 0,
+     "gatewayDevice": 1,
+     "guestClient": 0,
+     "lanConfiguration": 2,
+     "offlineDevice": 0,
+     "offlineGatewayDevice": 0,
+     "offlineWifiDevice": 0,
+     "offlineWiredDevice": 0,
+     "pendingUpdateDevice": 0,
+     "totalDevice": 7,
+     "wanConfiguration": 2,
+     "wifiClient": 7,
+     "wifiConfiguration": 3,
+     "wifiDevice": 2,
+     "wiredClient": 2,
+     "wiredDevice": 4
+    },
+    "features": [
+     "TEST_AND_CONFIRM",
+     "DEVICE_AUTO_RECOVERY"
+    ],
+    "gateway": {
+     "hardwareId": "8250e558-33cd-5579-b82a-758b740d5294",
+     "inspectionState": "off",
+     "ipsMode": "ids",
+     "ipsSignature": {
+      "rulesCount": 74849,
+      "rulesUpdatedAt": 1791402697000,
+      "type": "ETPRO"
+     },
+     "shortname": "UDMPRO"
+    },
+    "internetIssues": [],
+    "ispInfo": {
+     "asn": 9506,
+     "name": "Singtel, Singtel Enterprise",
+     "organization": "Singtel Fibre Broadband"
+    },
+    "percentages": {
+     "txRetry": 7.188973185671826,
+     "wanUptime": 100
+    },
+    "wanLoadBalancingMode": "FAILOVER_ONLY",
+    "wanMagic": {
+     "available": true,
+     "enabled": false,
+     "subscribed": false,
+     "updateAt": 1789069749000
+    },
+    "wans": {
+     "WAN": {
+      "externalIp": "11.145.54.44",
+      "failoverPriority": 1,
+      "ispInfo": {
+       "asn": 9506,
+       "name": "Singtel, Singtel Enterprise",
+       "organization": "Singtel Fibre Broadband"
+      },
+      "portUp": true,
+      "wanIssues": [],
+      "wanUptime": 100
+     },
+     "WAN2": {
+      "externalIp": "11.31.33.170",
+      "failoverPriority": 2,
+      "ispInfo": {
+       "asn": 23856,
+       "name": "SPTEL PTE. LTD.",
+       "organization": "SPTEL PTE. LTD."
+      },
+      "portUp": true,
+      "wanIssues": [],
+      "wanUptime": 100
+     }
+    }
+   },
+   "permission": "admin",
+   "isOwner": true
+  },
+  {
+   "siteId": "686656f6624cb71f3274247a",
+   "hostId": "07F7BF83E2699D8A2CB22257DA22815DE37B2217E26472BC98F9CED6234D:1334216004",
+   "meta": {
+    "desc": "Default",
+    "gatewayMac": "94:2a:6f:88:bf:b0",
+    "name": "default",
+    "timezone": "Europe/London"
+   },
+   "statistics": {
+    "counts": {
+     "criticalNotification": 0,
+     "gatewayDevice": 1,
+     "guestClient": 0,
+     "lanConfiguration": 1,
+     "offlineDevice": 0,
+     "offlineGatewayDevice": 0,
+     "offlineWifiDevice": 0,
+     "offlineWiredDevice": 0,
+     "pendingUpdateDevice": 0,
+     "totalDevice": 1,
+     "wanConfiguration": 1,
+     "wifiClient": 3,
+     "wifiConfiguration": 1,
+     "wifiDevice": 0,
+     "wiredClient": 0,
+     "wiredDevice": 0
+    },
+    "gateway": {
+     "hardwareId": "690a858f-2f60-5c26-bcf1-cd41de59a4df",
+     "inspectionState": "off",
+     "ipsMode": "disabled",
+     "ipsSignature": {
+      "rulesCount": 53031,
+      "type": "ET"
+     },
+     "shortname": "UX"
+    },
+    "internetIssues": [],
+    "ispInfo": {
+     "name": "BT",
+     "organization": "British Telecommunications Limited"
+    },
+    "percentages": {
+     "txRetry": 5.835255490240225,
+     "wanUptime": 100
+    }
+   },
+   "permission": "admin",
+   "isOwner": true
+  }
+ ],
+ "devices": [
+  {
+   "hostId": "076342913A0EB6B1298243FE95EFEB9F28C621446FD2117C4B1EE9CA2534:1483201781",
+   "hostName": "BNB-HK",
+   "devices": [
+    {
+     "id": "602232053633",
+     "mac": "602232053633",
+     "name": "BNB-HK",
+     "model": "UDM SE",
+     "shortname": "UDMPROSE",
+     "ip": "11.121.198.37",
+     "productLine": "network",
+     "status": "offline",
+     "version": "5.1.19",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": true,
+     "isManaged": true,
+     "startupTime": "2026-06-20T16:33:48Z",
+     "adoptionTime": null,
+     "note": ""
+    },
+    {
+     "id": "9C05D6E7EB34",
+     "mac": "9C05D6E7EB34",
+     "name": "ACM-AP01",
+     "model": "U6 Pro",
+     "shortname": "UAP6MP",
+     "ip": "192.168.1.116",
+     "productLine": "network",
+     "status": "offline",
+     "version": "6.8.2",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-04-17T06:56:00Z",
+     "adoptionTime": "2025-04-10T06:38:08Z",
+     "note": ""
+    }
+   ],
+   "updatedAt": "2026-07-24T08:47:49Z"
+  },
+  {
+   "hostId": "B8300CEEE35811562F1B634C855A5E571DC468CC857475FBCA2C8B3EB16D:1046642031",
+   "hostName": "NW HK",
+   "devices": [
+    {
+     "id": "69af90d50002c703e411c00e",
+     "mac": "6C63F815D51D",
+     "name": "Carol-Test-Viewport",
+     "model": "Viewport",
+     "shortname": "UP Viewport",
+     "ip": "192.168.0.27",
+     "productLine": "protect",
+     "status": "offline",
+     "version": "11.194.132.124f41f9b0b.251211.551",
+     "firmwareStatus": "updatePending",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-04-23T03:27:15Z",
+     "adoptionTime": "2026-03-10T07:57:33Z",
+     "note": ""
+    },
+    {
+     "id": "245A4CC59623",
+     "mac": "245A4CC59623",
+     "name": "Rear Door",
+     "model": "UA Hub",
+     "shortname": "UA-HUB",
+     "ip": "192.168.1.170",
+     "productLine": "access",
+     "status": "online",
+     "version": "DA.mt7621.v4.13.4.0.g2aa3fc0.260815.0818",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-09T19:05:09Z",
+     "adoptionTime": "2023-04-13T10:24:55Z",
+     "note": ""
+    },
+    {
+     "id": "64140800007cf203e400082d",
+     "mac": "70A7415F4757",
+     "name": "NWHK-CCTV-01-REAR",
+     "model": "G3 Flex",
+     "shortname": "UVC G3 Flex",
+     "ip": "192.168.1.105",
+     "productLine": "protect",
+     "status": "online",
+     "version": "UVC.S2L.v4.75.66.67.9cdac69.260331.1630",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-04-08T17:07:23Z",
+     "adoptionTime": null,
+     "note": ""
+    },
+    {
+     "id": "D021F9273B58",
+     "mac": "D021F9273B58",
+     "name": "NW HK",
+     "model": "UDM SE",
+     "shortname": "UDMPROSE",
+     "ip": "11.162.174.120",
+     "productLine": "network",
+     "status": "online",
+     "version": "5.1.33",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": true,
+     "isManaged": true,
+     "startupTime": "2026-09-10T16:13:34Z",
+     "adoptionTime": null,
+     "note": ""
+    },
+    {
+     "id": "602232DE8DE8",
+     "mac": "602232DE8DE8",
+     "name": "Rear Door - Entry",
+     "model": "UA Reader Lite",
+     "shortname": "UA-LITE",
+     "ip": "192.168.1.53",
+     "productLine": "access",
+     "status": "online",
+     "version": "DA.qca953x.v3.18.21.0.ga98b02b.260616.1130",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-07-02T19:02:12Z",
+     "adoptionTime": "2023-04-14T02:46:38Z",
+     "note": ""
+    },
+    {
+     "id": "641407ce0064f203e400082b",
+     "mac": "D021F997C6ED",
+     "name": "NWHK-CCTV-02-FRONT",
+     "model": "G4 Dome",
+     "shortname": "UVC G4 Dome",
+     "ip": "192.168.1.143",
+     "productLine": "protect",
+     "status": "online",
+     "version": "UVC.S5L.v5.4.132.67.08b3e4f.260804.0738",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-10T19:14:04Z",
+     "adoptionTime": null,
+     "note": ""
+    },
+    {
+     "id": "70A741B6CDEB",
+     "mac": "70A741B6CDEB",
+     "name": "NWHKWAP-02",
+     "model": "U6 Lite",
+     "shortname": "UAL6",
+     "ip": "192.168.1.150",
+     "productLine": "network",
+     "status": "online",
+     "version": "6.7.57",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-03T19:02:58Z",
+     "adoptionTime": "2023-12-13T07:12:32Z",
+     "note": ""
+    },
+    {
+     "id": "68c7846c010b8e03e405addf",
+     "mac": "E438836AB87B",
+     "name": "UP Sense",
+     "model": "Sense",
+     "shortname": "UFP-SENSE",
+     "ip": "",
+     "productLine": "protect",
+     "status": "offline",
+     "version": "1.2.5",
+     "firmwareStatus": "updatePending",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2025-10-26T03:54:04Z",
+     "adoptionTime": null,
+     "note": ""
+    },
+    {
+     "id": "D021F91438B5",
+     "mac": "D021F91438B5",
+     "name": "NWHKWAP-01",
+     "model": "U6 Lite",
+     "shortname": "UAL6",
+     "ip": "192.168.1.102",
+     "productLine": "network",
+     "status": "online",
+     "version": "6.7.57",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-03T19:03:13Z",
+     "adoptionTime": "2023-03-16T11:41:25Z",
+     "note": ""
+    },
+    {
+     "id": "78455894E69F",
+     "mac": "78455894E69F",
+     "name": "NWHKWAP-03",
+     "model": "U6 LR",
+     "shortname": "UALR6v2",
+     "ip": "192.168.1.155",
+     "productLine": "network",
+     "status": "online",
+     "version": "6.7.57",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-03T19:05:09Z",
+     "adoptionTime": "2026-08-24T05:36:36Z",
+     "note": ""
+    },
+    {
+     "id": "84784808888C",
+     "mac": "84784808888C",
+     "name": "Front Door - Exit",
+     "model": "UA G3 W",
+     "shortname": "UA-G3",
+     "ip": "192.168.1.37",
+     "productLine": "access",
+     "status": "offline",
+     "version": "",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2025-09-26T05:03:27Z",
+     "adoptionTime": "2025-09-26T05:01:11Z",
+     "note": ""
+    },
+    {
+     "id": "245A4C593BF2",
+     "mac": "245A4C593BF2",
+     "name": "NW-HK-SW1",
+     "model": "USW 48 PoE",
+     "shortname": "USL48P",
+     "ip": "192.168.1.52",
+     "productLine": "network",
+     "status": "online",
+     "version": "7.5.15",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-09T19:03:23Z",
+     "adoptionTime": "2025-09-04T04:17:32Z",
+     "note": ""
+    },
+    {
+     "id": "E43883245243",
+     "mac": "E43883245243",
+     "name": "Front Door",
+     "model": "UA Hub",
+     "shortname": "UA-HUB",
+     "ip": "192.168.1.64",
+     "productLine": "access",
+     "status": "online",
+     "version": "DA.mt7621.v4.13.4.0.g2aa3fc0.260815.0818",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-09T19:05:01Z",
+     "adoptionTime": "2023-04-13T10:17:41Z",
+     "note": ""
+    },
+    {
+     "id": "6C63F853A64B",
+     "mac": "6C63F853A64B",
+     "name": "UA Intercom Viewer a64b",
+     "model": "UA Intercom Viewer",
+     "shortname": "UA-Int-Viewer",
+     "ip": "192.168.1.133",
+     "productLine": "access",
+     "status": "offline",
+     "version": "",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-04-10T09:26:30Z",
+     "adoptionTime": "2025-09-17T09:49:18Z",
+     "note": ""
+    },
+    {
+     "id": "68D79AD1548D",
+     "mac": "68D79AD1548D",
+     "name": "Front Door - Entry",
+     "model": "UA Pro",
+     "shortname": "UA-PRO",
+     "ip": "192.168.1.158",
+     "productLine": "access",
+     "status": "online",
+     "version": "DA.qca805x.v2.18.23.0.000000.20260509.194923",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-05-31T19:03:38Z",
+     "adoptionTime": "2023-04-14T03:00:07Z",
+     "note": ""
+    }
+   ],
+   "updatedAt": "2026-10-08T01:11:03Z"
+  },
+  {
+   "hostId": "8F9D69B576A4F67003EB3F898CF6BA9757837D8FB6F0C3015B2EEAF5EB61:489879722",
+   "hostName": "CTS KL",
+   "devices": [
+    {
+     "id": "1C0B8B060E2C",
+     "mac": "1C0B8B060E2C",
+     "name": "CTSKL-WS2",
+     "model": "USW WAN RJ45",
+     "shortname": "WRS3",
+     "ip": "192.168.2.32",
+     "productLine": "network",
+     "status": "online",
+     "version": "7.3.109",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-09T07:51:45Z",
+     "adoptionTime": "2026-03-18T10:14:55Z",
+     "note": ""
+    },
+    {
+     "id": "70A741DD5E80",
+     "mac": "70A741DD5E80",
+     "name": "CTSKL-AP04 - Pantry",
+     "model": "U6 Lite",
+     "shortname": "UAL6",
+     "ip": "192.168.2.163",
+     "productLine": "network",
+     "status": "online",
+     "version": "6.7.57",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-10T17:33:01Z",
+     "adoptionTime": "2023-07-13T08:45:00Z",
+     "note": ""
+    },
+    {
+     "id": "1C0B8B060DF0",
+     "mac": "1C0B8B060DF0",
+     "name": "CTSKL-WS1",
+     "model": "USW WAN RJ45",
+     "shortname": "WRS3",
+     "ip": "192.168.2.116",
+     "productLine": "network",
+     "status": "online",
+     "version": "7.3.109",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-09T07:51:45Z",
+     "adoptionTime": "2026-03-18T10:14:56Z",
+     "note": ""
+    },
+    {
+     "id": "AC8BA959EBEE",
+     "mac": "AC8BA959EBEE",
+     "name": "CTSKL-SW1",
+     "model": "USW 24 PoE",
+     "shortname": "USL24PB",
+     "ip": "192.168.2.180",
+     "productLine": "network",
+     "status": "online",
+     "version": "7.5.15",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-10T19:04:04Z",
+     "adoptionTime": "2023-07-14T02:57:09Z",
+     "note": ""
+    },
+    {
+     "id": "64af9caf024b8803e4000550",
+     "mac": "AC8BA90E5542",
+     "name": "CTSKL-CCTV3 - Workstation Area",
+     "model": "G3 Flex",
+     "shortname": "UVC G3 Flex",
+     "ip": "192.168.2.114",
+     "productLine": "protect",
+     "status": "online",
+     "version": "UVC.S2L.v4.75.66.67.9cdac69.260331.1630",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-09T07:53:29Z",
+     "adoptionTime": null,
+     "note": ""
+    },
+    {
+     "id": "70A741DD6EF0",
+     "mac": "70A741DD6EF0",
+     "name": "CTSKL-AP03 - Managers Office",
+     "model": "U6 Lite",
+     "shortname": "UAL6",
+     "ip": "192.168.2.75",
+     "productLine": "network",
+     "status": "online",
+     "version": "6.7.57",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-10T17:32:55Z",
+     "adoptionTime": "2023-07-13T07:09:10Z",
+     "note": ""
+    },
+    {
+     "id": "60223259F850",
+     "mac": "60223259F850",
+     "name": "CTS KL",
+     "model": "UDM SE",
+     "shortname": "UDMPROSE",
+     "ip": "11.185.5.147",
+     "productLine": "network",
+     "status": "online",
+     "version": "5.1.33",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": true,
+     "isManaged": true,
+     "startupTime": "2026-09-10T17:31:14Z",
+     "adoptionTime": null,
+     "note": ""
+    },
+    {
+     "id": "64afa0ab027b8803e4000583",
+     "mac": "AC8BA9068A8E",
+     "name": "CTSKL-CCTV4 - Right Exit Door",
+     "model": "G3 Flex",
+     "shortname": "UVC G3 Flex",
+     "ip": "192.168.2.81",
+     "productLine": "protect",
+     "status": "online",
+     "version": "UVC.S2L.v4.75.66.67.9cdac69.260331.1630",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-09T07:53:29Z",
+     "adoptionTime": "2025-02-20T02:15:09Z",
+     "note": ""
+    },
+    {
+     "id": "602232160664",
+     "mac": "602232160664",
+     "name": "CTSKL-AP01 - Workstation",
+     "model": "U6 Lite",
+     "shortname": "UAL6",
+     "ip": "192.168.2.61",
+     "productLine": "network",
+     "status": "online",
+     "version": "6.7.57",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-10T17:32:49Z",
+     "adoptionTime": "2023-07-13T07:38:58Z",
+     "note": ""
+    },
+    {
+     "id": "64af6c3603ae2e03e40003f9",
+     "mac": "AC8BA90E5230",
+     "name": "CTSKL-CCTV1 - Lobby",
+     "model": "G3 Flex",
+     "shortname": "UVC G3 Flex",
+     "ip": "192.168.2.9",
+     "productLine": "protect",
+     "status": "online",
+     "version": "UVC.S2L.v4.75.66.67.9cdac69.260331.1630",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-09T07:53:28Z",
+     "adoptionTime": null,
+     "note": ""
+    },
+    {
+     "id": "58D61F8A27C9",
+     "mac": "58D61F8A27C9",
+     "name": "CTSKL-SW2",
+     "model": "USW 24 PoE",
+     "shortname": "USL24PB",
+     "ip": "192.168.2.224",
+     "productLine": "network",
+     "status": "online",
+     "version": "7.5.15",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-10T19:10:11Z",
+     "adoptionTime": "2026-02-24T08:20:21Z",
+     "note": ""
+    },
+    {
+     "id": "602232BBD915",
+     "mac": "602232BBD915",
+     "name": "CTSKL-AP02 - Right Exit",
+     "model": "U6 Lite",
+     "shortname": "UAL6",
+     "ip": "192.168.2.82",
+     "productLine": "network",
+     "status": "online",
+     "version": "6.7.57",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-09T07:54:08Z",
+     "adoptionTime": "2023-07-13T07:18:57Z",
+     "note": ""
+    },
+    {
+     "id": "64adf8cc00de5e03e40003ec",
+     "mac": "AC8BA90E5251",
+     "name": "CTSKL-CCTV2 - Left Exit Door",
+     "model": "G3 Flex",
+     "shortname": "UVC G3 Flex",
+     "ip": "192.168.2.43",
+     "productLine": "protect",
+     "status": "online",
+     "version": "UVC.S2L.v4.75.66.67.9cdac69.260331.1630",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-09T07:53:28Z",
+     "adoptionTime": null,
+     "note": ""
+    }
+   ],
+   "updatedAt": "2026-10-08T01:12:17Z"
+  },
+  {
+   "hostId": "3B488BF8127E57E12D08DE721FF099D9C56F435CAA33A801FF021BD63D79:857355635",
+   "hostName": "MGN HK",
+   "devices": [
+    {
+     "id": "68D79AA8D066",
+     "mac": "68D79AA8D066",
+     "name": "MGN HK",
+     "model": "UDM Pro",
+     "shortname": "UDMPRO",
+     "ip": "11.171.178.92",
+     "productLine": "network",
+     "status": "online",
+     "version": "5.1.33",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": true,
+     "isManaged": true,
+     "startupTime": "2026-09-10T19:59:05Z",
+     "adoptionTime": null,
+     "note": ""
+    },
+    {
+     "id": "68D79A5F14C2",
+     "mac": "68D79A5F14C2",
+     "name": "MGNHK-WAP01",
+     "model": "Nano HD",
+     "shortname": "U7NHD",
+     "ip": "192.168.0.62",
+     "productLine": "network",
+     "status": "online",
+     "version": "6.7.57",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-04T19:02:47Z",
+     "adoptionTime": "2026-09-10T20:11:06Z",
+     "note": ""
+    },
+    {
+     "id": "F4E2C66CFE34",
+     "mac": "F4E2C66CFE34",
+     "name": "TreySecurities",
+     "model": "U6+",
+     "shortname": "UAPL6",
+     "ip": "192.168.0.77",
+     "productLine": "network",
+     "status": "online",
+     "version": "6.7.54",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-06-26T19:00:58Z",
+     "adoptionTime": "2024-06-12T04:12:15Z",
+     "note": ""
+    }
+   ],
+   "updatedAt": "2026-10-02T13:44:13Z"
+  },
+  {
+   "hostId": "07F7BF83E2699D8A2CB22257DA22815DE37B2217E26472BC98F9CED6234D:1334216004",
+   "hostName": "CTS UK",
+   "devices": [
+    {
+     "id": "942A6F88BFB0",
+     "mac": "942A6F88BFB0",
+     "name": "CTS UK",
+     "model": "Express",
+     "shortname": "UX",
+     "ip": "10.0.23.12",
+     "productLine": "network",
+     "status": "online",
+     "version": "4.0.21",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": true,
+     "isManaged": true,
+     "startupTime": "2026-09-19T23:32:11Z",
+     "adoptionTime": "2025-07-03T10:16:40Z",
+     "note": ""
+    }
+   ],
+   "updatedAt": "2026-10-02T11:56:44Z"
+  },
+  {
+   "hostId": "F67D8AEB3548A2F5F99343937EE5601F927551C5C3E0EC909F71368273E8:1140664907",
+   "hostName": "CTS SG",
+   "devices": [
+    {
+     "id": "1C0B8B060E24",
+     "mac": "1C0B8B060E24",
+     "name": "CTSSG-WAN-ISP1",
+     "model": "USW WAN RJ45",
+     "shortname": "WRS3",
+     "ip": "192.168.1.24",
+     "productLine": "network",
+     "status": "online",
+     "version": "7.3.109",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-04-28T01:42:42Z",
+     "adoptionTime": "2026-02-11T07:17:28Z",
+     "note": ""
+    },
+    {
+     "id": "74ACB9B9AFB3",
+     "mac": "74ACB9B9AFB3",
+     "name": "CTS-AP-02",
+     "model": "AC Pro",
+     "shortname": "U7PG2",
+     "ip": "192.168.1.202",
+     "productLine": "network",
+     "status": "online",
+     "version": "6.8.2",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-04-28T01:18:22Z",
+     "adoptionTime": "2026-09-10T19:58:21Z",
+     "note": ""
+    },
+    {
+     "id": "1C6A1B9C0DBE",
+     "mac": "1C6A1B9C0DBE",
+     "name": "CTSSG-SW-02",
+     "model": "USW 24 PoE",
+     "shortname": "USL24PB",
+     "ip": "192.168.1.19",
+     "productLine": "network",
+     "status": "online",
+     "version": "7.5.15",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-08T19:03:57Z",
+     "adoptionTime": "2026-02-11T05:31:18Z",
+     "note": ""
+    },
+    {
+     "id": "7845588310D5",
+     "mac": "7845588310D5",
+     "name": "CTS-AP-01",
+     "model": "U6 LR",
+     "shortname": "UALR6v2",
+     "ip": "192.168.1.87",
+     "productLine": "network",
+     "status": "online",
+     "version": "6.7.57",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-03T19:05:49Z",
+     "adoptionTime": "2026-09-10T19:57:21Z",
+     "note": ""
+    },
+    {
+     "id": "1C0B8B060DE0",
+     "mac": "1C0B8B060DE0",
+     "name": "CTSSG-WAN-ISP2",
+     "model": "USW WAN RJ45",
+     "shortname": "WRS3",
+     "ip": "192.168.1.100",
+     "productLine": "network",
+     "status": "online",
+     "version": "7.3.109",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-04-28T01:33:54Z",
+     "adoptionTime": "2026-02-11T07:17:30Z",
+     "note": ""
+    },
+    {
+     "id": "1C6A1B9BA126",
+     "mac": "1C6A1B9BA126",
+     "name": "CTSSG-SW-01",
+     "model": "USW 24 PoE",
+     "shortname": "USL24PB",
+     "ip": "192.168.1.75",
+     "productLine": "network",
+     "status": "online",
+     "version": "7.5.15",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": false,
+     "isManaged": true,
+     "startupTime": "2026-09-08T19:09:56Z",
+     "adoptionTime": "2026-02-11T05:24:45Z",
+     "note": ""
+    },
+    {
+     "id": "784558BBD11B",
+     "mac": "784558BBD11B",
+     "name": "CTS SG",
+     "model": "UDM Pro",
+     "shortname": "UDMPRO",
+     "ip": "11.31.33.170",
+     "productLine": "network",
+     "status": "online",
+     "version": "5.1.33",
+     "firmwareStatus": "upToDate",
+     "updateAvailable": "",
+     "isConsole": true,
+     "isManaged": true,
+     "startupTime": "2026-09-10T19:47:34Z",
+     "adoptionTime": null,
+     "note": ""
+    }
+   ],
+   "updatedAt": "2026-10-07T07:39:59Z"
+  }
+ ],
+ "isp_5m": [
+  {
+   "metricType": "5m",
+   "periods": [
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 3,
+       "download_kbps": 727000,
+       "downtime": 0,
+       "ispAsn": "9534",
+       "ispName": "Maxis Communications",
+       "maxLatency": 5,
+       "packetLoss": 0,
+       "upload_kbps": 150000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:30:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 4,
+       "download_kbps": 727000,
+       "downtime": 0,
+       "ispAsn": "9534",
+       "ispName": "Maxis Communications",
+       "maxLatency": 5,
+       "packetLoss": 0,
+       "upload_kbps": 150000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:35:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 4,
+       "download_kbps": 727000,
+       "downtime": 0,
+       "ispAsn": "9534",
+       "ispName": "Maxis Communications",
+       "maxLatency": 5,
+       "packetLoss": 0,
+       "upload_kbps": 150000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:40:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 4,
+       "download_kbps": 727000,
+       "downtime": 0,
+       "ispAsn": "9534",
+       "ispName": "Maxis Communications",
+       "maxLatency": 5,
+       "packetLoss": 0,
+       "upload_kbps": 150000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:45:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 4,
+       "download_kbps": 727000,
+       "downtime": 0,
+       "ispAsn": "9534",
+       "ispName": "Maxis Communications",
+       "maxLatency": 5,
+       "packetLoss": 0,
+       "upload_kbps": 150000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:50:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 4,
+       "download_kbps": 727000,
+       "downtime": 0,
+       "ispAsn": "9534",
+       "ispName": "Maxis Communications",
+       "maxLatency": 6,
+       "packetLoss": 0,
+       "upload_kbps": 150000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:55:00Z",
+     "version": "10.6.106"
+    }
+   ],
+   "hostId": "8F9D69B576A4F67003EB3F898CF6BA9757837D8FB6F0C3015B2EEAF5EB61:489879722",
+   "siteId": "64ad8f7a6d97770af8737c3a"
+  },
+  {
+   "metricType": "5m",
+   "periods": [
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:30:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:35:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:40:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:45:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:50:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:55:00Z",
+     "version": "10.6.106"
+    }
+   ],
+   "hostId": "3B488BF8127E57E12D08DE721FF099D9C56F435CAA33A801FF021BD63D79:857355635",
+   "siteId": "639bf2fe24503607721cc4bc"
+  },
+  {
+   "metricType": "5m",
+   "periods": [
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 942000,
+       "downtime": 0,
+       "ispAsn": "9506",
+       "ispName": "Singtel, Singtel Enterprise",
+       "maxLatency": 2,
+       "packetLoss": 0,
+       "upload_kbps": 942000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:30:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 942000,
+       "downtime": 0,
+       "ispAsn": "9506",
+       "ispName": "Singtel, Singtel Enterprise",
+       "maxLatency": 3,
+       "packetLoss": 0,
+       "upload_kbps": 942000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:35:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 942000,
+       "downtime": 0,
+       "ispAsn": "9506",
+       "ispName": "Singtel, Singtel Enterprise",
+       "maxLatency": 3,
+       "packetLoss": 0,
+       "upload_kbps": 942000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:40:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 942000,
+       "downtime": 0,
+       "ispAsn": "9506",
+       "ispName": "Singtel, Singtel Enterprise",
+       "maxLatency": 2,
+       "packetLoss": 0,
+       "upload_kbps": 942000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:45:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 942000,
+       "downtime": 0,
+       "ispAsn": "9506",
+       "ispName": "Singtel, Singtel Enterprise",
+       "maxLatency": 3,
+       "packetLoss": 0,
+       "upload_kbps": 942000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:50:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 942000,
+       "downtime": 0,
+       "ispAsn": "9506",
+       "ispName": "Singtel, Singtel Enterprise",
+       "maxLatency": 2,
+       "packetLoss": 0,
+       "upload_kbps": 942000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:55:00Z",
+     "version": "10.6.106"
+    }
+   ],
+   "hostId": "F67D8AEB3548A2F5F99343937EE5601F927551C5C3E0EC909F71368273E8:1140664907",
+   "siteId": "600ee7a82f47b30522dbcb38"
+  },
+  {
+   "metricType": "5m",
+   "periods": [
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "2856",
+       "ispName": "BT",
+       "maxLatency": 3,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:30:00Z",
+     "version": "9.0.120"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "2856",
+       "ispName": "BT",
+       "maxLatency": 2,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:35:00Z",
+     "version": "9.0.120"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "2856",
+       "ispName": "BT",
+       "maxLatency": 2,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:40:00Z",
+     "version": "9.0.120"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "2856",
+       "ispName": "BT",
+       "maxLatency": 2,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:45:00Z",
+     "version": "9.0.120"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "2856",
+       "ispName": "BT",
+       "maxLatency": 2,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:50:00Z",
+     "version": "9.0.120"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "2856",
+       "ispName": "BT",
+       "maxLatency": 2,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-10-08T00:55:00Z",
+     "version": "9.0.120"
+    }
+   ],
+   "hostId": "07F7BF83E2699D8A2CB22257DA22815DE37B2217E26472BC98F9CED6234D:1334216004",
+   "siteId": "686656f6624cb71f3274247a"
+  },
+  {
+   "metricType": "5m",
+   "periods": [
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:30:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:35:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:40:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:45:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:50:00Z",
+     "version": "10.6.106"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-10-08T00:55:00Z",
+     "version": "10.6.106"
+    }
+   ],
+   "hostId": "B8300CEEE35811562F1B634C855A5E571DC468CC857475FBCA2C8B3EB16D:1046642031",
+   "siteId": "6412bc7a8f90291721c359e1"
+  }
+ ],
+ "isp_1h": [
+  {
+   "metricType": "1h",
+   "periods": [
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 4,
+       "download_kbps": 727000,
+       "downtime": 0,
+       "ispAsn": "9534",
+       "ispName": "Maxis Communications",
+       "maxLatency": 6,
+       "packetLoss": 0,
+       "upload_kbps": 150000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-09-08T01:00:00Z",
+     "version": "10.6.101"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 5,
+       "download_kbps": 727000,
+       "downtime": 0,
+       "ispAsn": "9534",
+       "ispName": "Maxis Communications",
+       "maxLatency": 6,
+       "packetLoss": 0,
+       "upload_kbps": 150000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-09-08T02:00:00Z",
+     "version": "10.6.101"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 5,
+       "download_kbps": 727000,
+       "downtime": 0,
+       "ispAsn": "9534",
+       "ispName": "Maxis Communications",
+       "maxLatency": 6,
+       "packetLoss": 0,
+       "upload_kbps": 150000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-09-08T03:00:00Z",
+     "version": "10.6.101"
+    }
+   ],
+   "hostId": "8F9D69B576A4F67003EB3F898CF6BA9757837D8FB6F0C3015B2EEAF5EB61:489879722",
+   "siteId": "64ad8f7a6d97770af8737c3a"
+  },
+  {
+   "metricType": "1h",
+   "periods": [
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-09-08T01:00:00Z",
+     "version": "10.6.101"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-09-08T02:00:00Z",
+     "version": "10.6.101"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-09-08T03:00:00Z",
+     "version": "10.6.101"
+    }
+   ],
+   "hostId": "3B488BF8127E57E12D08DE721FF099D9C56F435CAA33A801FF021BD63D79:857355635",
+   "siteId": "639bf2fe24503607721cc4bc"
+  },
+  {
+   "metricType": "1h",
+   "periods": [
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 942000,
+       "downtime": 0,
+       "ispAsn": "9506",
+       "ispName": "Singtel, Singtel Enterprise",
+       "maxLatency": 3,
+       "packetLoss": 0,
+       "upload_kbps": 942000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-09-08T01:00:00Z",
+     "version": "10.6.101"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 942000,
+       "downtime": 0,
+       "ispAsn": "9506",
+       "ispName": "Singtel, Singtel Enterprise",
+       "maxLatency": 3,
+       "packetLoss": 0,
+       "upload_kbps": 942000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-09-08T02:00:00Z",
+     "version": "10.6.101"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 942000,
+       "downtime": 0,
+       "ispAsn": "9506",
+       "ispName": "Singtel, Singtel Enterprise",
+       "maxLatency": 3,
+       "packetLoss": 0,
+       "upload_kbps": 942000,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-09-08T03:00:00Z",
+     "version": "10.6.101"
+    }
+   ],
+   "hostId": "F67D8AEB3548A2F5F99343937EE5601F927551C5C3E0EC909F71368273E8:1140664907",
+   "siteId": "600ee7a82f47b30522dbcb38"
+  },
+  {
+   "metricType": "1h",
+   "periods": [
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "2856",
+       "ispName": "BT",
+       "maxLatency": 2,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-09-12T22:00:00Z",
+     "version": "9.0.120"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "2856",
+       "ispName": "BT",
+       "maxLatency": 2,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-09-12T23:00:00Z",
+     "version": "9.0.120"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 2,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "2856",
+       "ispName": "BT",
+       "maxLatency": 2,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 100
+      }
+     },
+     "metricTime": "2026-09-13T00:00:00Z",
+     "version": "9.0.120"
+    }
+   ],
+   "hostId": "07F7BF83E2699D8A2CB22257DA22815DE37B2217E26472BC98F9CED6234D:1334216004",
+   "siteId": "686656f6624cb71f3274247a"
+  },
+  {
+   "metricType": "1h",
+   "periods": [
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-09-08T01:00:00Z",
+     "version": "10.6.101"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-09-08T02:00:00Z",
+     "version": "10.6.101"
+    },
+    {
+     "data": {
+      "wan": {
+       "avgLatency": 0,
+       "download_kbps": 0,
+       "downtime": 0,
+       "ispAsn": "",
+       "ispName": "",
+       "maxLatency": 0,
+       "packetLoss": 0,
+       "upload_kbps": 0,
+       "uptime": 0
+      }
+     },
+     "metricTime": "2026-09-08T03:00:00Z",
+     "version": "10.6.101"
+    }
+   ],
+   "hostId": "B8300CEEE35811562F1B634C855A5E571DC468CC857475FBCA2C8B3EB16D:1046642031",
+   "siteId": "6412bc7a8f90291721c359e1"
+  }
+ ]
+}

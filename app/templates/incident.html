@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Incident #{{ inc.id }} · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>#{{ inc.id }} {{ inc.title }} <span class="muted">· {{ inc.client }}</span></h1>
+  <nav class="segmented"><a href="/incidents">All incidents</a></nav>
+</div>
+<div class="grid">
+  <section class="card">
+    <h2>Details</h2>
+    <dl class="kv">
+      <dt>Severity</dt><dd><span class="sev sev-{{ inc.severity }}"><i aria-hidden="true">■</i> {{ inc.severity }}</span></dd>
+      <dt>Status</dt><dd>{{ inc.status }}</dd>
+      <dt>Assignee</dt><dd>{{ inc.assignee or "unassigned" }}</dd>
+      <dt>Opened</dt><dd>{{ inc.created_at | ts(inc.timezone) }} by {{ inc.created_by }}</dd>
+      {% if inc.closed_at %}<dt>Closed</dt><dd>{{ inc.closed_at | ts(inc.timezone) }}</dd>{% endif %}
+    </dl>
+    {% if inc.description %}<p style="white-space: pre-wrap">{{ inc.description }}</p>{% endif %}
+    <form method="post" action="/incidents/{{ inc.id }}/update" class="filterbar plain">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label>Status <select name="status">{% for s in statuses %}<option {% if s == inc.status %}selected{% endif %}>{{ s }}</option>{% endfor %}</select></label>
+      <label>Severity <select name="severity">{% for s in severities %}<option {% if s == inc.severity %}selected{% endif %}>{{ s }}</option>{% endfor %}</select></label>
+      <label>Assignee <select name="assignee_id"><option value="0">unassigned</option>{% for u in users %}<option value="{{ u.id }}" {% if u.id == inc.assignee_id %}selected{% endif %}>{{ u.username }}</option>{% endfor %}</select></label>
+      <button type="submit">Update</button>
+    </form>
+  </section>
+  <section class="card">
+    <h2>Timeline</h2>
+    <ol class="timeline">
+      {% for t in timeline %}<li><span class="muted small nowrap">{{ t.ts | ts_short(inc.timezone) }} · {{ t.author or "system" }}</span>
+        <div class="tl-{{ t.kind }}">{{ t.text }}</div></li>{% endfor %}
+    </ol>
+    <form method="post" action="/incidents/{{ inc.id }}/note">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label>Add a note <textarea name="body" rows="3" required></textarea></label>
+      <button type="submit">Add note</button>
+    </form>
+  </section>
+  <section class="card wide">
+    <h2>Linked alerts</h2>
+    <table class="dense"><thead><tr><th>Alert</th><th>Severity</th><th>Status</th><th>First seen</th><th class="num">Seen</th></tr></thead><tbody>
+      {% for a in alerts %}<tr><td><strong>{{ a.title }}</strong><br><span class="muted small">{{ a.message }}</span></td>
+        <td><span class="sev sev-{{ a.severity }}"><i aria-hidden="true">■</i> {{ a.severity }}</span></td><td>{{ a.status }}</td>
+        <td class="nowrap">{{ a.first_seen | ts_short(inc.timezone) }}</td><td class="num">{{ a.count }}</td></tr>
+      {% else %}<tr><td colspan="5" class="muted">None. Open an incident from an alert in Event Monitor to link it.</td></tr>{% endfor %}
+    </tbody></table>
+  </section>
+  <section class="card wide">
+    <h2>Linked events</h2>
+    <table class="dense"><thead><tr><th>Time</th><th>Device</th><th>Category</th><th>Action</th><th>Source</th><th>Destination</th><th>Message</th></tr></thead><tbody>
+      {% for e in events %}<tr><td class="nowrap">{{ e.ts | ts_short(inc.timezone) }}</td><td>{{ e.device }}</td><td>{{ e.category }}</td><td>{{ e.action or "" }}</td>
+        <td>{% if e.src_ip %}<a href="/ip/{{ e.src_ip }}">{{ e.src_ip }}</a>{% endif %}</td><td>{% if e.dst_ip %}<a href="/ip/{{ e.dst_ip }}">{{ e.dst_ip }}</a>{% endif %}</td>
+        <td>{{ e.message or "" }}</td></tr>
+      {% else %}<tr><td colspan="7" class="muted">None. In Log View, open an event and use “Add to incident”.</td></tr>{% endfor %}
+    </tbody></table>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% block title %}Event Monitor · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Event Monitor <span class="muted">· {{ scope_label }}</span></h1>
+</div>
+<nav class="tabs" aria-label="Event Monitor">
+  <a href="/event-monitor?tab=alerts" {% if tab == "alerts" %}aria-current="page"{% endif %}>Alerts</a>
+  <a href="/event-monitor?tab=rules" {% if tab == "rules" %}aria-current="page"{% endif %}>Rules</a>
+  <a href="/event-monitor?tab=channels" {% if tab == "channels" %}aria-current="page"{% endif %}>Notification channels</a>
+</nav>
+
+{% if tab == "alerts" %}
+<nav class="segmented" aria-label="Status" style="margin-bottom: 1rem">
+  {% for s, label in [("active", "Open"), ("resolved", "Resolved"), ("all", "All")] %}<a href="/event-monitor?status={{ s }}" {% if s == status %}aria-current="true"{% endif %}>{{ label }}</a>{% endfor %}
+</nav>
+<section class="card">
+  <table class="dense">
+    <thead><tr><th>Severity</th><th>Alert</th><th>Client</th><th>First / last seen</th><th class="num">Seen</th><th>Status</th><th>Delivery</th><th></th></tr></thead>
+    <tbody>
+    {% for a in alerts %}
+      <tr>
+        <td><span class="sev sev-{{ a.severity }}"><i aria-hidden="true">■</i> {{ a.severity }}</span></td>
+        <td><a href="/event-monitor/alerts/{{ a.id }}"><strong>{{ a.title }}</strong></a><br><span class="muted small">{{ a.message }}</span><br><span class="muted small">rule: {{ a.rule_name }}</span></td>
+        <td>{{ a.client }}</td>
+        <td class="nowrap small">{{ a.first_seen | ts_short(a.timezone) }}<br>{{ a.last_seen | ts_short(a.timezone) }}</td>
+        <td class="num">{{ a.count }}</td>
+        <td>{{ a.status }}{% if a.acknowledged_by %}<br><span class="muted small">by {{ a.acknowledged_by }}</span>{% endif %}</td>
+        <td class="small muted">{{ a.delivery or "" }}</td>
+        <td class="actions">{% if a.status != "resolved" %}
+          {% if a.status == "open" %}<form method="post" action="/event-monitor/alerts/{{ a.id }}/ack"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link" type="submit">Acknowledge</button></form>{% endif %}
+          <form method="post" action="/event-monitor/alerts/{{ a.id }}/resolve"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link" type="submit">Resolve</button></form>
+        {% endif %}
+          {% if a.incident_id %}<a href="/incidents/{{ a.incident_id }}">Incident #{{ a.incident_id }}</a>
+          {% else %}<form method="post" action="/incidents/from-alert/{{ a.id }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link" type="submit">Open incident</button></form>{% endif %}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="8" class="muted">No alerts.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p class="muted small">Rules are evaluated every minute. Condition alerts (offline, down, flapping, silent, failed logins) resolve
+    themselves when the condition clears; event alerts (configuration change, WAN change) stay until resolved here.</p>
+</section>
+
+{% elif tab == "rules" %}
+{% if request.query_params.get("test") %}<p class="notice" role="status">Test e-mail: {{ request.query_params.get("test") }}</p>{% endif %}
+<p class="muted small">Click a rule to change it: switch it on, choose the client it watches, its severity and who gets the e-mail.
+  For different recipients per client, use <em>Copy for another client</em>.{% if not smtp %} <strong>E-mail is not configured on
+  the server (SMTP), so e-mails cannot be sent yet.</strong>{% endif %}</p>
+<div class="rule-list">
+{% for r in rules %}
+{% set emails = rule_emails.get(r.id, []) %}
+{% set others = channels | selectattr("id", "in", r.channel_ids) | list %}
+<details class="rule-row" id="rule-{{ r.id }}" {% if open_rule == r.id %}open{% endif %}>
+  <summary>
+    <span class="pill {{ 'pill-on' if r.enabled else 'pill-off' }}">{{ "On" if r.enabled else "Off" }}</span>
+    <span class="rule-title"><strong>{{ r.name }}</strong> <span class="muted small">{{ type_labels.get(r.rule_type, r.rule_type) }}</span></span>
+    <span class="chip">{{ r.client or "All clients" }}</span>
+    <span class="sev sev-{{ r.severity }}"><i aria-hidden="true">■</i> {{ r.severity }}</span>
+    <span class="rule-to muted small">{% if emails %}✉ {{ emails | join(", ") }}{% else %}no e-mail{% endif %}{% if others %} · +{{ others | length }} channel{{ "s" if others | length > 1 }}{% endif %}</span>
+    <span class="rule-edit" aria-hidden="true">Edit ▾</span>
+  </summary>
+  <form method="post" action="/event-monitor/rules/{{ r.id }}" class="rule-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <div class="rule-grid">
+      <label class="switch"><input type="checkbox" name="enabled" {% if r.enabled %}checked{% endif %}><span class="switch-track" aria-hidden="true"></span> Enabled</label>
+      <label>Client (firewall)
+        <select name="client_id">
+          <option value="" {% if not r.client_id and not r.company_id %}selected{% endif %}>All clients</option>
+          {% for g in scope_companies %}<option value="g{{ g.id }}" {% if r.company_id == g.id %}selected{% endif %}>{{ g.name }} (company)</option>{% endfor %}
+          {% for c in clients %}<option value="{{ c.id }}" {% if r.client_id == c.id %}selected{% endif %}>{{ c.name }}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Severity
+        <select name="severity">{% for sv in ["low", "medium", "high", "critical"] %}<option value="{{ sv }}" {% if sv == r.severity %}selected{% endif %}>{{ sv | capitalize }}</option>{% endfor %}</select>
+      </label>
+      {% for label, key, lo, hi in params.get(r.rule_type, []) %}
+      {% if lo is none %}
+      <label>{{ label }} <input type="text" name="{{ key }}" value="{{ (r.params.get(key) or []) | join(', ') }}" inputmode="numeric"></label>
+      {% else %}
+      <label>{{ label }} <input type="number" name="{{ key }}" min="{{ lo }}" max="{{ hi }}" value="{{ r.params.get(key, '') }}"></label>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <label class="rule-email">Send e-mail to
+      <input type="text" name="email_to" value="{{ emails | join(', ') }}" placeholder="name@client.com, noc@msp.example"
+             autocomplete="off" spellcheck="false">
+      <span class="muted small">Separate several addresses with commas. Leave empty for no e-mail from this rule.</span>
+    </label>
+    <details class="rule-advanced">
+      <summary>More options</summary>
+      <div class="rule-grid">
+        <label>Re-notify no sooner than (minutes) <input type="number" name="throttle_minutes" min="0" value="{{ r.throttle_minutes }}"></label>
+        <label class="inline"><input type="checkbox" name="notify_resolve" {% if r.notify_resolve %}checked{% endif %}> also notify when resolved</label>
+        <label class="inline"><input type="checkbox" name="auto_incident" {% if r.auto_incident %}checked{% endif %}> open an incident automatically</label>
+      </div>
+      {% if channels %}
+      <fieldset><legend>Also send to channels</legend>
+        {% for ch in channels %}<label class="inline"><input type="checkbox" name="channel_ids" value="{{ ch.id }}" {% if ch.id in r.channel_ids %}checked{% endif %}> {{ ch.name }} <span class="muted small">({{ ch.type }}{% if ch.client %}, {{ ch.client }} only{% endif %}){% if ch.type == "email" and ch.target %} · {{ ch.target }}{% endif %}</span></label>{% endfor %}
+      </fieldset>
+      {% endif %}
+    </details>
+    <div class="rule-actions">
+      <button type="submit">Save</button>
+      <button type="submit" class="button-secondary" formaction="/event-monitor/rules/{{ r.id }}/test" {% if not emails %}disabled title="Save an e-mail address first"{% endif %}>Send test e-mail</button>
+      <span class="rule-copy">
+        <label class="visually-hidden" for="copy-{{ r.id }}">Copy for client</label>
+        <select id="copy-{{ r.id }}" name="client_id" form="copy-form-{{ r.id }}">
+          {% for g in scope_companies %}<option value="g{{ g.id }}">{{ g.name }} (company)</option>{% endfor %}
+          {% for c in clients %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}
+        </select>
+        <button type="submit" class="button-secondary" form="copy-form-{{ r.id }}">Copy for another client</button>
+      </span>
+      {% if r.client_id or r.company_id %}<button type="submit" class="button-danger" form="del-rule-{{ r.id }}">Delete</button>{% endif %}
+    </div>
+  </form>
+  <form id="copy-form-{{ r.id }}" method="post" action="/event-monitor/rules/{{ r.id }}/copy" class="copy-form" hidden>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  </form>
+  {% if r.client_id or r.company_id %}
+  <form id="del-rule-{{ r.id }}" method="post" action="/event-monitor/rules/{{ r.id }}/delete" hidden data-confirm="Delete the rule “{{ r.name }}”?">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  </form>
+  {% endif %}
+</details>
+{% endfor %}
+</div>
+
+{% elif tab == "channels" %}
+{% if request.query_params.get("test") %}<p class="notice">Test result: {{ request.query_params.get("test") }}</p>{% endif %}
+<section class="card">
+  {% if is_admin %}<div class="card-head"><h2>Channels</h2><button type="button" class="link" data-dialog="new-channel">+ Create new</button></div>{% endif %}
+  <table class="dense">
+    <thead><tr><th>Name</th><th>Type</th><th>Delivers to</th><th>Alerts of</th><th>Used by rules</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    {% for ch in channels %}
+      <tr><td>{{ ch.name }}</td><td>{{ ch.type }}</td><td class="small">{{ ch.target }}</td>
+        <td>{{ ch.client or "all clients" }}</td><td class="small">{{ ch.rules or "— (tick it on a rule)" }}</td>
+        <td>{{ "enabled" if ch.enabled else "disabled" }}</td>
+        <td class="actions">{% if is_admin %}<button type="button" class="link" data-dialog="edit-ch-{{ ch.id }}">Edit</button>{% for act, label in [("test", "Send test"), ("toggle", "Disable" if ch.enabled else "Enable"), ("delete", "Delete")] %}
+          <form method="post" action="/event-monitor/channels/{{ ch.id }}/{{ act }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link" type="submit">{{ label }}</button></form>{% endfor %}{% endif %}</td></tr>
+    {% else %}<tr><td colspan="7" class="muted">No notification channels.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</section>
+{% if is_admin %}{% for ch in channels %}
+<dialog id="edit-ch-{{ ch.id }}" class="dialog" aria-labelledby="edit-ch-title-{{ ch.id }}">
+  <h2 id="edit-ch-title-{{ ch.id }}">Edit channel</h2>
+  <form method="post" action="/event-monitor/channels/{{ ch.id }}/edit">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Name <input name="name" required maxlength="100" value="{{ ch.name }}"></label>
+    {% if ch.type == "email" %}
+    <label>To <textarea name="target" rows="3" required>{{ ch.to_list }}</textarea></label>
+    <label>CC (optional) <textarea name="cc" rows="2">{{ ch.cc_list }}</textarea></label>
+    <p class="muted small">Separate addresses with commas or new lines.</p>
+    {% else %}
+    <label>New {{ ch.type }} URL (leave empty to keep the current one) <input name="target" placeholder="https://…"></label>
+    <p class="muted small">Current: {{ ch.target }}</p>
+    {% endif %}
+    <p class="muted small">Alerts of: {{ ch.client or "all clients" }}{% if ch.rules %} · used by: {{ ch.rules }}{% endif %}</p>
+    <div class="dialog-actions"><button type="button" class="button-secondary" data-dialog-close>Cancel</button>
+      <button type="submit">Save</button></div>
+  </form>
+</dialog>
+{% endfor %}{% endif %}
+{% if is_admin %}
+<dialog id="new-channel" class="dialog" aria-labelledby="new-channel-title">
+  <h2 id="new-channel-title">New notification channel</h2>
+  {% if not smtp %}<p class="notice small">E-mail channels need a mail server (Admin → Mail) before they can deliver.</p>{% endif %}
+  <form method="post" action="/event-monitor/channels">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Name <input name="name" required maxlength="100"></label>
+    <label>Type <select name="type"><option value="email">E-mail</option><option value="teams">Microsoft Teams webhook</option>
+      <option value="slack">Slack webhook</option><option value="webhook">Generic webhook (JSON)</option></select></label>
+    <label>Addresses or https webhook URL <input name="target" required></label>
+    <label>CC (e-mail only, optional) <input name="cc" placeholder="noc@example.com, manager@example.com"></label>
+    <label>Alerts of <select name="client_id"><option value="">All clients (e.g. your NOC)</option>{% for g in scope_companies %}<option value="g{{ g.id }}">{{ g.name }} (company: all its sites)</option>{% endfor %}{% for c in scope_clients %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}</select></label>
+    <label class="inline"><input type="checkbox" name="all_rules" value="1" checked> use for all alert rules (untick to choose rules one by one on the Rules tab)</label>
+    <div class="dialog-actions"><button type="button" class="button-secondary" data-dialog-close>Cancel</button>
+      <button type="submit">Create</button></div>
+  </form>
+  <p class="muted small">A channel for one client receives only that client's alerts, even when attached to a rule that
+    covers all clients. Addresses and webhook URLs are stored encrypted (webhook URLs are shown by host only).</p>
+</dialog>
+{% endif %}
+{% endif %}
+{% endblock %}

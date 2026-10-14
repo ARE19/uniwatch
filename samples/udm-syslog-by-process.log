@@ -1,0 +1,1516 @@
+# ubios-udapi-server
+<30>Oct  6 13:17:32 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:17:32 Bad LZO decompression header byte: 42
+
+# ubios-udapi-server
+<14>Oct  6 13:17:25 NW-HK NW-HK ubios-udapi-server[2131]: process: Process' stime is unknown (not an error); failed to parse /proc/1275968/stat: Short read
+
+# ubios-udapi-server
+<30>Oct  6 13:17:22 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:17:22 Bad LZO decompression header byte: 42
+
+# ubios-udapi-server
+<30>Oct  6 13:17:12 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:17:12 Bad LZO decompression header byte: 42
+
+# ubios-udapi-server
+<30>Oct  6 13:17:02 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:17:02 Bad LZO decompression header byte: 42
+
+# ubios-udapi-server
+<30>Oct  6 13:16:52 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:52 Bad LZO decompression header byte: 42
+
+# ubios-udapi-server
+<30>Oct  6 13:16:43 NW-HK NW-HK ubios-udapi-server[658274]: [info ] ubnt-dpi-util: fp ml for mac: 7a:c2:97:62:ed:41 [Apple iPhone Air - 5666]@29% [Apple iPhone 17 - 5665]@26% [Apple iPhone 17 Pro Max - 5663]@22%
+
+# ubios-udapi-server
+<30>Oct  6 13:16:43 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:43 GID set to openvpn
+
+# ubios-udapi-server
+<30>Oct  6 13:16:43 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:43 UID set to openvpn
+
+# ubios-udapi-server
+<30>Oct  6 13:16:43 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:43 Initialization Sequence Completed
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 WARNING: 'link-mtu' is used inconsistently, local='link-mtu 1560', remote='link-mtu 1543'
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 WARNING: 'comp-lzo' is present in local config but missing in remote config, local='comp-lzo'
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 WARNING: 'keysize' is used inconsistently, local='keysize 256', remote='keysize 128'
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 Control Channel: TLSv1.3, cipher TLSv1.3 TLS_AES_256_GCM_SHA384, 2048 bit RSA
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 [UniFi_OpenVPN_Server] Peer Connection Initiated with [AF_INET]11.124.200.216:1194
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 PUSH: Received control message: 'PUSH_REPLY,dhcp-option DNS 192.168.200.1,route 192.168.2.0 255.255.255.0,route-gateway 192.168.200.1,topology subnet,ping 10,ping-restart 60,ifconfig 192.168.200.2 255.255.255.0,peer-id 0,cipher AES-256-GCM'
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 OPTIONS IMPORT: timers and/or timeouts modified
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 OPTIONS IMPORT: --ifconfig/up options modified
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 OPTIONS IMPORT: route options modified
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 OPTIONS IMPORT: route-related options modified
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 OPTIONS IMPORT: --ip-win32 and/or --dhcp-option options modified
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 OPTIONS IMPORT: peer-id set
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 OPTIONS IMPORT: adjusting link_mtu to 1627
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 OPTIONS IMPORT: data channel crypto options modified
+
+# ubios-udapi-server
+<30>Oct  6 13:16:42 NW-HK NW-HK ubios-udapi-server[1274075]: 2026-10-06 13:16:42 Data Channel: using negotiated cipher 'AES-256-GCM'
+
+# kernel
+<4>Oct  6 13:17:12 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: kernel: [2801666.657210] ra0: Set TIM for STA-2e:9d:08:6e:da:1e idle(60) timeout(180)
+# kernel
+<4>Oct  6 13:16:59 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801481.781056] addbarsp,(our)txba=64,(peer d6:58:ed:a7:05:17)rxba=64
+# kernel
+<4>Oct  6 13:16:49 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801472.083752] StaTXRetryBurstPeriodicExec: rai1 [02:2e:52:bf:e9:6f] tx_attempts=16006/16031, tx_retries=2096/2109, rssi=-65/-58, last_tx_rate=39572, burst_ratio=50/52, burst_count=56
+# kernel
+<4>Oct  6 13:16:48 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801471.405459] addbarsp,(our)txba=64,(peer 76:f4:b2:a3:f6:5e)rxba=64
+# kernel
+<4>Oct  6 13:16:34 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801457.043926] StaTXRetryBurstPeriodicExec: rai1 [02:2e:52:bf:e9:6f] tx_attempts=15983/16006, tx_retries=2083/2096, rssi=-65/-57, last_tx_rate=39574, burst_ratio=50/56, burst_count=55
+# kernel
+<4>Oct  6 13:16:26 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: kernel: [2801620.657313] ra0: total mc2uc sta_cnt[1] pending[0] unknown_free[0] accu[0] !
+# kernel
+<4>Oct  6 13:16:06 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.533438] addbarsp,(our)txba=256,(peer 7a:c2:97:62:ed:41)rxba=256
+# kernel
+<4>Oct  6 13:16:06 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801429.381703] addbarsp,(our)txba=16,(peer 7a:c2:97:62:ed:41)rxba=16
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.171772] rai0:[recv auth_req] TA:[7a:c2:97:62:ed:41], RA:[78:45:58:32:28:51] machdr_seq=81, auth algo=0, seq=1, status=0, rssi=-69
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.172062] MacTableInsertEntry(): wcid 4 EntryType:0 =====
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.172123] rai0:[send auth_rsp] TA:[78:45:58:32:28:51], RA:[7a:c2:97:62:ed:41] machdr_seq=0, auth algo=0, seq=2, status=0
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.173990] rai0:[recv assoc_req]. TA:[7a:c2:97:62:ed:41], RA:[78:45:58:32:28:51] machdr_seq:82
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.174036] CFG80211_AssocReqHandler <<<<<<
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.174234] wevent: STA_JOIN rai0:11 [7a:c2:97:62:ed:41]
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.174309] add he assoc_rsp, len=60
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.174327] rai0:[send assoc_rsp]. TA:[78:45:58:32:28:51], RA:[7a:c2:97:62:ed:41] machdr_seq=0, status=0, aid=11
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.174339] [assoc_report] rai0:[7a:c2:97:62:ed:41] Success: AID(11) WCID(4) WMM(1) SHORT_PREAMBLE(1) SHORT_SLOT(0) RRM(1) PHY(HE) BW(40M) MCS(2S-M9) MFP(C:0/R:0) OMN(BW:-1/NSS:-1)
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.174866] pEntry->MaxHTPhyMode.field.BW =1
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.174872] pEntry->cap.ch_bw.he_ch_width =34
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.174875] he_bw                         =1
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.174878] pEntry->rStaRecBf.ucCBW       =1
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.189303] rai0: Send EAPOL-Key M1, DA=7a:c2:97:62:ed:41, SA=78:45:58:32:28:51, len=113
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.199994] rai0: Recv EAPOL-Key M2, DA=78:45:58:32:28:51, SA=7a:c2:97:62:ed:41, len=129
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.200802] rai0: Send EAPOL-Key M3, DA=7a:c2:97:62:ed:41, SA=78:45:58:32:28:51, len=169
+# kernel
+<4>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: kernel: [2801428.204346] rai0: Recv EAPOL-Key M4, DA=78:45:58:32:28:51, SA=7a:c2:97:62:ed:41, len=107
+# coredns
+<13>Oct  6 13:16:44 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T13:16:44+08:00","unix_milli_timestamp":1791263804719,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sstats.adobe.com","ip":"192.168.1.113","mac":"e8:bf:e1:4c:46:a5","src_ip":"192.168.1.113","src_port":54983,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 13:16:37 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T13:16:37+08:00","unix_milli_timestamp":1791263797012,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sessions.bugsnag.com","ip":"192.168.1.27","mac":"9c:eb:e8:5b:92:35","src_ip":"192.168.1.27","src_port":58827,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 13:15:48 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T13:15:48+08:00","unix_milli_timestamp":1791263748670,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sstats.adobe.com","ip":"192.168.1.103","mac":"c8:cb:9e:6c:39:15","src_ip":"192.168.1.103","src_port":64962,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 13:15:45 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T13:15:45+08:00","unix_milli_timestamp":1791263745893,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"default.exp-tas.com","ip":"192.168.1.27","mac":"9c:eb:e8:5b:92:35","src_ip":"192.168.1.27","src_port":51327,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 13:14:54 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T13:14:54+08:00","unix_milli_timestamp":1791263694893,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sessions.bugsnag.com","ip":"192.168.1.27","mac":"9c:eb:e8:5b:92:35","src_ip":"192.168.1.27","src_port":58827,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 13:14:26 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T13:14:26+08:00","unix_milli_timestamp":1791263666995,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"www.googletagmanager.com","ip":"192.168.1.146","mac":"6c:4b:90:ec:ec:68","src_ip":"192.168.1.146","src_port":51527,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 13:14:26 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T13:14:26+08:00","unix_milli_timestamp":1791263666996,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"www.googletagmanager.com","ip":"192.168.1.146","mac":"6c:4b:90:ec:ec:68","src_ip":"192.168.1.146","src_port":61349,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 13:14:26 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T13:14:26+08:00","unix_milli_timestamp":1791263666998,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"www.clarity.ms","ip":"192.168.1.146","mac":"6c:4b:90:ec:ec:68","src_ip":"192.168.1.146","src_port":58518,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 13:14:26 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T13:14:26+08:00","unix_milli_timestamp":1791263666999,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"www.clarity.ms","ip":"192.168.1.146","mac":"6c:4b:90:ec:ec:68","src_ip":"192.168.1.146","src_port":51886,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 13:14:20 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T13:14:20+08:00","unix_milli_timestamp":1791263660491,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sstats.adobe.com","ip":"192.168.1.62","mac":"00:16:41:93:63:c9","src_ip":"192.168.1.62","src_port":60336,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:04:44 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:04:44+08:00","unix_milli_timestamp":1791270284787,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sstats.adobe.com","ip":"192.168.1.113","mac":"e8:bf:e1:4c:46:a5","src_ip":"192.168.1.113","src_port":58263,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:04:04 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:04:04+08:00","unix_milli_timestamp":1791270244748,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sstats.adobe.com","ip":"192.168.1.103","mac":"c8:cb:9e:6c:39:15","src_ip":"192.168.1.103","src_port":64878,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:04:03 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:04:03+08:00","unix_milli_timestamp":1791270243123,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"default.exp-tas.com","ip":"192.168.1.146","mac":"6c:4b:90:ec:ec:68","src_ip":"192.168.1.146","src_port":51298,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:03:51 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:03:51+08:00","unix_milli_timestamp":1791270231720,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sessions.bugsnag.com","ip":"192.168.1.27","mac":"9c:eb:e8:5b:92:35","src_ip":"192.168.1.27","src_port":55259,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:02:42 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:02:42+08:00","unix_milli_timestamp":1791270162267,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"browser.pipe.aria.microsoft.com","ip":"192.168.1.113","mac":"e8:bf:e1:4c:46:a5","src_ip":"192.168.1.113","src_port":52111,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:02:42 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:02:42+08:00","unix_milli_timestamp":1791270162269,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"browser.pipe.aria.microsoft.com","ip":"192.168.1.113","mac":"e8:bf:e1:4c:46:a5","src_ip":"192.168.1.113","src_port":64616,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:02:42 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:02:42+08:00","unix_milli_timestamp":1791270162489,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"mail-ads.google.com","ip":"192.168.1.54","mac":"00:d8:61:a7:03:24","src_ip":"192.168.1.54","src_port":60093,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:02:36 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:02:36+08:00","unix_milli_timestamp":1791270156327,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sstats.adobe.com","ip":"192.168.1.62","mac":"00:16:41:93:63:c9","src_ip":"192.168.1.62","src_port":57220,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:02:31 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:02:31+08:00","unix_milli_timestamp":1791270151451,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"www.googleadservices.com","ip":"192.168.1.113","mac":"e8:bf:e1:4c:46:a5","src_ip":"192.168.1.113","src_port":63483,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:02:31 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:02:31+08:00","unix_milli_timestamp":1791270151455,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"www.googleadservices.com","ip":"192.168.1.113","mac":"e8:bf:e1:4c:46:a5","src_ip":"192.168.1.113","src_port":59768,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:02:31 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:02:31+08:00","unix_milli_timestamp":1791270151575,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"www.googletagmanager.com","ip":"192.168.1.113","mac":"e8:bf:e1:4c:46:a5","src_ip":"192.168.1.113","src_port":60872,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:02:31 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:02:31+08:00","unix_milli_timestamp":1791270151591,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"www.googletagmanager.com","ip":"192.168.1.113","mac":"e8:bf:e1:4c:46:a5","src_ip":"192.168.1.113","src_port":56241,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:02:28 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:02:28+08:00","unix_milli_timestamp":1791270148686,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"default.exp-tas.com","ip":"10.172.16.125","mac":"30:9c:23:50:fd:c1","src_ip":"10.172.16.125","src_port":57520,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:02:21 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:02:21+08:00","unix_milli_timestamp":1791270141247,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"default.exp-tas.com","ip":"10.172.16.125","mac":"30:9c:23:50:fd:c1","src_ip":"10.172.16.125","src_port":51464,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# coredns
+<13>Oct  6 15:02:09 NW-HK NW-HK coredns[343684]: {"timestamp":"2026-10-06T15:02:09+08:00","unix_milli_timestamp":1791270129606,"type":"dnsAdBlock","category":"ADVERTISEMENT","domain":"sessions.bugsnag.com","ip":"192.168.1.27","mac":"9c:eb:e8:5b:92:35","src_ip":"192.168.1.27","src_port":61619,"dst_ip":"127.0.0.1","dst_port":1053,"protocol":"udp"}
+
+# dnsmasq
+<30>Oct  6 13:17:27 NW-HK NW-HK dnsmasq[2022870]: inotify: /run/dnsmasq.dns.conf.d/hosts.d//leases new or modified
+
+# dnsmasq
+<30>Oct  6 13:17:27 NW-HK NW-HK dnsmasq[2022870]: inotify: flushed 44 names read from /run/dnsmasq.dns.conf.d/hosts.d//leases
+
+# dnsmasq
+<30>Oct  6 13:17:27 NW-HK NW-HK dnsmasq[2022870]: read /run/dnsmasq.dns.conf.d/hosts.d//leases - removed - 0, time elapsed [release: 2][alloc: 248] us
+
+# dnsmasq
+<30>Oct  6 13:17:27 NW-HK NW-HK dnsmasq[343589]: inotify: /run/dnsmasq.dns.conf.d/hosts.d//leases new or modified
+
+# dnsmasq
+<30>Oct  6 13:17:27 NW-HK NW-HK dnsmasq[343589]: inotify: flushed 44 names read from /run/dnsmasq.dns.conf.d/hosts.d//leases
+
+# dnsmasq
+<30>Oct  6 13:17:27 NW-HK NW-HK dnsmasq[343589]: read /run/dnsmasq.dns.conf.d/hosts.d//leases - removed - 0, time elapsed [release: 2][alloc: 241] us
+
+# dnsmasq
+<30>Oct  6 13:16:42 NW-HK NW-HK dnsmasq[2022865]: reading /run/resolv.conf.d/main
+
+# dnsmasq
+<30>Oct  6 13:16:42 NW-HK NW-HK dnsmasq[2022865]: using nameserver 192.168.200.1#53
+
+# dnsmasq
+<30>Oct  6 13:16:42 NW-HK NW-HK dnsmasq[2022865]: using nameserver 1.1.1.1#53
+
+# dnsmasq
+<30>Oct  6 13:16:37 NW-HK NW-HK dnsmasq[2022865]: reading /run/resolv.conf.d/main
+
+# dnsmasq
+<30>Oct  6 13:16:37 NW-HK NW-HK dnsmasq[2022865]: using nameserver 1.1.1.1#53
+
+# dnsmasq
+<30>Oct  6 13:16:15 NW-HK NW-HK dnsmasq[343589]: inotify: /run/dnsmasq.dns.conf.d/hosts.d//leases new or modified
+
+# dnsmasq
+<30>Oct  6 13:16:15 NW-HK NW-HK dnsmasq[343589]: inotify: flushed 43 names read from /run/dnsmasq.dns.conf.d/hosts.d//leases
+
+# dnsmasq
+<30>Oct  6 13:16:15 NW-HK NW-HK dnsmasq[343589]: read /run/dnsmasq.dns.conf.d/hosts.d//leases - removed - 0, time elapsed [release: 2][alloc: 255] us
+
+# dnsmasq
+<30>Oct  6 13:16:15 NW-HK NW-HK dnsmasq[2022870]: inotify: /run/dnsmasq.dns.conf.d/hosts.d//leases new or modified
+
+# dnsmasq
+<30>Oct  6 13:16:15 NW-HK NW-HK dnsmasq[2022870]: inotify: flushed 43 names read from /run/dnsmasq.dns.conf.d/hosts.d//leases
+
+# dnsmasq
+<30>Oct  6 13:16:15 NW-HK NW-HK dnsmasq[2022870]: read /run/dnsmasq.dns.conf.d/hosts.d//leases - removed - 0, time elapsed [release: 2][alloc: 250] us
+
+# dnsmasq
+<30>Oct  6 13:16:05 NW-HK NW-HK dnsmasq[343589]: inotify: /run/dnsmasq.dns.conf.d/hosts.d//leases new or modified
+
+# dnsmasq
+<30>Oct  6 13:16:05 NW-HK NW-HK dnsmasq[2022870]: inotify: /run/dnsmasq.dns.conf.d/hosts.d//leases new or modified
+
+# dnsmasq
+<30>Oct  6 13:16:05 NW-HK NW-HK dnsmasq[343589]: inotify: flushed 44 names read from /run/dnsmasq.dns.conf.d/hosts.d//leases
+
+# dnsmasq
+<30>Oct  6 13:16:05 NW-HK NW-HK dnsmasq[343589]: read /run/dnsmasq.dns.conf.d/hosts.d//leases - removed - 0, time elapsed [release: 2][alloc: 259] us
+
+# dnsmasq
+<30>Oct  6 13:16:05 NW-HK NW-HK dnsmasq[2022870]: inotify: flushed 44 names read from /run/dnsmasq.dns.conf.d/hosts.d//leases
+
+# dnsmasq
+<30>Oct  6 13:16:05 NW-HK NW-HK dnsmasq[2022870]: read /run/dnsmasq.dns.conf.d/hosts.d//leases - removed - 0, time elapsed [release: 3][alloc: 258] us
+
+# dnsmasq
+<30>Oct  6 13:15:38 NW-HK NW-HK dnsmasq[2022865]: reading /run/resolv.conf.d/main
+
+# dnsmasq
+<30>Oct  6 13:15:38 NW-HK NW-HK dnsmasq[2022865]: using nameserver 192.168.200.1#53
+
+# mcad
+<14>Oct  6 13:17:25 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 1 -> 20 (cur-state=ON)
+
+# mcad
+<14>Oct  6 13:17:20 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 10 -> 1 (cur-state=ON)
+
+# mcad
+<14>Oct  6 13:17:10 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 20 -> 10 (cur-state=ON)
+
+# mcad
+<14>Oct  6 13:16:50 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 1 -> 20 (cur-state=ON)
+
+# mcad
+<14>Oct  6 13:16:45 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 5 -> 1 (cur-state=ON)
+
+# mcad
+<14>Oct  6 13:16:40 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 1 -> 5 (cur-state=ON)
+
+# mcad
+<14>Oct  6 13:16:30 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 5 -> 1 (cur-state=ON)
+
+# mcad
+<14>Oct  6 13:16:25 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 10 -> 5 (cur-state=ON)
+
+# mcad
+<14>Oct  6 13:16:15 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 1 -> 10 (cur-state=ON)
+
+# mcad
+<14>Oct  6 13:16:10 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 5 -> 1 (cur-state=ON)
+
+# mcad
+<30>Oct  6 13:16:10 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: mcad: mcad[20980]: wireless_agg_stats.log_sta_anomalies(): bssid=d2:21:f9:aa:1e:a4 radio=rai0 vap=rai1 sta=1c:1a:c0:1d:06:5e satisfaction_now=70 anomalies=low_phy_rate
+# mcad
+<30>Oct  6 13:16:07 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: mcad: mcad[20403]: wireless_agg_stats.log_sta_anomalies(): bssid=78:45:58:32:28:51 radio=rai0 vap=rai0 sta=7a:c2:97:62:ed:41 satisfaction_now=70 anomalies=low_phy_rate
+# mcad
+<14>Oct  6 13:16:04 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 1 -> 5 (cur-state=ON)
+
+# mcad
+<30>Oct  6 13:16:01 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: mcad: mcad[20980]: wireless_agg_stats.log_sta_anomalies(): bssid=d2:21:f9:aa:1e:a4 radio=rai0 vap=rai1 sta=1c:1a:c0:1d:06:5e satisfaction_now=69 anomalies=low_phy_rate
+# mcad
+<14>Oct  6 13:16:00 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 5 -> 1 (cur-state=ON)
+
+# mcad
+<14>Oct  6 13:15:55 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 20 -> 5 (cur-state=ON)
+
+# mcad
+<30>Oct  6 13:15:55 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: mcad: mcad[20980]: wireless_agg_stats.log_sta_anomalies(): bssid=d2:21:f9:aa:1e:a4 radio=rai0 vap=rai1 sta=1c:1a:c0:1d:06:5e satisfaction_now=69 anomalies=low_phy_rate
+# mcad
+<30>Oct  6 13:15:40 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: mcad: mcad[20980]: wireless_agg_stats.log_sta_anomalies(): bssid=d2:21:f9:aa:1e:a4 radio=rai0 vap=rai1 sta=1c:1a:c0:1d:06:5e satisfaction_now=70 anomalies=low_phy_rate
+# mcad
+<30>Oct  6 13:15:36 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: mcad: mcad[20980]: wireless_agg_stats.log_sta_anomalies(): bssid=d2:21:f9:aa:1e:a4 radio=rai0 vap=rai1 sta=1c:1a:c0:1d:06:5e satisfaction_now=70 anomalies=low_phy_rate
+# mcad
+<14>Oct  6 13:15:35 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 1 -> 20 (cur-state=ON)
+
+# mcad
+<14>Oct  6 13:15:30 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 30 -> 1 (cur-state=ON)
+
+# mcad
+<30>Oct  6 13:15:25 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: mcad: mcad[20980]: wireless_agg_stats.log_sta_anomalies(): bssid=d2:21:f9:aa:1e:a4 radio=rai0 vap=rai1 sta=1c:1a:c0:1d:06:5e satisfaction_now=70 anomalies=low_phy_rate
+# mcad
+<30>Oct  6 13:15:10 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: mcad: mcad[20980]: wireless_agg_stats.log_sta_anomalies(): bssid=d2:21:f9:aa:1e:a4 radio=rai0 vap=rai1 sta=1c:1a:c0:1d:06:5e satisfaction_now=70 anomalies=low_phy_rate
+# mcad
+<30>Oct  6 13:15:07 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: mcad: mcad[20980]: wireless_agg_stats.log_sta_anomalies(): bssid=d2:21:f9:aa:1e:a4 radio=rai0 vap=rai1 sta=1c:1a:c0:1d:06:5e satisfaction_now=70 anomalies=low_phy_rate
+# mcad
+<14>Oct  6 13:14:59 NW-HK NW-HK mcad[4432]: udapi-cfg._udapi_lu_set_inform_interval(): Changing LU inform interval 1 -> 30 (cur-state=ON)
+
+# blebrd
+<30>Oct  6 13:17:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | connect | Successful connection
+# blebrd
+<27>Oct  6 13:17:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | handle_transport_init received error: TLS handshake failed
+# blebrd
+<28>Oct  6 13:17:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | fail | WebSocket Connection 192.168.1.1:7442 - "" / 0 websocketpp.transport.asio.socket:8 TLS handshake failed
+# blebrd
+<30>Oct  6 13:16:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | connect | Successful connection
+# blebrd
+<27>Oct  6 13:16:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | handle_transport_init received error: TLS handshake failed
+# blebrd
+<28>Oct  6 13:16:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | fail | WebSocket Connection 192.168.1.1:7442 - "" / 0 websocketpp.transport.asio.socket:8 TLS handshake failed
+# blebrd
+<30>Oct  6 13:16:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | connect | Successful connection
+# blebrd
+<27>Oct  6 13:16:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | handle_transport_init received error: TLS handshake failed
+# blebrd
+<28>Oct  6 13:16:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | fail | WebSocket Connection 192.168.1.1:7442 - "" / 0 websocketpp.transport.asio.socket:8 TLS handshake failed
+# blebrd
+<30>Oct  6 13:15:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | connect | Successful connection
+# blebrd
+<27>Oct  6 13:15:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | handle_transport_init received error: TLS handshake failed
+# blebrd
+<28>Oct  6 13:15:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | fail | WebSocket Connection 192.168.1.1:7442 - "" / 0 websocketpp.transport.asio.socket:8 TLS handshake failed
+# blebrd
+<30>Oct  6 13:15:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | connect | Successful connection
+# blebrd
+<27>Oct  6 13:15:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | handle_transport_init received error: TLS handshake failed
+# blebrd
+<28>Oct  6 13:15:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | fail | WebSocket Connection 192.168.1.1:7442 - "" / 0 websocketpp.transport.asio.socket:8 TLS handshake failed
+# blebrd
+<30>Oct  6 13:14:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | connect | Successful connection
+# blebrd
+<27>Oct  6 13:14:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | handle_transport_init received error: TLS handshake failed
+# blebrd
+<28>Oct  6 13:14:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | fail | WebSocket Connection 192.168.1.1:7442 - "" / 0 websocketpp.transport.asio.socket:8 TLS handshake failed
+# blebrd
+<30>Oct  6 13:14:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | connect | Successful connection
+# blebrd
+<27>Oct  6 13:14:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | handle_transport_init received error: TLS handshake failed
+# blebrd
+<28>Oct  6 13:14:18 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | fail | WebSocket Connection 192.168.1.1:7442 - "" / 0 websocketpp.transport.asio.socket:8 TLS handshake failed
+# blebrd
+<30>Oct  6 13:13:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | connect | Successful connection
+# blebrd
+<27>Oct  6 13:13:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | handle_transport_init received error: TLS handshake failed
+# blebrd
+<28>Oct  6 13:13:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | fail | WebSocket Connection 192.168.1.1:7442 - "" / 0 websocketpp.transport.asio.socket:8 TLS handshake failed
+# blebrd
+<30>Oct  6 15:04:55 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: blebrd[4659]: WS | access | connect | Successful connection
+# systemd-networkd
+<30>Oct  6 13:16:42 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link UP
+
+# systemd-networkd
+<30>Oct  6 13:16:42 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained carrier
+
+# systemd-networkd
+<30>Oct  6 13:16:42 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained IPv6LL
+
+# systemd-networkd
+<30>Oct  6 13:16:37 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link DOWN
+
+# systemd-networkd
+<30>Oct  6 13:16:37 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Lost carrier
+
+# systemd-networkd
+<30>Oct  6 13:15:37 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link UP
+
+# systemd-networkd
+<30>Oct  6 13:15:37 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained carrier
+
+# systemd-networkd
+<30>Oct  6 13:15:37 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained IPv6LL
+
+# systemd-networkd
+<30>Oct  6 13:15:33 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link DOWN
+
+# systemd-networkd
+<30>Oct  6 13:15:33 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Lost carrier
+
+# systemd-networkd
+<30>Oct  6 13:14:32 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link UP
+
+# systemd-networkd
+<30>Oct  6 13:14:32 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained carrier
+
+# systemd-networkd
+<30>Oct  6 13:14:32 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained IPv6LL
+
+# systemd-networkd
+<30>Oct  6 13:14:27 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link DOWN
+
+# systemd-networkd
+<30>Oct  6 13:14:27 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Lost carrier
+
+# systemd-networkd
+<30>Oct  6 15:04:47 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link UP
+
+# systemd-networkd
+<30>Oct  6 15:04:47 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained carrier
+
+# systemd-networkd
+<30>Oct  6 15:04:47 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained IPv6LL
+
+# systemd-networkd
+<30>Oct  6 15:04:42 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link DOWN
+
+# systemd-networkd
+<30>Oct  6 15:04:42 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Lost carrier
+
+# systemd-networkd
+<30>Oct  6 15:03:42 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link UP
+
+# systemd-networkd
+<30>Oct  6 15:03:42 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained carrier
+
+# systemd-networkd
+<30>Oct  6 15:03:42 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Gained IPv6LL
+
+# systemd-networkd
+<30>Oct  6 15:03:37 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Link DOWN
+
+# systemd-networkd
+<30>Oct  6 15:03:37 NW-HK NW-HK systemd-networkd[764]: tunovpnc1: Lost carrier
+
+# systemd
+<28>Oct  6 13:16:43 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1274075, but reception only permitted for main PID 2131
+
+# systemd
+<28>Oct  6 13:16:40 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1274075, but reception only permitted for main PID 2131
+
+# systemd
+<28>Oct  6 13:15:38 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1271816, but reception only permitted for main PID 2131
+
+# systemd
+<28>Oct  6 13:15:36 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1271816, but reception only permitted for main PID 2131
+
+# systemd
+<30>Oct  6 13:15:29 NW-HK NW-HK systemd[1]: systemd-timedated.service: Succeeded.
+
+# systemd
+<30>Oct  6 13:15:29 NW-HK NW-HK systemd[1]: Starting Time & Date Service...
+
+# systemd
+<30>Oct  6 13:15:29 NW-HK NW-HK systemd[1]: Started Time & Date Service.
+
+# systemd
+<28>Oct  6 13:14:33 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1268795, but reception only permitted for main PID 2131
+
+# systemd
+<28>Oct  6 13:14:30 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1268795, but reception only permitted for main PID 2131
+
+# systemd
+<30>Oct  6 13:14:04 NW-HK NW-HK systemd[1]: systemd-timedated.service: Succeeded.
+
+# systemd
+<30>Oct  6 13:14:04 NW-HK NW-HK systemd[1]: Starting Time & Date Service...
+
+# systemd
+<30>Oct  6 13:14:04 NW-HK NW-HK systemd[1]: Started Time & Date Service.
+
+# systemd
+<28>Oct  6 15:04:48 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1536836, but reception only permitted for main PID 2131
+
+# systemd
+<28>Oct  6 15:04:45 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1536836, but reception only permitted for main PID 2131
+
+# systemd
+<28>Oct  6 15:03:43 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1535103, but reception only permitted for main PID 2131
+
+# systemd
+<28>Oct  6 15:03:40 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1535103, but reception only permitted for main PID 2131
+
+# systemd
+<30>Oct  6 15:03:15 NW-HK NW-HK systemd[1]: Started Time & Date Service.
+
+# systemd
+<30>Oct  6 15:03:14 NW-HK NW-HK systemd[1]: Starting Time & Date Service...
+
+# systemd
+<30>Oct  6 15:03:10 NW-HK NW-HK systemd[1]: systemd-timedated.service: Succeeded.
+
+# systemd
+<28>Oct  6 15:02:38 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1533338, but reception only permitted for main PID 2131
+
+# systemd
+<28>Oct  6 15:02:35 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1533338, but reception only permitted for main PID 2131
+
+# systemd
+<28>Oct  6 15:01:31 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1531629, but reception only permitted for main PID 2131
+
+# systemd
+<28>Oct  6 15:01:29 NW-HK NW-HK systemd[1]: udapi-server.service: Got notification message from PID 1531629, but reception only permitted for main PID 2131
+
+# systemd
+<30>Oct  6 15:00:58 NW-HK NW-HK systemd[1]: systemd-timedated.service: Succeeded.
+
+# systemd
+<30>Oct  6 15:00:58 NW-HK NW-HK systemd[1]: Starting Time & Date Service...
+
+# hostapd
+<30>Oct  6 13:16:15 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4817]: rai0: STA 7a:c2:97:62:ed:41 RADIUS: starting accounting session 65FAECA194A93EF9
+# hostapd
+<30>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4817]: rai0: STA 7a:c2:97:62:ed:41 IEEE 802.11: associated
+# hostapd
+<30>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4817]: WPA: Send FT: RRB UBNT ROAM: STA=7a:c2:97:62:ed:41 CurrentAP=78:45:58:32:28:51
+# hostapd
+<30>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4814]: WPA: Receive FT: 78:45:58:32:28:51 STA Roamed: 7a:c2:97:62:ed:41
+# hostapd
+<30>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4817]: rai0: STA 7a:c2:97:62:ed:41 WPA: pairwise key handshake completed (RSN)
+# hostapd
+<30>Oct  6 15:05:14 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4066]: rai1: STA ee:a2:d2:45:9c:12 IEEE 802.11: disassociated
+# hostapd
+<28>Oct  6 15:05:14 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4066]: rai1: STA ee:a2:d2:45:9c:12 WPA: calling hostapd_drv_sta_remove(), ../src/ap/sta_info.c:ap_free_sta:183
+# hostapd
+<30>Oct  6 15:05:13 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4066]: rai1: STA ee:a2:d2:45:9c:12 RADIUS: starting accounting session E59899CACF3E1662
+# hostapd
+<30>Oct  6 15:05:08 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4063]: ra1: STA 2e:c8:19:6a:82:cc IEEE 802.11: associated
+# hostapd
+<30>Oct  6 15:05:08 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4063]: WPA: Send FT: RRB UBNT ROAM: STA=2e:c8:19:6a:82:cc CurrentAP=72:a7:41:c1:48:22
+# hostapd
+<30>Oct  6 15:05:08 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4066]: WPA: Receive FT: 72:a7:41:c1:48:22 STA Roamed: 2e:c8:19:6a:82:cc
+# hostapd
+<30>Oct  6 15:05:08 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4063]: ra1: STA 2e:c8:19:6a:82:cc WPA: pairwise key handshake completed (RSN)
+# hostapd
+<30>Oct  6 15:05:03 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4066]: rai1: STA ee:a2:d2:45:9c:12 IEEE 802.11: associated
+# hostapd
+<30>Oct  6 15:05:03 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4066]: WPA: Send FT: RRB UBNT ROAM: STA=ee:a2:d2:45:9c:12 CurrentAP=72:a7:41:0f:63:1d
+# hostapd
+<30>Oct  6 15:05:03 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4063]: WPA: Receive FT: 72:a7:41:0f:63:1d STA Roamed: ee:a2:d2:45:9c:12
+# hostapd
+<30>Oct  6 15:05:03 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4066]: rai1: STA ee:a2:d2:45:9c:12 WPA: pairwise key handshake completed (RSN)
+# hostapd
+<30>Oct  6 15:01:43 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4062]: ra0: STA 00:0a:f5:14:c3:8d IEEE 802.11: disassociated
+# hostapd
+<28>Oct  6 15:01:43 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: hostapd[4062]: ra0: STA 00:0a:f5:14:c3:8d WPA: calling hostapd_drv_sta_remove(), ../src/ap/sta_info.c:ap_free_sta:183
+# hostapd
+<30>Oct  6 14:59:20 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4817]: rai0: STA 00:0a:f5:14:c3:8d RADIUS: starting accounting session FEA26420B2A57616
+# hostapd
+<30>Oct  6 14:59:10 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4817]: rai0: STA 00:0a:f5:14:c3:8d IEEE 802.11: associated
+# hostapd
+<30>Oct  6 14:59:10 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4817]: WPA: Send FT: RRB UBNT ROAM: STA=00:0a:f5:14:c3:8d CurrentAP=78:45:58:32:28:51
+# hostapd
+<30>Oct  6 14:59:10 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4814]: WPA: Receive FT: 78:45:58:32:28:51 STA Roamed: 00:0a:f5:14:c3:8d
+# hostapd
+<30>Oct  6 14:59:10 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4817]: rai0: STA 00:0a:f5:14:c3:8d WPA: pairwise key handshake completed (RSN)
+# hostapd
+<30>Oct  6 14:55:01 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4817]: rai0: STA 00:0a:f5:14:c3:8d IEEE 802.11: disassociated
+# hostapd
+<28>Oct  6 14:55:01 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: hostapd[4817]: rai0: STA 00:0a:f5:14:c3:8d WPA: calling hostapd_drv_sta_remove(), ../src/ap/sta_info.c:ap_free_sta:183
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 13:16:37 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15465: Link not found
+
+# /usr/bin/unifi-mq-broker
+<30>Oct  6 13:15:47 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: MEM usage flows=1452 dying=35 dns=378 ifaces=18 dnsResolv=312 routines=543
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 13:15:33 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15464: Link not found
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 13:14:27 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15463: Link not found
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 15:04:42 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15564: Link not found
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 15:03:37 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15563: Link not found
+
+# /usr/bin/unifi-mq-broker
+<28>Oct  6 15:03:27 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to send request to coredns: Post "http://localhost/api/get_domain_by_ip": dial unix /run/utm/.cd_dl.sock: connect: resource temporarily unavailable
+
+# /usr/bin/unifi-mq-broker
+<28>Oct  6 15:03:26 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to send request to coredns: Post "http://localhost/api/get_domain_by_ip": dial unix /run/utm/.cd_dl.sock: connect: resource temporarily unavailable
+
+# /usr/bin/unifi-mq-broker
+<28>Oct  6 15:03:25 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to send request to coredns: Post "http://localhost/api/get_domain_by_ip": dial unix /run/utm/.cd_dl.sock: connect: resource temporarily unavailable
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 15:02:32 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15562: Link not found
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 15:01:26 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15561: Link not found
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 15:00:21 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15560: Link not found
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 14:59:16 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15559: Link not found
+
+# /usr/bin/unifi-mq-broker
+<28>Oct  6 14:58:27 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to send request to coredns: Post "http://localhost/api/get_domain_by_ip": dial unix /run/utm/.cd_dl.sock: connect: resource temporarily unavailable
+
+# /usr/bin/unifi-mq-broker
+<28>Oct  6 14:58:25 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to send request to coredns: Post "http://localhost/api/get_domain_by_ip": dial unix /run/utm/.cd_dl.sock: connect: resource temporarily unavailable
+
+# /usr/bin/unifi-mq-broker
+<28>Oct  6 14:58:24 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to send request to coredns: Post "http://localhost/api/get_domain_by_ip": dial unix /run/utm/.cd_dl.sock: connect: resource temporarily unavailable
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 14:58:10 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15558: Link not found
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 14:57:05 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15557: Link not found
+
+# /usr/bin/unifi-mq-broker
+<30>Oct  6 14:55:57 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: MEM usage flows=1886 dying=19 dns=617 ifaces=18 dnsResolv=385 routines=543
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 14:55:56 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15556: Link not found
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 14:54:51 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15555: Link not found
+
+# /usr/bin/unifi-mq-broker
+<27>Oct  6 14:53:44 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to get interface for index 15554: Link not found
+
+# /usr/bin/unifi-mq-broker
+<28>Oct  6 14:53:28 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to send request to coredns: Post "http://localhost/api/get_domain_by_ip": dial unix /run/utm/.cd_dl.sock: connect: resource temporarily unavailable
+
+# /usr/bin/unifi-mq-broker
+<28>Oct  6 14:53:26 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to send request to coredns: Post "http://localhost/api/get_domain_by_ip": dial unix /run/utm/.cd_dl.sock: connect: resource temporarily unavailable
+
+# /usr/bin/unifi-mq-broker
+<28>Oct  6 14:53:25 NW-HK NW-HK /usr/bin/unifi-mq-broker[3014]: Failed to send request to coredns: Post "http://localhost/api/get_domain_by_ip": dial unix /run/utm/.cd_dl.sock: connect: resource temporarily unavailable
+
+# libubnt
+<14>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: libubnt[20401]: wevent[20401]: wevent.ubnt_custom_event(): EVENT_STA_JOIN rai0: 7a:c2:97:62:ed:41 / 11
+# libubnt
+<14>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: libubnt[20401]: wevent[20401]: wevent.ubnt_custom_event(): EVENT_STA_IP rai0: 7a:c2:97:62:ed:41 / 192.168.1.35
+# libubnt
+<14>Oct  6 15:05:15 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_LEAVE rai1: ee:a2:d2:45:9c:12 / 9
+# libubnt
+<14>Oct  6 15:05:08 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_JOIN ra1: 2e:c8:19:6a:82:cc / 1
+# libubnt
+<14>Oct  6 15:05:08 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_IP ra1: 2e:c8:19:6a:82:cc / 192.168.1.192
+# libubnt
+<14>Oct  6 15:05:03 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_JOIN rai1: ee:a2:d2:45:9c:12 / 9
+# libubnt
+<14>Oct  6 15:05:03 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_IP rai1: ee:a2:d2:45:9c:12 / 192.168.1.108
+# libubnt
+<14>Oct  6 15:01:43 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_LEAVE ra0: 00:0a:f5:14:c3:8d / 1
+# libubnt
+<14>Oct  6 14:59:10 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: libubnt[20401]: wevent[20401]: wevent.ubnt_custom_event(): EVENT_STA_JOIN rai0: 00:0a:f5:14:c3:8d / 12
+# libubnt
+<14>Oct  6 14:59:10 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: libubnt[20401]: wevent[20401]: wevent.ubnt_custom_event(): EVENT_STA_IP rai0: 00:0a:f5:14:c3:8d / 192.168.1.153
+# libubnt
+<14>Oct  6 14:55:01 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: libubnt[20401]: wevent[20401]: wevent.ubnt_custom_event(): EVENT_STA_LEAVE rai0: 00:0a:f5:14:c3:8d / 12
+# libubnt
+<14>Oct  6 14:53:46 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_IP ra0: 00:0a:f5:14:c3:8d / 192.168.1.153
+# libubnt
+<14>Oct  6 14:53:45 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_JOIN ra0: 00:0a:f5:14:c3:8d / 1
+# libubnt
+<14>Oct  6 14:53:38 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_LEAVE ra0: 00:0a:f5:14:c3:8d / 1
+# libubnt
+<14>Oct  6 14:52:08 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_JOIN ra0: 00:0a:f5:14:c3:8d / 1
+# libubnt
+<14>Oct  6 14:52:08 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_LEAVE rai0: 00:0a:f5:14:c3:8d / 9
+# libubnt
+<14>Oct  6 14:52:08 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_IP ra0: 00:0a:f5:14:c3:8d / 192.168.1.153
+# libubnt
+<14>Oct  6 14:52:01 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_JOIN rai0: 00:0a:f5:14:c3:8d / 9
+# libubnt
+<14>Oct  6 14:52:01 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_IP rai0: 00:0a:f5:14:c3:8d / 192.168.1.153
+# libubnt
+<14>Oct  6 14:46:32 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: libubnt[20401]: wevent[20401]: wevent.ubnt_custom_event(): EVENT_STA_LEAVE ra0: 2e:9d:08:6e:da:1e / 1
+# libubnt
+<12>Oct  6 14:38:33 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: libubnt.qos_sta_control(): (2) cmd failed /bin/qos_control.sh del-sta eth0 1 3 0kbit 0kbit
+# libubnt
+<14>Oct  6 14:38:33 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_LEAVE ra0: 2e:9d:08:6e:da:1e / 3
+# libubnt
+<14>Oct  6 14:38:33 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_JOIN ra0: 2e:9d:08:6e:da:1e / 3
+# libubnt
+<14>Oct  6 14:38:32 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: wevent.ubnt_custom_event(): EVENT_STA_LEAVE ra0: 2e:9d:08:6e:da:1e / 3
+# libubnt
+<12>Oct  6 14:38:32 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: libubnt[9469]: wevent[9469]: libubnt.qos_sta_control(): (2) cmd failed /bin/qos_control.sh del-sta ra0 1 3 0kbit 0kbit
+# stahtd
+<30>Oct  6 13:16:06 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: stahtd: stahtd[4811]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"7a:c2:97:62:ed:41","vap":"rai0","event_type":"success","assoc_status":"0","traffic_delta":"352000","dns_responses":"2","dns_timeouts":"0","ip_delta":"144000","ip_assign_type":"dhcp","wpa_auth_delta":"36000","assoc_delta":"16000","auth_delta":"0","event_id":"2","auth_ts":"2801428.171877","auth_utc":"1791263765.691255","arp_reply_gw_seen":"yes","dns_resp_seen":"yes","auth_rssi":"-72","auth_algo":"open"}
+# stahtd
+<30>Oct  6 13:16:05 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: stahtd: stahtd[4811]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"7a:c2:97:62:ed:41","vap":"rai0","event_type":"association","assoc_status":"0","event_id":"1","assoc_delta":"16000","auth_utc":"1791263765.691255","auth_algo":"open","auth_rssi":"-72"}
+# stahtd
+<30>Oct  6 15:05:15 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"ee:a2:d2:45:9c:12","vap":"rai1","event_type":"sta_leave","assoc_status":"0","event_id":"2","avg_rssi":"-72"}
+# stahtd
+<30>Oct  6 15:05:08 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"2e:c8:19:6a:82:cc","vap":"ra1","event_type":"association","assoc_status":"0","event_id":"1","auth_utc":"1791270308.021782","auth_algo":"open","auth_rssi":"-77"}
+# stahtd
+<30>Oct  6 15:05:04 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"ee:a2:d2:45:9c:12","vap":"rai1","event_type":"success","assoc_status":"0","traffic_delta":"370000","dns_responses":"6","dns_timeouts":"0","ip_delta":"180000","ip_assign_type":"dhcp","wpa_auth_delta":"30000","assoc_delta":"10000","auth_delta":"0","event_id":"2","auth_ts":"2808137.363360","auth_utc":"1791270303.551647","arp_reply_gw_seen":"yes","dns_resp_seen":"yes","auth_rssi":"-70","auth_algo":"open"}
+# stahtd
+<30>Oct  6 15:05:03 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"ee:a2:d2:45:9c:12","vap":"rai1","event_type":"association","assoc_status":"0","event_id":"1","assoc_delta":"10000","auth_utc":"1791270303.551647","auth_algo":"open","auth_rssi":"-70"}
+# stahtd
+<30>Oct  6 15:01:43 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"ra0","event_type":"sta_leave","assoc_status":"0","event_id":"4","avg_rssi":"-67"}
+# stahtd
+<30>Oct  6 14:59:25 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: stahtd: stahtd[4811]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"rai0","event_type":"soft failure","assoc_status":"0","ip_assign_type":"roamed","wpa_auth_delta":"16000","assoc_delta":"8000","auth_delta":"0","event_id":"2","auth_ts":"2807612.576021","auth_utc":"1791269950.167011","avg_rssi":"-50","auth_rssi":"-55","auth_algo":"open"}
+# stahtd
+<30>Oct  6 14:59:10 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: stahtd: stahtd[4811]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"rai0","event_type":"association","assoc_status":"0","event_id":"1","assoc_delta":"8000","auth_utc":"1791269950.167011","auth_algo":"open","auth_rssi":"-55"}
+# stahtd
+<30>Oct  6 14:55:01 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: stahtd: stahtd[4811]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"rai0","event_type":"sta_leave","assoc_status":"0","event_id":"2","avg_rssi":"-94"}
+# stahtd
+<30>Oct  6 14:53:46 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"ra0","event_type":"association","assoc_status":"0","event_id":"3","auth_utc":"1791269624.889754","auth_algo":"open","auth_rssi":"-77"}
+# stahtd
+<30>Oct  6 14:53:46 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"ra0","event_type":"success","assoc_status":"0","traffic_delta":"1570000","dns_responses":"1","dns_timeouts":"0","ip_delta":"1340000","ip_assign_type":"dhcp","wpa_auth_delta":"1060000","assoc_delta":"0","auth_delta":"0","event_id":"4","auth_ts":"2807458.702366","auth_utc":"1791269624.889754","arp_reply_gw_seen":"yes","dns_resp_seen":"yes","auth_rssi":"-77","auth_algo":"open"}
+# stahtd
+<30>Oct  6 14:53:38 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"ra0","event_type":"sta_leave","assoc_status":"0","event_id":"2","avg_rssi":"-75"}
+# stahtd
+<30>Oct  6 14:52:22 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"ra0","event_type":"soft failure","assoc_status":"0","ip_assign_type":"roamed","wpa_auth_delta":"40000","assoc_delta":"0","auth_delta":"0","event_id":"2","auth_ts":"2807361.474567","auth_utc":"1791269527.661827","avg_rssi":"-75","auth_rssi":"-69","auth_algo":"open"}
+# stahtd
+<30>Oct  6 14:52:16 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"rai0","event_type":"soft failure","assoc_status":"0","ip_assign_type":"roamed","wpa_auth_delta":"30000","assoc_delta":"10000","auth_delta":"0","event_id":"2","auth_ts":"2807355.109602","auth_utc":"1791269521.296853","sta_dc_reason":"roam","auth_rssi":"-84","auth_algo":"open"}
+# stahtd
+<30>Oct  6 14:52:08 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"ra0","event_type":"association","assoc_status":"0","event_id":"1","auth_utc":"1791269527.661827","auth_algo":"open","auth_rssi":"-69"}
+# stahtd
+<30>Oct  6 14:52:07 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"rai0","event_type":"sta_roam","assoc_status":"0","event_id":"1","avg_rssi":"-79"}
+# stahtd
+<30>Oct  6 14:52:01 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"00:0a:f5:14:c3:8d","vap":"rai0","event_type":"association","assoc_status":"0","event_id":"1","assoc_delta":"10000","auth_utc":"1791269521.296853","auth_algo":"open","auth_rssi":"-84"}
+# stahtd
+<30>Oct  6 14:46:32 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: stahtd: stahtd[4811]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"2e:9d:08:6e:da:1e","vap":"ra0","event_type":"sta_leave","assoc_status":"0","event_id":"2","avg_rssi":"-80"}
+# stahtd
+<30>Oct  6 14:38:47 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"2e:9d:08:6e:da:1e","vap":"ra0","event_type":"soft failure","assoc_status":"0","ip_delta":"150000","ip_assign_type":"dhcp","wpa_auth_delta":"10000","assoc_delta":"0","auth_delta":"0","event_id":"6","auth_ts":"2806546.194197","auth_utc":"1791268712.380381","avg_rssi":"-45","auth_rssi":"-42","auth_algo":"open"}
+# stahtd
+<30>Oct  6 14:38:32 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"2e:9d:08:6e:da:1e","vap":"ra0","event_type":"sta_leave","assoc_status":"0","event_id":"4","avg_rssi":"-48"}
+# stahtd
+<30>Oct  6 14:38:32 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"2e:9d:08:6e:da:1e","vap":"ra0","event_type":"association","assoc_status":"0","event_id":"5","auth_utc":"1791268712.380381","auth_algo":"open","auth_rssi":"-42"}
+# stahtd
+<30>Oct  6 14:38:07 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"2e:9d:08:6e:da:1e","vap":"ra0","event_type":"failure","assoc_status":"0","auth_failures":"1","event_id":"2","auth_ts":"2806488.300687","auth_utc":"1791268672.738630","auth_rssi":"-76","auth_algo":"open"}
+# stahtd
+<30>Oct  6 14:37:15 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: stahtd: stahtd[4811]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"2e:9d:08:6e:da:1e","vap":"ra0","event_type":"success","assoc_status":"0","traffic_delta":"7620000","dns_responses":"2","dns_timeouts":"0","ip_delta":"2889199584","ip_assign_type":"N/A","wpa_auth_delta":"104000","assoc_delta":"60000","auth_delta":"0","event_id":"2","auth_ts":"2806290.540345","auth_utc":"1791268628.115955","dns_resp_seen":"yes","auth_rssi":"-87","auth_algo":"open"}
+# stahtd
+<30>Oct  6 14:37:11 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: stahtd: stahtd[4059]: [STA-TRACKER].stahtd_dump_event(): {"message_type":"STA_ASSOC_TRACKER","mac":"2e:9d:08:6e:da:1e","vap":"ra0","event_type":"failure","assoc_status":"0","auth_failures":"1","event_id":"1","auth_ts":"2806431.370440","auth_utc":"1791268615.808260","auth_rssi":"-70","auth_algo":"open"}
+# dnsmasq-dhcp
+<30>Oct  6 13:16:05 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPREQUEST(br0) 192.168.1.35 7a:c2:97:62:ed:41
+
+# dnsmasq-dhcp
+<30>Oct  6 13:16:05 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPACK(br0) 192.168.1.35 7a:c2:97:62:ed:41 iPhone
+
+# dnsmasq-dhcp
+<30>Oct  6 13:16:05 NW-HK NW-HK dnsmasq-dhcp[2022865]: Updating leases :: age=998sec file=y(0msec) dns=y(1msec)
+
+# dnsmasq-dhcp
+<30>Oct  6 15:05:13 NW-HK NW-HK dnsmasq-dhcp[2022865]: Updating leases :: age=5sec file=y(0msec) dns=y(1msec)
+
+# dnsmasq-dhcp
+<30>Oct  6 15:05:09 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPREQUEST(br0) 192.168.1.158 68:d7:9a:d1:54:8d
+
+# dnsmasq-dhcp
+<30>Oct  6 15:05:09 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPACK(br0) 192.168.1.158 68:d7:9a:d1:54:8d UA-PRO
+
+# dnsmasq-dhcp
+<30>Oct  6 15:05:08 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPREQUEST(br0) 192.168.1.192 2e:c8:19:6a:82:cc
+
+# dnsmasq-dhcp
+<30>Oct  6 15:05:08 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPACK(br0) 192.168.1.192 2e:c8:19:6a:82:cc Watch
+
+# dnsmasq-dhcp
+<30>Oct  6 15:05:08 NW-HK NW-HK dnsmasq-dhcp[2022865]: Updating leases :: age=5sec file=y(0msec) dns=y(1msec)
+
+# dnsmasq-dhcp
+<30>Oct  6 15:05:03 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPREQUEST(br0) 192.168.1.108 ee:a2:d2:45:9c:12
+
+# dnsmasq-dhcp
+<30>Oct  6 15:05:03 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPACK(br0) 192.168.1.108 ee:a2:d2:45:9c:12 iPhone
+
+# dnsmasq-dhcp
+<30>Oct  6 15:05:03 NW-HK NW-HK dnsmasq-dhcp[2022865]: Updating leases :: age=94sec file=y(0msec) dns=y(1msec)
+
+# dnsmasq-dhcp
+<30>Oct  6 15:03:29 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPREQUEST(br0) 192.168.1.60 80:5e:c0:f1:35:d5
+
+# dnsmasq-dhcp
+<30>Oct  6 15:03:29 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPACK(br0) 192.168.1.60 80:5e:c0:f1:35:d5 SIP-T55A
+
+# dnsmasq-dhcp
+<30>Oct  6 15:03:29 NW-HK NW-HK dnsmasq-dhcp[2022865]: Updating leases :: age=578sec file=y(0msec) dns=y(1msec)
+
+# dnsmasq-dhcp
+<30>Oct  6 14:53:51 NW-HK NW-HK dnsmasq-dhcp[2022865]: Updating leases :: age=5sec file=y(0msec) dns=y(1msec)
+
+# dnsmasq-dhcp
+<30>Oct  6 14:53:46 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPDISCOVER(br0) 00:0a:f5:14:c3:8d
+
+# dnsmasq-dhcp
+<30>Oct  6 14:53:46 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPOFFER(br0) 192.168.1.153 00:0a:f5:14:c3:8d
+
+# dnsmasq-dhcp
+<30>Oct  6 14:53:46 NW-HK NW-HK dnsmasq-dhcp[2022865]: Updating leases :: age=914sec file=y(0msec) dns=y(0msec)
+
+# dnsmasq-dhcp
+<30>Oct  6 14:53:46 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPREQUEST(br0) 192.168.1.153 00:0a:f5:14:c3:8d
+
+# dnsmasq-dhcp
+<30>Oct  6 14:53:46 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPACK(br0) 192.168.1.153 00:0a:f5:14:c3:8d
+
+# dnsmasq-dhcp
+<30>Oct  6 14:38:32 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPREQUEST(br0) 192.168.1.58 2e:9d:08:6e:da:1e
+
+# dnsmasq-dhcp
+<30>Oct  6 14:38:32 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPACK(br0) 192.168.1.58 2e:9d:08:6e:da:1e Watch
+
+# dnsmasq-dhcp
+<30>Oct  6 14:38:32 NW-HK NW-HK dnsmasq-dhcp[2022865]: Updating leases :: age=75sec file=y(0msec) dns=y(1msec)
+
+# dnsmasq-dhcp
+<30>Oct  6 14:37:17 NW-HK NW-HK dnsmasq-dhcp[2022865]: DHCPREQUEST(br0) 192.168.1.58 2e:9d:08:6e:da:1e
+
+# earlyoom
+<30>Oct  6 13:16:42 NW-HK NW-HK earlyoom[1786]: mem avail:  1290 of  3946 MiB (32.70%), swap free: 6175 of 7167 MiB (86.16%)
+
+# earlyoom
+<30>Oct  6 13:15:42 NW-HK NW-HK earlyoom[1786]: mem avail:  1065 of  3946 MiB (27.00%), swap free: 6176 of 7167 MiB (86.17%)
+
+# earlyoom
+<30>Oct  6 13:14:42 NW-HK NW-HK earlyoom[1786]: mem avail:  1111 of  3946 MiB (28.17%), swap free: 6177 of 7167 MiB (86.19%)
+
+# earlyoom
+<30>Oct  6 15:04:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1247 of  3946 MiB (31.60%), swap free: 6161 of 7167 MiB (85.97%)
+
+# earlyoom
+<30>Oct  6 15:03:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1342 of  3946 MiB (34.01%), swap free: 6161 of 7167 MiB (85.96%)
+
+# earlyoom
+<30>Oct  6 15:02:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1358 of  3946 MiB (34.44%), swap free: 6161 of 7167 MiB (85.96%)
+
+# earlyoom
+<30>Oct  6 15:01:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1356 of  3946 MiB (34.38%), swap free: 6161 of 7167 MiB (85.96%)
+
+# earlyoom
+<30>Oct  6 15:00:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1290 of  3946 MiB (32.71%), swap free: 6161 of 7167 MiB (85.96%)
+
+# earlyoom
+<30>Oct  6 14:59:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1316 of  3946 MiB (33.37%), swap free: 6160 of 7167 MiB (85.95%)
+
+# earlyoom
+<30>Oct  6 14:58:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1288 of  3946 MiB (32.64%), swap free: 6160 of 7167 MiB (85.94%)
+
+# earlyoom
+<30>Oct  6 14:57:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1247 of  3946 MiB (31.61%), swap free: 6160 of 7167 MiB (85.94%)
+
+# earlyoom
+<30>Oct  6 14:56:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1284 of  3946 MiB (32.54%), swap free: 6160 of 7167 MiB (85.94%)
+
+# earlyoom
+<30>Oct  6 14:55:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1151 of  3946 MiB (29.18%), swap free: 6160 of 7167 MiB (85.94%)
+
+# earlyoom
+<30>Oct  6 14:54:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1181 of  3946 MiB (29.94%), swap free: 6158 of 7167 MiB (85.92%)
+
+# earlyoom
+<30>Oct  6 14:53:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1199 of  3946 MiB (30.40%), swap free: 6160 of 7167 MiB (85.95%)
+
+# earlyoom
+<30>Oct  6 14:52:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1261 of  3946 MiB (31.97%), swap free: 6160 of 7167 MiB (85.95%)
+
+# earlyoom
+<30>Oct  6 14:51:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1249 of  3946 MiB (31.65%), swap free: 6160 of 7167 MiB (85.95%)
+
+# earlyoom
+<30>Oct  6 14:50:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1252 of  3946 MiB (31.74%), swap free: 6160 of 7167 MiB (85.95%)
+
+# earlyoom
+<30>Oct  6 14:49:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1234 of  3946 MiB (31.28%), swap free: 6160 of 7167 MiB (85.95%)
+
+# earlyoom
+<30>Oct  6 14:48:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1276 of  3946 MiB (32.34%), swap free: 6160 of 7167 MiB (85.95%)
+
+# earlyoom
+<30>Oct  6 14:47:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1284 of  3946 MiB (32.56%), swap free: 6160 of 7167 MiB (85.95%)
+
+# earlyoom
+<30>Oct  6 14:46:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1315 of  3946 MiB (33.33%), swap free: 6160 of 7167 MiB (85.95%)
+
+# earlyoom
+<30>Oct  6 14:45:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1006 of  3946 MiB (25.51%), swap free: 6160 of 7167 MiB (85.95%)
+
+# earlyoom
+<30>Oct  6 14:44:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1082 of  3946 MiB (27.42%), swap free: 6160 of 7167 MiB (85.95%)
+
+# earlyoom
+<30>Oct  6 14:43:43 NW-HK NW-HK earlyoom[1786]: mem avail:  1270 of  3946 MiB (32.20%), swap free: 6163 of 7167 MiB (85.99%)
+
+# networkd-dispatcher
+<30>Oct  6 13:16:42 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15466 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 13:15:37 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15465 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 13:14:32 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15464 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 15:04:47 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15565 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 15:03:42 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15564 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 15:02:37 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15563 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 15:01:31 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15562 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 15:00:26 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15561 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:59:21 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15560 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:58:15 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15559 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:57:10 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15558 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:56:03 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15557 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:54:56 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15556 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:53:49 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15555 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:52:43 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15554 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:51:38 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15553 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:50:33 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15552 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:49:28 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15551 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:48:23 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15550 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:47:18 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15549 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:46:13 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15548 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:45:08 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15547 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:44:03 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15546 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:42:58 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15545 seen, reloading interface list
+
+# networkd-dispatcher
+<30>Oct  6 14:41:51 NW-HK NW-HK networkd-dispatcher[1799]: WARNING:Unknown index 15544 seen, reloading interface list
+
+# dpi-flow-stats
+<14>Oct  6 13:16:43 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: fp ml for mac: 7a:c2:97:62:ed:41 [Apple iPhone Air - 5666]@29% [Apple iPhone 17 - 5665]@26% [Apple iPhone 17 Pro Max - 5663]@22%
+
+# dpi-flow-stats
+<14>Oct  6 15:05:08 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: pcap dumping rate exceeded: 2e:c8:19:6a:82:cc | 6 total | 4 skipped total | 4 skipped recently | 33.3% dumping success
+
+# dpi-flow-stats
+<14>Oct  6 15:05:03 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: pcap dumping rate exceeded: ee:a2:d2:45:9c:12 | 6 total | 3 skipped total | 3 skipped recently | 50.0% dumping success
+
+# dpi-flow-stats
+<14>Oct  6 15:04:03 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: fp ml for mac: 80:5e:c0:f1:35:d5 [Yealink SIP-T55A  - 3242]@82% [Yealink SIP-T58V - 4191]@1% [Yealink SIP-T48U - 4778]@1%
+
+# dpi-flow-stats
+<14>Oct  6 15:04:02 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: 1 trace files added for 80:5e:c0:f1:35:d5: 2.7 KB | total 0.0 MB
+
+# dpi-flow-stats
+<14>Oct  6 14:54:22 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: fp ml for mac: 00:0a:f5:14:c3:8d [Tmezon PTZ Camera CQ1H - 5523]@1% [Generic Laptop - 4207]@1% [DJI RC-RM330 Smart Controller - 4809]@1%
+
+# dpi-flow-stats
+<14>Oct  6 14:38:33 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: pcap dumping rate exceeded: 2e:9d:08:6e:da:1e | 12 total | 8 skipped total | 1 skipped recently | 33.3% dumping success
+
+# dpi-flow-stats
+<14>Oct  6 14:37:51 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: fp ml for mac: 2e:9d:08:6e:da:1e [Apple Watch Ultra 3 - 5669]@28% [Apple Watch 10 - 5342]@15% [Apple Watch 3 - 2396]@14%
+
+# dpi-flow-stats
+<14>Oct  6 14:36:37 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: fp ml for mac: b0:83:fe:12:8a:e5 [Dell EMC PowerEdge T440 5U Tower Server Xeon - 5331]@22% [Dell Optiplex 7010 - 5148]@8% [Dell 24 Video Conferencing Monitor C2422HE - 5013]@7%
+
+# dpi-flow-stats
+<11>Oct  6 14:24:19 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: Error reading socket: Connection reset by peer
+
+# dpi-flow-stats
+<14>Oct  6 14:19:58 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: pcap dumping rate exceeded: 4a:f7:60:1a:a2:a5 | 8 total | 5 skipped total | 5 skipped recently | 37.5% dumping success
+
+# dpi-flow-stats
+<14>Oct  6 14:15:20 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: fp ml for mac: 96:7d:da:77:97:3b [Apple iPhone 16 Pro - 5340]@7% [Apple iPhone 16 Plus - 5358]@5% [Apple iPhone 16 - 5359]@4%
+
+# dpi-flow-stats
+<14>Oct  6 14:15:18 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: pcap dumping rate exceeded: fe:30:1d:2f:b9:9b | 4 total | 2 skipped total | 2 skipped recently | 50.0% dumping success
+
+# dpi-flow-stats
+<14>Oct  6 14:15:17 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: 3 trace files added for 96:7d:da:77:97:3b: 120.5 KB | total 0.4 MB
+
+# dpi-flow-stats
+<14>Oct  6 14:14:08 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: fp ml for mac: 96:7d:da:77:97:3b [Apple iPhone 16 Pro - 5340]@3% [Apple iPhone 16 - 5359]@2% [Apple iPad Pro 11 (2nd Gen) - 4696]@1%
+
+# dpi-flow-stats
+<14>Oct  6 14:14:06 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: 3 trace files added for 96:7d:da:77:97:3b: 141.0 KB | total 0.3 MB
+
+# dpi-flow-stats
+<14>Oct  6 14:13:49 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: pcap dumping rate exceeded: 80:e4:ba:dd:0b:6e | 8 total | 5 skipped total | 5 skipped recently | 37.5% dumping success
+
+# dpi-flow-stats
+<14>Oct  6 14:13:07 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: pcap dumping rate exceeded: fe:30:1d:2f:b9:9b | 3 total | 1 skipped total | 1 skipped recently | 66.7% dumping success
+
+# dpi-flow-stats
+<14>Oct  6 14:12:15 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: pcap dumping rate exceeded: 0a:0f:ad:95:3a:9e | 4 total | 1 skipped total | 1 skipped recently | 75.0% dumping success
+
+# dpi-flow-stats
+<14>Oct  6 14:08:48 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: fp ml for mac: 0a:0f:ad:95:3a:9e [Apple Watch Ultra 3 - 5669]@26% [Apple Watch SE - 4605]@14% [Apple Watch 6 - 4459]@10%
+
+# dpi-flow-stats
+<14>Oct  6 14:08:05 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: pcap dumping rate exceeded: 4a:f7:60:1a:a2:a5 | 7 total | 4 skipped total | 4 skipped recently | 42.9% dumping success
+
+# dpi-flow-stats
+<11>Oct  6 14:06:45 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: Error writing to socket: Broken pipe
+
+# dpi-flow-stats
+<11>Oct  6 14:06:45 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: Error reading socket: Connection reset by peer
+
+# dpi-flow-stats
+<13>Oct  6 13:55:17 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: couldn't find mac 0a:0f:ad:95:3a:9e when applying ml model
+
+# dpi-flow-stats
+<14>Oct  6 13:48:36 NW-HK NW-HK dpi-flow-stats[658274]: ubnt-dpi-util: pcap dumping rate exceeded: 80:e4:ba:dd:0b:6e | 7 total | 4 skipped total | 4 skipped recently | 42.9% dumping success
+
+# ubnt_ai_daemon
+<30>Oct  6 13:16:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 13:16:56.404 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 13:16:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 13:16:56.407 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 15:01:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 15:01:56.549 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 15:01:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 15:01:56.553 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:56:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:56:56.545 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:56:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:56:56.549 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:51:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:51:56.543 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:51:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:51:56.548 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:46:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:46:56.539 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:46:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:46:56.543 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:41:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:41:56.537 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:41:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:41:56.541 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:36:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:36:56.535 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:36:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:36:56.539 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:31:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:31:56.533 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:31:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:31:56.538 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:26:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:26:56.531 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:26:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:26:56.535 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:21:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:21:56.527 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:21:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:21:56.534 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:16:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:16:56.525 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:16:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:16:56.529 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:11:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:11:56.518 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:11:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:11:56.524 <I>: No face data to store [face_data_client.cpp:297]
+
+# ubnt_ai_daemon
+<30>Oct  6 14:06:56 NW-HK NW-HK ubnt_ai_daemon[32936]: 2026-10-06 14:06:56.515 <I>: Background sync: Fetching face data updates (force_sync=false) [face_data_client.cpp:705]
+
+# syswrapper
+<13>Oct  6 14:26:49 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: syswrapper[4504]: mtk_rrm_scan radio done
+# syswrapper
+<13>Oct  6 14:26:46 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[27413]: mtk_rrm_scan radio done
+# syswrapper
+<13>Oct  6 14:26:46 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[27413]: Skip rrm scan check on ch1 due to the same channel
+# syswrapper
+<13>Oct  6 14:26:44 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[27413]: Trigger rrm scan(3): sleep 1;iwpriv ra0 set ApScanChannel=active:6:120; sleep 1;
+# syswrapper
+<13>Oct  6 14:26:43 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: syswrapper[4504]: Trigger rrm scan(3): sleep 5;iwpriv ra0 set ApScanChannel=active:1:120; sleep 1;
+# syswrapper
+<13>Oct  6 14:26:39 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: syswrapper[30886]: mtk_rrm_scan radio done
+# syswrapper
+<13>Oct  6 14:26:38 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: syswrapper[4504]: Trigger rrm scan(2): sleep 4;iwpriv ra0 set ApScanChannel=active:1:120; sleep 1;
+# syswrapper
+<13>Oct  6 14:26:38 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[27413]: Trigger rrm scan(2): sleep 5;iwpriv ra0 set ApScanChannel=active:6:120; sleep 1;
+# syswrapper
+<13>Oct  6 14:26:36 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: syswrapper[30886]: Trigger rrm scan(3): sleep 2;iwpriv ra0 set ApScanChannel=active:6:120; sleep 1;
+# syswrapper
+<13>Oct  6 14:26:34 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: syswrapper[30886]: Trigger rrm scan(2): sleep 1;iwpriv ra0 set ApScanChannel=active:6:120; sleep 1;
+# syswrapper
+<13>Oct  6 14:26:33 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: syswrapper[4504]: Trigger rrm scan(1): sleep 4;iwpriv ra0 set ApScanChannel=active:1:120; sleep 1;
+# syswrapper
+<13>Oct  6 14:26:33 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[27413]: ra0 Issue rrm scan on ch6 due to channel in scan list
+# syswrapper
+<13>Oct  6 14:26:33 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[27413]: mtk_rrm_scan start radio ra0 channel 6
+# syswrapper
+<13>Oct  6 14:26:33 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[27413]: Trigger rrm scan(1): sleep 4;iwpriv ra0 set ApScanChannel=active:6:120; sleep 1;
+# syswrapper
+<13>Oct  6 14:26:32 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: syswrapper[4504]: ra0 Issue rrm scan on ch1 due to channel in scan list
+# syswrapper
+<13>Oct  6 14:26:32 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: syswrapper[4504]: mtk_rrm_scan start radio ra0 channel 1
+# syswrapper
+<13>Oct  6 14:26:30 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: syswrapper[30886]: Skip rrm scan check on ch1 due to the same channel
+# syswrapper
+<13>Oct  6 14:26:30 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: syswrapper[30886]: ra0 Issue rrm scan on ch6 due to channel in scan list
+# syswrapper
+<13>Oct  6 14:26:30 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: syswrapper[30886]: mtk_rrm_scan start radio ra0 channel 6
+# syswrapper
+<13>Oct  6 14:26:30 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: syswrapper[30886]: Trigger rrm scan(1): sleep 3;iwpriv ra0 set ApScanChannel=active:6:120; sleep 1;
+# syswrapper
+<13>Oct  6 13:26:50 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[18180]: mtk_rrm_scan radio done
+# syswrapper
+<13>Oct  6 13:26:50 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[18180]: Skip rrm scan check on ch1 due to the same channel
+# syswrapper
+<13>Oct  6 13:26:45 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: syswrapper[18180]: Trigger rrm scan(3): sleep 4;iwpriv ra0 set ApScanChannel=active:6:120; sleep 1;
+# syswrapper
+<13>Oct  6 13:26:44 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: syswrapper[28897]: mtk_rrm_scan radio done
+# syswrapper
+<13>Oct  6 13:26:41 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: syswrapper[28897]: Trigger rrm scan(3): sleep 2;iwpriv ra0 set ApScanChannel=active:1:120; sleep 1;
+# dbus-daemon
+<30>Oct  6 13:15:29 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.388624' (uid=0 pid=1271269 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 13:15:29 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 13:14:04 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.388568' (uid=0 pid=1267474 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 13:14:04 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 15:03:15 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 15:03:14 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.392463' (uid=0 pid=1534385 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 15:00:58 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.392436' (uid=0 pid=1530814 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 15:00:58 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 14:56:57 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 14:56:56 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.392349' (uid=0 pid=1522631 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 14:55:48 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.392331' (uid=0 pid=1520770 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 14:55:48 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 14:54:47 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.392317' (uid=0 pid=1518520 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 14:54:47 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 14:47:01 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.391972' (uid=0 pid=1497722 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 14:47:01 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 14:44:48 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.391942' (uid=0 pid=1493703 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 14:44:48 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 14:31:29 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.391453' (uid=0 pid=1461560 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 14:31:29 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 14:29:18 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.391411' (uid=0 pid=1457208 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 14:29:18 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 14:16:22 NW-HK NW-HK dbus-daemon[1782]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.390946' (uid=0 pid=1425435 comm="timedatectl show -p NTPSynchronized --value ")
+
+# dbus-daemon
+<30>Oct  6 14:16:22 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# dbus-daemon
+<30>Oct  6 14:15:32 NW-HK NW-HK dbus-daemon[1782]: [system] Successfully activated service 'org.freedesktop.timedate1'
+
+# mca-ctrl
+<11>Oct  6 13:15:51 NW-HK NW-HK mca-ctrl[1271920]: mca-proto.ctrl_response_wait(): recvfrom header: 2/No such file or directory
+
+# mca-ctrl
+<12>Oct  6 13:15:51 NW-HK NW-HK mca-ctrl[1271920]: mca-proto.service(): Got no response within 15.00 seconds
+
+# mca-ctrl
+<14>Oct  6 13:15:51 NW-HK NW-HK mca-ctrl[1271920]: mca-proto.service_json(): failed to contact mcad
+
+# mca-ctrl
+<11>Oct  6 13:15:51 NW-HK NW-HK mca-ctrl[1271920]: mca-monitor.mca_control_main(): service_json event fail, retry (35 sec left)
+
+# mca-ctrl
+<11>Oct  6 14:59:34 NW-HK NW-HK mca-ctrl[1527847]: mca-proto.ctrl_response_wait(): recvfrom header: 2/No such file or directory
+
+# mca-ctrl
+<12>Oct  6 14:59:34 NW-HK NW-HK mca-ctrl[1527847]: mca-proto.service(): Got no response within 15.00 seconds
+
+# mca-ctrl
+<14>Oct  6 14:59:34 NW-HK NW-HK mca-ctrl[1527847]: mca-proto.service_json(): failed to contact mcad
+
+# mca-ctrl
+<11>Oct  6 14:59:34 NW-HK NW-HK mca-ctrl[1527847]: mca-monitor.mca_control_main(): service_json event fail, retry (35 sec left)
+
+# mca-ctrl
+<11>Oct  6 14:55:09 NW-HK NW-HK mca-ctrl[1519100]: mca-proto.ctrl_response_wait(): recvfrom header: 2/No such file or directory
+
+# mca-ctrl
+<12>Oct  6 14:55:09 NW-HK NW-HK mca-ctrl[1519100]: mca-proto.service(): Got no response within 15.00 seconds
+
+# mca-ctrl
+<14>Oct  6 14:55:09 NW-HK NW-HK mca-ctrl[1519100]: mca-proto.service_json(): failed to contact mcad
+
+# mca-ctrl
+<11>Oct  6 14:55:09 NW-HK NW-HK mca-ctrl[1519100]: mca-monitor.mca_control_main(): service_json event fail, retry (35 sec left)
+
+# mca-ctrl
+<11>Oct  6 14:39:54 NW-HK NW-HK mca-ctrl[1481632]: mca-proto.ctrl_response_wait(): recvfrom header: 2/No such file or directory
+
+# mca-ctrl
+<12>Oct  6 14:39:54 NW-HK NW-HK mca-ctrl[1481632]: mca-proto.service(): Got no response within 15.00 seconds
+
+# mca-ctrl
+<14>Oct  6 14:39:54 NW-HK NW-HK mca-ctrl[1481632]: mca-proto.service_json(): failed to contact mcad
+
+# mca-ctrl
+<11>Oct  6 14:39:54 NW-HK NW-HK mca-ctrl[1481632]: mca-monitor.mca_control_main(): service_json event fail, retry (35 sec left)
+
+# mca-ctrl
+<11>Oct  6 13:35:28 NW-HK NW-HK mca-ctrl[1323790]: mca-proto.ctrl_response_wait(): recvfrom header: 2/No such file or directory
+
+# mca-ctrl
+<12>Oct  6 13:35:28 NW-HK NW-HK mca-ctrl[1323790]: mca-proto.service(): Got no response within 15.00 seconds
+
+# mca-ctrl
+<14>Oct  6 13:35:28 NW-HK NW-HK mca-ctrl[1323790]: mca-proto.service_json(): failed to contact mcad
+
+# mca-ctrl
+<11>Oct  6 13:35:28 NW-HK NW-HK mca-ctrl[1323790]: mca-monitor.mca_control_main(): service_json event fail, retry (35 sec left)
+
+# mca-ctrl
+<11>Oct  6 13:33:13 NW-HK NW-HK mca-ctrl[1317858]: mca-proto.ctrl_response_wait(): recvfrom header: 2/No such file or directory
+
+# mca-ctrl
+<12>Oct  6 13:33:13 NW-HK NW-HK mca-ctrl[1317858]: mca-proto.service(): Got no response within 15.00 seconds
+
+# mca-ctrl
+<14>Oct  6 13:33:13 NW-HK NW-HK mca-ctrl[1317858]: mca-proto.service_json(): failed to contact mcad
+
+# mca-ctrl
+<11>Oct  6 13:33:13 NW-HK NW-HK mca-ctrl[1317858]: mca-monitor.mca_control_main(): service_json event fail, retry (35 sec left)
+
+# sudo
+<85>Oct  6 13:13:51 NW-HK NW-HK sudo[1267246]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 15:03:51 NW-HK NW-HK sudo[1535680]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 14:59:08 NW-HK NW-HK sudo[1527132]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+
+# sudo
+<85>Oct  6 14:53:51 NW-HK NW-HK sudo[1517070]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 14:49:08 NW-HK NW-HK sudo[1502590]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+
+# sudo
+<85>Oct  6 14:43:51 NW-HK NW-HK sudo[1492069]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 14:39:08 NW-HK NW-HK sudo[1480199]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+
+# sudo
+<85>Oct  6 14:33:51 NW-HK NW-HK sudo[1466880]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 14:29:08 NW-HK NW-HK sudo[1457086]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+
+# sudo
+<85>Oct  6 14:23:51 NW-HK NW-HK sudo[1442444]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 14:19:08 NW-HK NW-HK sudo[1432684]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+
+# sudo
+<85>Oct  6 14:13:51 NW-HK NW-HK sudo[1419960]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 14:09:08 NW-HK NW-HK sudo[1407779]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+
+# sudo
+<85>Oct  6 14:03:51 NW-HK NW-HK sudo[1394759]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 13:59:08 NW-HK NW-HK sudo[1381225]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+
+# sudo
+<85>Oct  6 13:53:51 NW-HK NW-HK sudo[1370311]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 13:49:08 NW-HK NW-HK sudo[1358358]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+
+# sudo
+<85>Oct  6 13:43:51 NW-HK NW-HK sudo[1345877]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 13:39:08 NW-HK NW-HK sudo[1333505]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+
+# sudo
+<85>Oct  6 13:33:51 NW-HK NW-HK sudo[1319376]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 13:29:08 NW-HK NW-HK sudo[1307333]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+
+# sudo
+<85>Oct  6 13:23:51 NW-HK NW-HK sudo[1294138]: ucs-update : PWD=/data/unifi-identity-update ; USER=root ; COMMAND=/sbin/ubnt-tools id
+
+# sudo
+<85>Oct  6 13:19:08 NW-HK NW-HK sudo[1281007]: unifi-access : PWD=/data/unifi-access ; USER=root ; COMMAND=/usr/bin/du -sh /data/ai-feature-console /data/ai-feature-controller /data/dpi-tracer /data/ds /data/lost+found /data/ms /data/postgresql /data/ucs-agent /data/ucs-user-assets /data/udapi-config /data/ui-db /data/uid /data/ulp-go /data/unifi /data/unifi-access /data/unifi-connect /data/unifi-core /data/unifi-credential-server /data/unifi-directory /data/unifi-identity-update /data/unifi-protect /data/unifi-talk /data/unifi-user-assets /data/uos /data/wifiman
+
+# /sbin/wevent
+<29>Oct  6 14:38:32 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: /sbin/wevent[9469]: qos_control.sh: Failed command: tc class del dev ra0 parent 100:1 classid 100:803: error=RTNETLINK answers: No such file or directory
+# /sbin/wevent
+<29>Oct  6 14:38:32 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: /sbin/wevent[9469]: qos_control.sh: Failed command: tc class del dev eth0 parent 100:1 classid 100:803: error=RTNETLINK answers: No such file or directory
+# /sbin/wevent
+<29>Oct  6 14:13:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: /sbin/wevent[20932]: qos_control.sh: Failed command: tc class del dev rai1 parent 100:1 classid 100:280d: error=RTNETLINK answers: No such file or directory
+# /sbin/wevent
+<29>Oct  6 14:13:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: /sbin/wevent[20932]: qos_control.sh: Failed command: tc class del dev eth0 parent 100:1 classid 100:280d: error=RTNETLINK answers: No such file or directory
+# /sbin/wevent
+<29>Oct  6 14:09:09 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: /sbin/wevent[20932]: Interface doesn't accept private ioctl...
+# /sbin/wevent
+<29>Oct  6 14:09:09 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: /sbin/wevent[20932]: set (8BE2): Invalid argument
+# /sbin/wevent
+<29>Oct  6 13:48:35 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: /sbin/wevent[20401]: cat: can't open '/etc/persistent/cfg/blocked_sta': No such file or directory
+# /sbin/wevent
+<29>Oct  6 13:41:21 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: /sbin/wevent[9469]: qos_control.sh: Failed command: tc class del dev ra1 parent 100:1 classid 100:1002: error=RTNETLINK answers: No such file or directory
+# /sbin/wevent
+<29>Oct  6 13:41:21 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: /sbin/wevent[9469]: qos_control.sh: Failed command: tc class del dev eth0 parent 100:1 classid 100:1002: error=RTNETLINK answers: No such file or directory
+# /sbin/wevent
+<29>Oct  6 13:28:19 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: /sbin/wevent[9469]: qos_control.sh: Failed command: tc class del dev ra1 parent 100:1 classid 100:1001: error=RTNETLINK answers: No such file or directory
+# /sbin/wevent
+<29>Oct  6 13:28:19 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: /sbin/wevent[9469]: qos_control.sh: Failed command: tc class del dev eth0 parent 100:1 classid 100:1001: error=RTNETLINK answers: No such file or directory
+# /sbin/wevent
+<29>Oct  6 13:26:41 NWHKWAP-03 78455894e69f,U6-LR-6.7.57+15670: /sbin/wevent[20401]: cat: can't open '/etc/persistent/cfg/blocked_sta': No such file or directory
+# openvpn
+<27>Oct  6 14:09:55 NW-HK NW-HK openvpn[3586]: 85.217.149.17:53516 Connection reset, restarting [0]
+
+# openvpn
+<29>Oct  6 14:09:55 NW-HK NW-HK openvpn[3586]: 85.217.149.17:53516 SIGUSR1[soft,connection-reset] received, client-instance restarting
+
+# openvpn
+<29>Oct  6 14:09:25 NW-HK NW-HK openvpn[3586]: Outgoing Control Channel Authentication: Using 160 bit message hash 'SHA1' for HMAC authentication
+
+# openvpn
+<29>Oct  6 14:09:25 NW-HK NW-HK openvpn[3586]: Incoming Control Channel Authentication: Using 160 bit message hash 'SHA1' for HMAC authentication
+
+# openvpn
+<29>Oct  6 14:09:25 NW-HK NW-HK openvpn[3586]: TCP connection established with [AF_INET]85.217.149.17:53516
+
+# openvpn
+<29>Oct  6 13:35:18 NW-HK NW-HK openvpn[3586]: Outgoing Control Channel Authentication: Using 160 bit message hash 'SHA1' for HMAC authentication
+
+# openvpn
+<29>Oct  6 13:35:18 NW-HK NW-HK openvpn[3586]: Incoming Control Channel Authentication: Using 160 bit message hash 'SHA1' for HMAC authentication
+
+# openvpn
+<29>Oct  6 13:35:18 NW-HK NW-HK openvpn[3586]: TCP connection established with [AF_INET]198.235.24.220:65120
+
+# openvpn
+<29>Oct  6 13:35:18 NW-HK NW-HK openvpn[3586]: 198.235.24.220:65120 TLS: Initial packet from [AF_INET]198.235.24.220:65120, sid=37a52608 a21ba0b1
+
+# openvpn
+<27>Oct  6 13:35:18 NW-HK NW-HK openvpn[3586]: 198.235.24.220:65120 TLS Error: cannot locate HMAC in incoming packet from [AF_INET]198.235.24.220:65120
+
+# openvpn
+<27>Oct  6 13:35:18 NW-HK NW-HK openvpn[3586]: 198.235.24.220:65120 Fatal TLS error (check_tls_errors_co), restarting
+
+# openvpn
+<29>Oct  6 13:35:18 NW-HK NW-HK openvpn[3586]: 198.235.24.220:65120 SIGUSR1[soft,tls-error] received, client-instance restarting
+
+# qos_control.sh
+<11>Oct  6 14:38:32 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: qos_control.sh: Failed command: tc class del dev ra0 parent 100:1 classid 100:803: error=RTNETLINK answers: No such file or directory
+# qos_control.sh
+<11>Oct  6 14:38:32 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: qos_control.sh: Failed command: tc class del dev eth0 parent 100:1 classid 100:803: error=RTNETLINK answers: No such file or directory
+# qos_control.sh
+<11>Oct  6 14:13:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: qos_control.sh: Failed command: tc class del dev rai1 parent 100:1 classid 100:280d: error=RTNETLINK answers: No such file or directory
+# qos_control.sh
+<11>Oct  6 14:13:48 NWHKWAP-01 d021f91438b5,U6-Lite-6.7.57+15670: qos_control.sh: Failed command: tc class del dev eth0 parent 100:1 classid 100:280d: error=RTNETLINK answers: No such file or directory
+# qos_control.sh
+<11>Oct  6 13:41:21 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: qos_control.sh: Failed command: tc class del dev ra1 parent 100:1 classid 100:1002: error=RTNETLINK answers: No such file or directory
+# qos_control.sh
+<11>Oct  6 13:41:21 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: qos_control.sh: Failed command: tc class del dev eth0 parent 100:1 classid 100:1002: error=RTNETLINK answers: No such file or directory
+# qos_control.sh
+<11>Oct  6 13:28:19 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: qos_control.sh: Failed command: tc class del dev ra1 parent 100:1 classid 100:1001: error=RTNETLINK answers: No such file or directory
+# qos_control.sh
+<11>Oct  6 13:28:19 NWHKWAP-02 70a741b6cdeb,U6-Lite-6.7.57+15670: qos_control.sh: Failed command: tc class del dev eth0 parent 100:1 classid 100:1001: error=RTNETLINK answers: No such file or directory
+# ubnt-idsips-daemon
+<30>Oct  6 13:14:54 NW-HK NW-HK ubnt-idsips-daemon[2996]: 2026-10-06T13:14:54.572+0800	Info: Controller[UpgradeController] send upgrade status event: map[current_version:6 event_string:EVT_GW_UpgradeSuricata status:INSUFFICIENT_MEMORY target_version:8]
+
+# ubnt-idsips-daemon
+<30>Oct  6 14:23:15 NW-HK NW-HK ubnt-idsips-daemon[2996]: 2026-10-06T14:23:15.150+0800	Info: Service[UnixGrpcServer] received: AskUpdateRuleset event,
+
+# ubnt-idsips-daemon
+<30>Oct  6 14:23:15 NW-HK NW-HK ubnt-idsips-daemon[1427546]: 2026-10-06T14:23:15.151+0800	Info: Request ruleset response: {"is_ok":true}
+
+# ubnt-idsips-daemon
+<30>Oct  6 14:23:15 NW-HK NW-HK ubnt-idsips-daemon[1427546]: 2026-10-06T14:23:15.151+0800	Info: UpdateRuleset done, success
+
+# ubnt-idsips-daemon
+<30>Oct  6 14:14:54 NW-HK NW-HK ubnt-idsips-daemon[2996]: 2026-10-06T14:14:54.559+0800	Info: Controller[UpgradeController] send upgrade status event: map[current_version:6 event_string:EVT_GW_UpgradeSuricata status:INSUFFICIENT_MEMORY target_version:8]
+
+# ubnt-idsips-daemon
+<30>Oct  6 13:40:59 NW-HK NW-HK ubnt-idsips-daemon[2996]: 2026-10-06T13:40:59.534+0800	Info: Service[UnixGrpcServer] received: AskUpdateRuleset event,
+
+# ubnt-idsips-daemon
+<28>Oct  6 13:18:22 NW-HK NW-HK ubnt-idsips-daemon[2996]: 2026-10-06T13:18:22.174+0800	Warn: error handling event: add event version err: <nil>, add counterpart hostname err: no public ip found, add reference url err: <nil>, add out iface err: <nil>
+
+# utm_check_subscription
+<30>Oct  6 13:17:02 NW-HK NW-HK utm_check_subscription[1275594]: will trigger corednssc to check_status after 711 seconds
+
+# utm_check_subscription
+<30>Oct  6 14:17:03 NW-HK NW-HK utm_check_subscription[1428115]: will trigger corednssc to check_status after 742 seconds
+
+# idsips_check_subscription
+<30>Oct  6 13:17:01 NW-HK NW-HK idsips_check_subscription[1275026]: will trigger ubnt-idsips-daemon to update-ruleset after 1438 seconds
+
+# utm-content-filtering-services.sh
+<30>Oct  6 14:00:30 NW-HK NW-HK utm-content-filtering-services.sh[1386190]: add ipv6 address to lo
+

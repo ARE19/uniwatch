@@ -1,0 +1,17 @@
+# DNS forwarder for per-device website/app visibility.
+# Clients use this server (handed out by the gateway's DHCP); every query is logged with the client's
+# real IP and forwarded to the gateway, so the gateway's own filtering and local hostnames keep working.
+# Query logs go to stdout -> Docker's syslog driver -> the log receiver (127.0.0.1:5141).
+.:53 {
+    bind {$DNS_BIND}
+    acl {
+        allow net 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 127.0.0.0/8
+        block
+    }
+    forward . {$DNS_UPSTREAM} {
+        health_check 10s
+    }
+    cache 30
+    log . "{remote} {port} {proto} {type} {name} {rcode} {rsize} {duration}"
+    errors
+}

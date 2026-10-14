@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Clients · {{ app_name() }}{% endblock %}
+{% block content %}
+<h1>Clients</h1>
+{% if errors %}<ul class="error" role="alert">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+<section class="card">
+  <table>
+    <thead><tr><th>Name</th><th>Slug</th><th>Company</th><th>Time zone</th><th>Retention</th><th>Devices</th><th>Created</th></tr></thead>
+    <tbody>
+    {% for c, n in rows %}
+      <tr><td>{{ c.name }}</td><td><code>{{ c.slug }}</code></td>
+        <td><form method="post" action="/admin/clients/{{ c.id }}/company" class="inline-edit">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <select name="company_id" aria-label="Company of {{ c.name }}"><option value="">— none —</option>
+            {% for g in companies %}<option value="{{ g.id }}" {% if c.company_id == g.id %}selected{% endif %}>{{ g.name }}</option>{% endfor %}</select>
+          <input name="new_company" placeholder="or new company" aria-label="New company for {{ c.name }}" size="12">
+          <button type="submit" class="link">Save</button></form></td>
+        <td>{{ c.timezone }}</td><td>{{ c.retention_days }} days</td><td>{{ n }}</td><td>{{ c.created_at | ts(c.timezone) }}</td></tr>
+    {% else %}
+      <tr><td colspan="7" class="muted">No clients yet.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+<section class="card">
+  <h2>Companies</h2>
+  <p class="muted small">A company groups the sites of one customer. Pick it in the client picker to see all its sites together, and
+    set alert rules, notification channels and reports for the whole company.</p>
+  {% if companies %}<table class="dense"><thead><tr><th>Company</th><th class="num">Sites</th><th class="num">Own rules</th><th class="num">Own channels</th><th></th></tr></thead><tbody>
+    {% for g in companies %}<tr><td><strong>{{ g.name }}</strong></td><td class="num">{{ g.sites }}</td><td class="num">{{ g.rules }}</td><td class="num">{{ g.channels }}</td>
+      <td><form method="post" action="/admin/companies/{{ g.id }}/delete" data-confirm="Delete the company “{{ g.name }}”? Its sites stay; its {{ g.rules }} rule(s) and {{ g.channels }} channel(s) are deleted.">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit" class="link danger">Delete</button></form></td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="muted">No companies yet: type a company name next to a client above.</p>{% endif %}
+  {% if suggestions %}<p class="small">Sites that look like one company:
+    {% for k, names in suggestions %}<strong>{{ k }}</strong> ({{ names | join(", ") }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>{% endif %}
+</section>
+<section class="card narrow">
+  <h2>Add client</h2>
+  <form method="post" action="/admin/clients">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Name <input name="name" value="{{ form.name or '' }}" required></label>
+    <label>Slug (short id, lowercase) <input name="slug" value="{{ form.slug or '' }}" pattern="[a-z0-9][a-z0-9\-]{1,30}" required></label>
+    <label>Time zone
+      <select name="timezone">
+        {% set sel = form.timezone or default_tz() %}
+        {% for tz in timezones %}<option value="{{ tz }}" {% if tz == sel %}selected{% endif %}>{{ tz }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>Retention (days) <input name="retention_days" type="number" min="1" max="3650" value="{{ form.retention_days or 90 }}" required></label>
+    <button type="submit">Create client</button>
+  </form>
+</section>
+{% endblock %}

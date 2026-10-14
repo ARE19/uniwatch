@@ -1,0 +1,13 @@
+2026-10-06T17:38:33+08:00 CTS-KL ubios-udapi-server[2257]: wireguard: Server Wireguard Peer (#1) has got peer nADg+Okd7cePGblqH/16WTUilfLaSfu1yZclS7PdMjw= 192.168.2.200:54443 (via wgsrv1 192.168.1.99/32) (Grace Lee's Desktop) connected
+2026-10-06T17:37:58+08:00 CTS-KL ubios-udapi-server[2257]: wireguard: Server Wireguard Peer (#1) has got peer nADg+Okd7cePGblqH/16WTUilfLaSfu1yZclS7PdMjw= 192.168.2.200:54443 (via wgsrv1 192.168.1.99/32) (Grace Lee's Desktop) disconnected
+2026-10-06T17:38:33+08:00 CTS-KL ubios-udapi-server[2257]: signal-out-notifier: Sending to NET Signal-EVT_VPN-12370: EVT_VPN_ClientConnected nADg+Okd7cePGblqH/16WTUilfLaSfu1yZclS7PdMjw= 192.168.2.200:54443 (via wgsrv1 192.168.1.99/32) on /vpn/wireguard/servers/1
+2026-10-06T17:37:58+08:00 CTS-KL ubios-udapi-server[2257]: signal-out-notifier: Sending to NET Signal-EVT_VPN-12369: EVT_VPN_ClientDisconnected nADg+Okd7cePGblqH/16WTUilfLaSfu1yZclS7PdMjw= 192.168.2.200:54443 (via wgsrv1 192.168.1.99/32) on /vpn/wireguard/servers/1
+2026-10-06T03:29:56+08:00 CTS-KL charon[16838]: 05[IKE] IKE_SA 69203f787c640768c37d4411[1842] established between 11.133.111.195[11.133.111.195]...11.229.44.205[11.229.44.205]
+2026-10-06T00:00:10+08:00 CTS-KL charon[16838]: 16[IKE] initiating Main Mode IKE_SA 69bb618d931fd4a41c870dbe[1009] to 11.145.11.27
+2026-10-06T03:29:55+08:00 CTS-KL charon[16838]: 09[IKE] initiating Main Mode IKE_SA 69203f787c640768c37d4411[1842] to 11.229.44.205
+2026-10-06T03:29:55+08:00 CTS-KL charon[16838]: 09[IKE] reauthenticating IKE_SA 69203f787c640768c37d4411[1810]
+2026-10-06T01:13:18+08:00 CTS-KL charon[16838]: 11[IKE] closing CHILD_SA 69203f787c640768c37d4411{82} with SPIs cf2d9317_i (6098366662 bytes) cb807cfd_o (34466349 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-10-06T01:21:07+08:00 CTS-KL charon[16838]: 06[ENC] generating IKE_SA_INIT response 0 [ N(NO_PROP) ]
+2026-10-06T00:12:10+08:00 CTS-KL dnsmasq-dhcp[2393681]: DHCPACK(br0) 192.168.2.81 ac:8b:a9:06:8a:8e ctskl-cctv4---right-exit-door
+2026-10-06T00:00:01+08:00 CTS-KL sudo[2680670]:     root : PWD=/ssd1/.data/ulp-go ; USER=postgres ; COMMAND=/usr/bin/pg_dump -Fc -d ulp-go -f /data/ulp-go/tmp/backup/ulp.dump
+2026-10-06T17:20:47+08:00 CTS-KL ubios-udapi-server[2257]: process: Process' stime is unknown (not an error); failed to parse /proc/369756/stat: Short read

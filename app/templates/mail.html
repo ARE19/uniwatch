@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Mail (SMTP) · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head"><h1>Mail (SMTP)</h1></div>
+{% if errors %}<ul class="error" role="alert">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+{% if saved %}<p class="ok" role="status">Mail settings saved. They apply to the next alert or report e-mail.</p>{% endif %}
+{% if test_result %}<p class="{{ 'ok' if test_result == 'sent' else 'error' }}" role="status">Test e-mail to {{ test_to }}: {{ test_result }}</p>{% endif %}
+
+<section class="card narrow">
+  <h2>Mail server</h2>
+  <p class="muted small">Used for alert e-mails and scheduled report e-mails.
+    {% if source == "web" %}Settings saved here (by {{ row.updated_by or "?" }}, {{ row.updated_at | ts_short(scope_tz) }}).
+    {% elif source == "env" %}Currently taken from the server's <code>.env</code> file; saving here replaces them.
+    {% else %}<strong>No mail server is configured: e-mails are not sent.</strong>{% endif %}</p>
+  <form method="post" action="/admin/mail" autocomplete="off">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>SMTP server <input name="host" required value="{{ eff.smtp_host }}" placeholder="smtp.office365.com"></label>
+    <label>Port <input type="number" name="port" min="1" max="65535" value="{{ eff.smtp_port }}"></label>
+    <label><input type="checkbox" name="starttls" value="1" {% if eff.smtp_starttls %}checked{% endif %}> Encrypt with STARTTLS</label>
+    <label>Username <input name="username" value="{{ eff.smtp_user }}" placeholder="empty = no login (direct send / relay)"></label>
+    <label>Password <input type="password" name="password" value="" autocomplete="new-password"
+      placeholder="{{ 'set; leave empty to keep it' if has_password else 'not set' }}"></label>
+    {% if has_password %}<label><input type="checkbox" name="clear_password" value="1"> Remove the saved password</label>{% endif %}
+    <label>Alert subject prefix <input name="subject_prefix" maxlength="80" value="{{ row.subject_prefix if row and row.subject_prefix else eff.alert_subject_prefix }}"
+      placeholder="UniFi Alert"></label>
+    <p class="muted small">Subjects read "&lt;prefix&gt;: &lt;what happened&gt; at &lt;client&gt;", e.g. "Example MSP Network Alert: WAN2 down at CTS KL".</p>
+    <label>From <input name="from_addr" required value="{{ eff.smtp_from }}" placeholder="Uniwatch &lt;logserver@example.com&gt;"></label>
+    <button type="submit">Save</button>
+  </form>
+  <p class="muted small">Microsoft 365 direct send: server <code>&lt;tenant&gt;.mail.protection.outlook.com</code>, port 25,
+    STARTTLS, no username (the server's public IP must be allowed in Exchange). Authenticated send: <code>smtp.office365.com</code>,
+    port 587, STARTTLS, mailbox username and password. The password is stored encrypted and never shown.</p>
+</section>
+
+<section class="card narrow">
+  <h2>Send test e-mail</h2>
+  <form method="post" action="/admin/mail/test">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>To <input type="email" name="to" required value="{{ test_to or '' }}" placeholder="you@example.com"></label>
+    <button type="submit">Send test</button>
+  </form>
+  <p class="muted small">Uses the saved settings above. Save first if you changed anything.</p>
+</section>
+
+{% if source == "web" %}
+<section class="card narrow">
+  <h2>Use the .env settings again</h2>
+  <form method="post" action="/admin/mail/reset">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button type="submit" class="link">Forget the settings saved here</button>
+  </form>
+</section>
+{% endif %}
+{% endblock %}

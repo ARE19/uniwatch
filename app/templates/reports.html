@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Reports · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Reports <span class="muted">· {{ scope_label }}</span></h1>
+</div>
+
+<section class="card">
+  <h2>Generated reports</h2>
+  <table class="dense">
+    <thead><tr><th>Client</th><th>Report</th><th>Period</th><th>Status</th><th>Headline</th><th>Requested</th><th>Download</th>{% if staff %}<th></th>{% endif %}</tr></thead>
+    <tbody>
+    {% for r in runs %}
+      <tr>
+        <td>{{ r.client }}</td>
+        <td>{{ names.get(r.report_type, r.report_type) }}</td>
+        <td class="nowrap">{{ r.period_start | ts_short(r.timezone) }} – {{ r.period_end | ts_short(r.timezone) }}</td>
+        <td>{% if r.status == "done" %}<span class="status-ok">● done</span>{% elif r.status == "failed" %}<span class="status-silent" title="{{ r.error }}">▲ failed</span>{% else %}<span class="muted">{{ r.status }}…</span>{% endif %}
+          {% if r.email_status %}<br><small class="muted">e-mail: {{ r.email_status }}</small>{% endif %}</td>
+        <td class="small">
+          {% if r.summary.get("device_availability_min") is not none %}Lowest device availability {{ r.summary.device_availability_min }} %<br>{% endif %}
+          {% if r.summary.get("vpn_availability_min") is not none %}Lowest VPN availability {{ r.summary.vpn_availability_min }} % · {{ r.summary.vpn_drops }} drops<br>{% endif %}
+          {% if r.summary.get("vpn_sessions") is not none %}{{ r.summary.vpn_sessions }} VPN sessions<br>{% endif %}
+          {% if r.summary.get("internet_download_gb") is not none %}Internet ↓ {{ r.summary.internet_download_gb }} GB · ↑ {{ r.summary.internet_upload_gb }} GB{% endif %}
+        </td>
+        <td class="nowrap">{{ r.created_at | ts_short(r.timezone) }}<br><small class="muted">{{ r.requested_by }}</small></td>
+        <td>{% if r.status == "done" %}<a href="/reports/{{ r.id }}/pdf">PDF</a> · <a href="/reports/{{ r.id }}/xlsx">Excel</a>{% endif %}</td>
+        {% if staff %}<td>{% if r.status != "running" %}
+          <form method="post" action="/reports/{{ r.id }}/delete" class="inline-form"
+                data-confirm="Delete this report ({{ names.get(r.report_type, r.report_type) }}, {{ r.client }})? The PDF and Excel files are removed.">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link danger" type="submit">Delete</button></form>
+        {% endif %}</td>{% endif %}
+      </tr>
+    {% else %}
+      <tr><td colspan="8" class="muted">No reports yet.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p class="muted small">Queued reports are generated within about 15 seconds; reload to see them.</p>
+</section>
+
+<div class="grid">
+  <section class="card">
+    <h2>Generate a report</h2>
+    <form method="post" action="/reports">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label>Client
+        <select name="client_id" required>{% for g in scope_companies %}<option value="g{{ g.id }}" {% if scope_company and scope_company.id == g.id %}selected{% endif %}>{{ g.name }} (company: one report per site)</option>{% endfor %}{% for c in scope_clients %}<option value="{{ c.id }}" {% if scope_selected and scope_selected.id == c.id %}selected{% endif %}>{{ c.name }}</option>{% endfor %}</select>
+      </label>
+      <label>Report
+        <select name="report_type">{% for k, v in types.items() %}<option value="{{ k }}">{{ v }}</option>{% endfor %}</select>
+      </label>
+      <fieldset class="date-range"><legend>Period (client's local time, both days included)</legend>
+        <div class="presets">{% for label, (a, b) in presets.items() %}<button type="button" class="link" data-range-from="{{ a }}" data-range-to="{{ b }}">{{ label }}</button>{% endfor %}</div>
+        <label>From <input type="date" name="date_from" value="{{ default_from }}" max="{{ today }}" required></label>
+        <label>To <input type="date" name="date_to" value="{{ default_to }}" max="{{ today }}" required></label>
+      </fieldset>
+      {% if staff %}<label>E-mail to (optional, comma-separated) <input name="recipients" placeholder="it@client.com"></label>
+      {% if not smtp %}<p class="notice small">E-mail is not configured yet (Admin → Mail); reports are still generated for download.</p>{% endif %}{% endif %}
+      <button type="submit">Generate</button>
+    </form>
+  </section>
+
+  {% if staff %}
+  <section class="card">
+    <h2>Monthly schedules</h2>
+    <p class="muted small">On the chosen day and hour (client's local time), last month's report is generated and e-mailed.</p>
+    <table class="dense">
+      <thead><tr><th>Client</th><th>Report</th><th>When</th><th>Recipients</th><th></th></tr></thead>
+      <tbody>
+      {% for s in schedules %}
+        <tr><td>{{ s.client }}</td><td>{{ names.get(s.report_type, s.report_type) }}</td>
+          <td>day {{ s.day_of_month }}, {{ "%02d" | format(s.hour_local) }}:00</td><td class="small">{{ s.recipients | join(", ") or "—" }}</td>
+          <td><form method="post" action="/reports/schedules/{{ s.id }}/delete" class="inline-form"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link" type="submit">Delete</button></form></td></tr>
+      {% else %}<tr><td colspan="5" class="muted">No schedules.</td></tr>{% endfor %}
+      </tbody>
+    </table>
+    <form method="post" action="/reports/schedules">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label>Client <select name="client_id">{% for c in scope_clients %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}</select></label>
+      <label>Report <select name="report_type">{% for k, v in types.items() %}<option value="{{ k }}">{{ v }}</option>{% endfor %}</select></label>
+      <label>Day of month <input type="number" name="day_of_month" min="1" max="28" value="1"></label>
+      <label>Hour (local) <input type="number" name="hour_local" min="0" max="23" value="6"></label>
+      <label>Recipients <input name="recipients" placeholder="it@client.com, noc@msp.example"></label>
+      <button type="submit">Save schedule</button>
+    </form>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

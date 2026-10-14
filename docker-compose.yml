@@ -1,0 +1,217 @@
+# Uniwatch — Docker Compose
+# Phase 1: db, migrate (one-shot), web, caddy, tests (profile "test").
+# Later phases add receiver, parser, poller, reporter (all built from the same image).
+
+name: uniwatch
+
+x-app: &app
+  build: .
+  image: uniwatch-app:${APP_VERSION:-dev}
+  env_file: .env
+  restart: unless-stopped
+  logging:
+    driver: json-file
+    options: { max-size: "20m", max-file: "5" }
+
+services:
+  db:
+    image: timescale/timescaledb:2.30.2-pg16
+    container_name: uniwatch-db
+    restart: unless-stopped
+    shm_size: 1g
+    environment:
+      POSTGRES_USER: ${POSTGRES_SUPERUSER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_SUPERUSER_PASSWORD:?set in .env}
+      POSTGRES_DB: ${DB_NAME:-uniwatch}
+      DB_NAME: ${DB_NAME:-uniwatch}
+      DB_OWNER_USER: ${DB_OWNER_USER:-uniwatch_owner}
+      DB_OWNER_PASSWORD: ${DB_OWNER_PASSWORD:?set in .env}
+      DB_APP_USER: ${DB_APP_USER:-uniwatch_app}
+      DB_APP_PASSWORD: ${DB_APP_PASSWORD:?set in .env}
+      DB_WEB_USER: ${DB_WEB_USER:-uniwatch_web}
+      DB_WEB_PASSWORD: ${DB_WEB_PASSWORD:?set in .env (scripts/upgrade-roles.sh adds it)}
+      TIMESCALEDB_TELEMETRY: "off"
+      # timescaledb-tune runs once at initdb; cap it so Postgres leaves room for the OS cache
+      TS_TUNE_MEMORY: ${DB_TUNE_MEMORY:-8GB}
+      TS_TUNE_NUM_CPUS: ${DB_TUNE_CPUS:-4}
+      TZ: UTC
+      PGTZ: UTC
+    volumes:
+      - ./volumes/pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    ports:
+      # Loopback only, for the host-networked receiver. Not reachable from the LAN.
+      - "127.0.0.1:5432:5432"
+
+  migrate:
+    <<: *app
+    container_name: uniwatch-migrate
+    restart: "no"
+    command: ["sh", "-c", "alembic upgrade head && python -m app.cli bootstrap-admin"]
+    depends_on:
+      db: { condition: service_healthy }
+
+  receiver:
+    <<: *app
+    container_name: uniwatch-receiver
+    command: ["python", "-m", "app.receiver"]
+    # Host networking: the real sender IP reaches the app unmodified, and the host firewall (ufw)
+    # governs who may send. Independent of web, so UI restarts never drop logs.
+    network_mode: host
+    environment:
+      DB_HOST: 127.0.0.1
+    volumes:
+      - ./volumes/netflow-capture:/srv/netflow-capture
+    stop_grace_period: 30s
+    depends_on:
+      db: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os,sys,time; sys.exit(0 if time.time()-os.path.getmtime('/tmp/receiver-heartbeat')<30 else 1)"]
+      interval: 15s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+
+  backup:
+    # Nightly pg_dump into BACKUP_DIR (default ./volumes/backups; on this server /backup/uniwatch, a separate
+    # virtual disk on another RAID volume), kept 14 days; results are written to the audit log.
+    # On demand: docker compose exec backup sh /backup.sh now
+    image: timescale/timescaledb:2.30.2-pg16
+    container_name: uniwatch-backup
+    restart: unless-stopped
+    entrypoint: ["sh", "/backup.sh"]
+    environment:
+      POSTGRES_USER: ${POSTGRES_SUPERUSER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_SUPERUSER_PASSWORD:?set in .env}
+      DB_NAME: ${DB_NAME:-uniwatch}
+      BACKUP_AT_UTC: ${BACKUP_AT_UTC:-18:30}
+      BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-14}
+    volumes:
+      - ./db/backup.sh:/backup.sh:ro
+      - ${BACKUP_DIR:-./volumes/backups}:/backups
+    depends_on:
+      db: { condition: service_healthy }
+
+  dns:
+    image: coredns/coredns:1.14.7
+    container_name: uniwatch-dns
+    # Optional: website/app visibility via DHCP DNS. Not needed where the UniFi traffic-flow API is collected.
+    # Start with: docker compose --profile dns up -d dns
+    profiles: ["dns"]
+    restart: unless-stopped
+    # Host network: the query log sees each client's real IP. Binds only the LAN address (see DNS_BIND).
+    network_mode: host
+    command: ["-conf", "/etc/coredns/Corefile"]
+    environment:
+      DNS_BIND: ${DNS_BIND:-192.168.1.50}
+      DNS_UPSTREAM: ${DNS_UPSTREAM:-192.168.1.1}
+    volumes:
+      - ./dns/Corefile:/etc/coredns/Corefile:ro
+    logging:
+      # Every query line is shipped to our own receiver as syslog (source 127.0.0.1 = the "DNS forwarder" device).
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:5141"
+        syslog-format: rfc5424micro   # ISO timestamp with zone (host clock is UTC)
+        tag: coredns
+
+  parser:
+    <<: *app
+    container_name: uniwatch-parser
+    command: ["python", "-m", "app.parserd"]
+    environment:
+      GEOIP_DIR: /srv/geoip
+    volumes:
+      - ./volumes/geoip:/srv/geoip
+      - ./import:/srv/import:ro       # log files copied from devices, for `import-files`
+    depends_on:
+      db: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os,sys,time; sys.exit(0 if time.time()-os.path.getmtime('/tmp/parser-heartbeat')<60 else 1)"]
+      interval: 20s
+      timeout: 5s
+      start_period: 120s
+      retries: 3
+
+  poller:
+    <<: *app
+    container_name: uniwatch-poller
+    command: ["python", "-m", "app.poller"]
+    volumes:
+      # local copies of the UniFi consoles' backup files (encrypted), on the backup disk
+      - ${BACKUP_DIR:-./volumes/backups}/firewall:/srv/fw-backups
+    depends_on:
+      db: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+
+  reporter:
+    <<: *app
+    container_name: uniwatch-reporter
+    command: ["python", "-m", "app.reporter"]
+    volumes:
+      - ./volumes/reports:/srv/reports
+      - ./volumes/packs:/srv/packs:ro
+    depends_on:
+      db: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+
+  web:
+    <<: *app
+    container_name: uniwatch-web
+    environment:
+      GEOIP_DIR: /srv/geoip
+      DB_APP_PASSWORD: "unused-in-web"      # the UI connects only as DB_WEB_USER (least privilege)
+    volumes:
+      - ./volumes/geoip:/srv/geoip:ro
+      - ${BACKUP_DIR:-./volumes/backups}/firewall:/srv/fw-backups:ro
+      - ./volumes/reports:/srv/reports:ro
+      - ./volumes/packs:/srv/packs               # report packs uploaded on Admin -> Report packs
+    command: ["uvicorn", "app.web.main:app", "--host", "0.0.0.0", "--port", "8000",
+              "--proxy-headers", "--forwarded-allow-ips", "*", "--workers", "2"]
+    depends_on:
+      db: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/healthz',timeout=3).status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    # Not published: Caddy is the only way in.
+
+  caddy:
+    image: caddy:2.11.7-alpine
+    container_name: uniwatch-caddy
+    restart: unless-stopped
+    environment:
+      SITE_ADDRESSES: ${SITE_ADDRESSES:-https://localhost}
+      DEFAULT_SNI: ${DEFAULT_SNI:-localhost}
+    ports:
+      # Default binds to loopback only. Changing CADDY_BIND to the LAN IP exposes the UI —
+      # do that only with approval (brief ground rule).
+      - "${CADDY_BIND:-127.0.0.1}:443:443"
+      - "${CADDY_BIND:-127.0.0.1}:80:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./volumes/caddy-data:/data
+      - ./volumes/caddy-config:/config
+    depends_on:
+      web: { condition: service_healthy }
+
+  tests:
+    <<: *app
+    container_name: uniwatch-tests
+    restart: "no"
+    profiles: ["test"]
+    environment:
+      DB_NAME: ${DB_NAME:-uniwatch}_test
+      REPORTS_DIR: /tmp/reports
+    command: ["pytest", "-q"]
+    depends_on:
+      db: { condition: service_healthy }

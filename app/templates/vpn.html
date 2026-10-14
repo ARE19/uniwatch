@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% block title %}VPN monitor · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>VPN monitor <span class="muted">· {{ scope_label }}</span></h1>
+  <nav class="segmented" aria-label="Time range">
+    {% for r in ranges %}<a href="/vpn?range={{ r }}&amp;kind={{ kind }}{% if vpn_user %}&amp;user={{ vpn_user | urlencode }}{% endif %}" {% if r == range %}aria-current="true"{% endif %}>{{ r }}</a>{% endfor %}
+  </nav>
+</div>
+
+{% set staff = user.role.name in ("admin", "engineer") %}
+<section class="card">
+  <div class="card-head">
+    <h2>Tunnels</h2>
+    <nav class="segmented" aria-label="Tunnel kind">
+      {% for k, lbl in kinds.items() %}<a href="/vpn?range={{ range }}&amp;kind={{ k }}" {% if k == kind %}aria-current="true"{% endif %}>{{ lbl }}</a>{% endfor %}
+    </nav>
+  </div>
+  {% if tunnels %}
+  <table class="dense">
+    <thead><tr><th>Device</th><th>Tunnel</th><th>Peer</th><th>State</th><th>Since</th><th>Availability</th><th>Drops</th><th>Downtime</th><th>Longest drop</th></tr></thead>
+    <tbody>
+    {% for t in tunnels %}
+      <tr>
+        <td>{{ t.device }}{% if not scope_selected %} <span class="muted">({{ t.client }})</span>{% endif %}</td>
+        <td><strong>{{ t.label }}</strong>{% if t.label != t.tunnel_name %}<br><code class="muted small">{{ t.tunnel_name }}</code>{% endif %}
+          {% if staff %}<details class="menu tunnel-rename"><summary class="small">rename</summary>
+            <form method="post" action="/vpn/tunnels/name" class="menu-body">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+              <input type="hidden" name="device_id" value="{{ t.device_id }}">
+              <input type="hidden" name="tunnel_name" value="{{ t.tunnel_name }}">
+              <label>Name <input name="display_name" value="{{ t.label if t.renamed else '' }}" maxlength="100"
+                     placeholder="e.g. the IPsec name on the firewall"></label>
+              <button type="submit">Save</button> <span class="muted small">Empty = default name</span>
+            </form></details>{% endif %}</td>
+        <td>{% if t.peer %}{% set pip = t.peer.split(":")[0] %}<a href="/ip/{{ pip }}">{{ t.peer }}</a>{% endif %}</td>
+        <td><span class="state state-{{ t.state }}">{{ {"up": "▲ up", "down": "▼ down", "unknown": "? unknown"}.get(t.state, t.state) }}</span></td>
+        <td class="nowrap">{{ t.since | ts_short(scope_tz) if t.since else "" }}</td>
+        <td><strong>{{ "%.2f %%" | format(t.availability * 100) if t.availability is not none else "–" }}</strong></td>
+        <td>{{ t.downs }}</td>
+        <td>{{ t.downtime }}{% if t.unknown %} <span class="muted">(+{{ t.unknown }} no data)</span>{% endif %}</td>
+        <td>{{ t.longest_down }}</td>
+      </tr>
+      <tr class="strip-row"><td colspan="9">
+        <div class="strip" role="img" aria-label="Availability over time for {{ t.label }}">
+          {% for b, frac, downs in t.strip %}<span class="cell cell-{{ strip_class(frac) }}"
+            title="{{ b | ts_short(scope_tz) }}: {{ ('%.1f %% up' | format(frac * 100)) if frac is not none else 'no data' }}{% if downs %}, {{ downs }} drop(s){% endif %}"></span>{% endfor %}
+        </div>
+      </td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p class="legend muted small">Each cell = {{ human(step) }}.
+    {% for floor, cls, label in strip_legend %}<span class="cell cell-{{ cls }}" aria-hidden="true"></span> {{ label }} &nbsp;{% endfor %}
+    <span class="cell cell-unknown" aria-hidden="true"></span> no data</p>
+  <details><summary>View as table</summary>
+    <table class="dense">
+      <thead><tr><th>Tunnel</th><th>Interval start</th><th>Up %</th><th>Drops</th></tr></thead>
+      <tbody>{% for t in tunnels %}{% for b, frac, downs in t.strip %}{% if frac is not none %}
+        <tr><td>{{ t.label }}</td><td>{{ b | ts_short(scope_tz) }}</td><td>{{ "%.1f" | format(frac * 100) }}</td><td>{{ downs }}</td></tr>
+      {% endif %}{% endfor %}{% endfor %}</tbody>
+    </table>
+  </details>
+  {% else %}
+  <p class="muted">No {{ "IPsec tunnel" if kind == "ipsec" else "site-to-site tunnel or VPN-client" }} changes recorded in this period.
+    {% if kind == "ipsec" %}<a href="/vpn?range={{ range }}&amp;kind=all">Show all interfaces</a>{% endif %}</p>
+  <p class="muted small">A tunnel appears here after its first up/down event in the firewall's logs; firewalls the server can
+    poll through the UniFi API (e.g. NW-HK) also report their IPsec state directly. Users of the firewall's own VPN server
+    (WireGuard/OpenVPN remote access) are listed under <em>Remote-access sessions</em>.</p>
+  {% endif %}
+</section>
+
+<div class="grid">
+  <section class="card">
+    <h2>Longest drops</h2>
+    <table class="dense"><thead><tr><th>Device</th><th>Tunnel</th><th>From</th><th>To</th><th>Duration</th></tr></thead><tbody>
+      {% for d in downtimes %}<tr><td>{{ d.device }}</td><td>{{ d.label }}</td><td class="nowrap">{{ d.started_at | ts_short(scope_tz) }}</td>
+        <td class="nowrap">{{ d.ended_at | ts_short(scope_tz) if d.ended_at else "ongoing" }}</td><td>{{ human(d.dur.total_seconds()) }}</td></tr>
+      {% else %}<tr><td colspan="5" class="muted">No drops.</td></tr>{% endfor %}
+    </tbody></table>
+  </section>
+  <section class="card">
+    <h2>Failed VPN connection attempts <span class="muted">by source</span></h2>
+    <table class="dense"><thead><tr><th>Source</th><th>Country</th><th>Network</th><th>Attempts</th><th>Last</th></tr></thead><tbody>
+      {% for f in failed_logins %}<tr><td><a href="/ip/{{ f.ip }}">{{ f.ip }}</a></td><td>{{ f.src_country or "" }}</td><td>{{ f.org or "" }}</td>
+        <td>{{ f.n }}</td><td class="nowrap">{{ f.last | ts_short(scope_tz) }}</td></tr>
+      {% else %}<tr><td colspan="5" class="muted">None.</td></tr>{% endfor %}
+    </tbody></table>
+  </section>
+  <section class="card wide" id="users">
+    <h2>Remote-access users <span class="muted">{{ range }} · click a name for that user's sessions</span></h2>
+    {% if users %}
+    <table class="dense"><thead><tr><th>User</th><th class="num">Sessions</th><th>Connected now</th><th class="num">Total time</th>
+      <th class="num">Data ↓ / ↑</th><th class="num">Source IPs</th><th>Last activity</th><th>Firewall</th></tr></thead><tbody>
+      {% for u in users %}<tr{% if u.user_name == vpn_user %} class="selected"{% endif %}>
+        <td><a href="/vpn?range={{ range }}&amp;kind={{ kind }}&amp;user={{ u.user_name | urlencode }}#sessions"
+               {% if u.user_name | person != u.user_name %}title="VPN client: {{ u.user_name }}"{% endif %}>{{ u.user_name | person }}</a>
+            <a class="drill" href="/vpn/user?name={{ u.user_name | urlencode }}" title="Everything about this user">profile →</a></td>
+        <td class="num">{{ u.sessions }}</td>
+        <td>{% if u.open %}<span class="state state-up">● {{ u.open }} open</span>{% endif %}</td>
+        <td class="num">{{ human(u.total.total_seconds()) if u.total else "" }}</td>
+        <td class="num nowrap">{% if u.bytes_in or u.bytes_out %}{{ u.bytes_in | bsize }} / {{ u.bytes_out | bsize }}{% endif %}</td>
+        <td class="num">{{ u.sources }}</td>
+        <td class="nowrap">{{ u.last | ts_short(scope_tz) if u.last else "" }}</td>
+        <td>{{ u.devices }}</td></tr>
+      {% endfor %}
+    </tbody></table>
+    {% else %}<p class="muted">No remote-access VPN users in this period.</p>{% endif %}
+  </section>
+  <section class="card wide" id="sessions">
+    <h2>{% if vpn_user %}Sessions of {{ vpn_user | person }} <span class="muted">{{ range }} ·
+        <a href="/vpn?range={{ range }}&amp;kind={{ kind }}#users">← all users</a></span>
+      {% else %}Remote-access sessions <span class="muted">most recent first</span>{% endif %}</h2>
+    {% if sessions %}
+    <table class="dense"><thead><tr><th>User</th><th>From</th><th>VPN address</th><th>Device</th><th>Start</th><th>End</th><th>Duration</th>
+      <th class="num">Data ↓ / ↑</th><th>Status</th></tr></thead><tbody>
+      {% for s in sessions %}<tr><td{% if s.user_name and s.user_name | person != s.user_name %} title="VPN client: {{ s.user_name }}"{% endif %}>
+          {% if s.user_name and not vpn_user %}<a href="/vpn?range={{ range }}&amp;kind={{ kind }}&amp;user={{ s.user_name | urlencode }}#sessions">{{ s.user_name | person }}</a>{% else %}{{ s.user_name | person }}{% endif %}</td>
+        <td>{% if s.source_ip %}<a href="/ip/{{ s.source_ip }}">{{ s.source_ip }}</a>{% endif %}</td><td>{{ s.assigned_ip or "" }}</td><td>{{ s.device }}</td>
+        <td class="nowrap">{{ s.started_at | ts_short(scope_tz) if s.started_at else "not logged" }}</td>
+        <td class="nowrap">{{ s.ended_at | ts_short(scope_tz) if s.ended_at else "" }}</td>
+        <td>{{ human(s.dur.total_seconds()) if s.dur else "" }}</td>
+        <td class="num nowrap">{% if s.bytes_in or s.bytes_out %}{{ s.bytes_in | bsize }} / {{ s.bytes_out | bsize }}{% endif %}</td>
+        <td>{{ s.status }}{% if s.close_reason and s.close_reason != "disconnect" %} <span class="muted">({{ s.close_reason }})</span>{% endif %}</td></tr>
+      {% endfor %}
+    </tbody></table>
+    {% else %}
+    <p class="muted">{% if vpn_user %}No sessions for this user in this period.{% else %}No remote-access VPN logins in this period.{% endif %}</p>
+    {% endif %}
+  </section>
+  {% if traffic is not none %}
+  <section class="card wide" id="traffic">
+    <h2>Traffic of {{ vpn_user | person }} <span class="muted">{{ range }} · from the VPN address{{ "es" if traffic.ips | length > 1 }}
+      {{ traffic.ips | join(", ") }} while connected</span></h2>
+    {% if traffic.live %}
+    <p class="live-now"><span class="state state-up">● connected now</span> as <code>{{ traffic.live.ip }}</code>
+      since {{ traffic.live.started_at | ts_short(scope_tz) if traffic.live.started_at else "?" }}
+      {% if traffic.live.source_ip %}from <a href="/ip/{{ traffic.live.source_ip }}">{{ traffic.live.source_ip }}</a>{% endif %}
+      {% if user.role.name != "client_readonly" %}· <a href="/logs?range=1h&amp;q=ip%3D{{ traffic.live.ip }}">live in Log View →</a>{% endif %}</p>
+    {% endif %}
+    {% if traffic.flows %}
+    <div class="grid-2">
+      <div>
+        <h3>Top destinations</h3>
+        <table class="dense"><thead><tr><th>Destination</th><th>Port</th><th class="num">Flows</th><th class="num">Data</th><th>Last</th></tr></thead><tbody>
+        {% for t in traffic.top %}<tr>
+          <td>{{ t.dest }}{% if t.app %} <span class="muted small">{{ t.app }}</span>{% endif %}
+            {% if t.dest != t.ip %}<br><span class="muted small">{{ t.ip }}{% if t.country %} · {{ t.country }}{% endif %}</span>
+            {% elif t.country %} <span class="muted small">{{ t.country }}</span>{% endif %}
+            {% if t.blocked %} <span class="outcome-blocked small">{{ t.blocked }} blocked</span>{% endif %}</td>
+          <td class="small">{{ t.ports or "" }}</td><td class="num">{{ t.flows }}</td><td class="num nowrap">{{ t.bytes | bsize if t.bytes else "" }}</td>
+          <td class="nowrap">{{ t.last | ts_short(scope_tz) }}</td></tr>
+        {% else %}<tr><td colspan="5" class="muted">No outgoing connections.</td></tr>{% endfor %}
+        </tbody></table>
+      </div>
+      <div>
+        <h3>Recent flows <span class="muted small">newest first{% if traffic.flows | length == 200 %} · last 200{% endif %}</span></h3>
+        <table class="dense"><thead><tr><th>Time</th><th>Source</th><th>Destination</th><th>Action</th><th class="num">Data</th></tr></thead><tbody>
+        {% for f in traffic.flows %}<tr>
+          <td class="nowrap">{% if user.role.name != "client_readonly" %}<a href="/logs/event/{{ f.id }}">{{ f.ts | ts_short(scope_tz) }}</a>{% else %}{{ f.ts | ts_short(scope_tz) }}{% endif %}</td>
+          <td class="nowrap"><code>{{ f.src }}{% if f.src_port %}:{{ f.src_port }}{% endif %}</code></td>
+          <td>{% if f.dst_name %}{{ f.dst_name }} {% endif %}<code class="{{ 'muted' if f.dst_name }}">{{ f.dst }}{% if f.dst_port %}:{{ f.dst_port }}{% endif %}</code>
+            {% if f.protocol %}<span class="muted small">{{ f.protocol }}</span>{% endif %}{% if f.dst_country %} <span class="muted small">{{ f.dst_country }}</span>{% endif %}
+            {% if f.app %}<br><span class="muted small">{{ f.app }}</span>{% endif %}</td>
+          <td class="{{ 'outcome-blocked' if f.category == 'firewall' or 'block' in (f.action or '') }}">{{ f.action or f.category }}</td>
+          <td class="num nowrap">{{ f.bytes | bsize if f.bytes else "" }}</td></tr>
+        {% endfor %}
+        </tbody></table>
+      </div>
+    </div>
+    {% else %}
+    <p class="muted">No traffic records for this user's VPN address{{ "es" if traffic.ips | length > 1 }} in this period.
+      Per-user traffic needs flow data from the gateway that covers the VPN network: the UniFi traffic-flow API
+      (gateways polled locally) or NetFlow with the VPN network included in the monitored networks.</p>
+    {% endif %}
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

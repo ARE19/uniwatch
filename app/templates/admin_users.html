@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Users · {{ app_name() }}{% endblock %}
+{% block content %}
+<h1>Users</h1>
+{% if errors %}<ul class="error" role="alert">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+
+<section class="card">
+  <table>
+    <thead><tr><th>Username</th><th>Name</th><th>Role</th><th>MFA</th><th>Status</th><th>Last sign-in</th><th></th></tr></thead>
+    <tbody>
+    {% for u in users %}
+      <tr>
+        <td>{{ u.username }}</td>
+        <td>{{ u.display_name }}</td>
+        <td>{{ u.role.name }}</td>
+        <td>{{ "enrolled" if u.totp_enabled else "pending" }}</td>
+        <td>{{ "active" if u.is_active else "disabled" }}{% if u.must_change_password %} · must change password{% endif %}</td>
+        <td>{{ u.last_login_at | ts }}</td>
+        <td class="actions">
+          {% if u.id != user.id %}
+          <form method="post" action="/admin/users/{{ u.id }}/active">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <button type="submit" class="link">{{ "Disable" if u.is_active else "Enable" }}</button>
+          </form>
+          {% endif %}
+          <form method="post" action="/admin/users/{{ u.id }}/reset-mfa" data-confirm="Reset two-factor for {{ u.username }}? They will enrol again at next sign-in.">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <button type="submit" class="link">Reset MFA</button>
+          </form>
+          {% if u.id != user.id %}
+          <form method="post" action="/admin/users/{{ u.id }}/delete" data-confirm="Delete the account {{ u.username }}? This cannot be undone (the audit log keeps its history).">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <button type="submit" class="link danger">Delete</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="card narrow">
+  <h2>Add user</h2>
+  <p class="muted">The user signs in with this temporary password, enrols two-factor, then must set their own password.</p>
+  <form method="post" action="/admin/users">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Username <input name="username" required pattern="[A-Za-z0-9._@\-]{2,64}"></label>
+    <label>Display name <input name="display_name"></label>
+    <label>Role
+      <select name="role_id" required>
+        {% for r in roles %}<option value="{{ r.id }}">{{ r.name }} — {{ r.description }}</option>{% endfor %}
+      </select>
+    </label>
+    {% if clients %}
+    <fieldset><legend>Clients (required for client_readonly)</legend>
+      {% for c in clients %}<label class="inline"><input type="checkbox" name="client_ids" value="{{ c.id }}"> {{ c.name }}</label>{% endfor %}
+    </fieldset>
+    {% endif %}
+    <label>Temporary password (12+ characters) <input name="password" type="password" minlength="12" autocomplete="new-password" required></label>
+    <button type="submit">Create user</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,2 @@
+{%- set cols = lq.columns(raw) -%}
+<tr>{% for c in cols %}<th class="col-{{ c }}{% if c in ('num', 'sent', 'rcvd') %} num{% endif %}">{{ "Raw line" if raw and c == "msg" else LOG_COLUMNS[c][0] }}</th>{% endfor %}</tr>

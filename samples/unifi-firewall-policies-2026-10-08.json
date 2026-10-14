@@ -1,0 +1,470 @@
+{
+ "source": "GET /proxy/network/v2/api/site/default/firewall-policies and /firewall/zone via Site Manager connector, CTS KL, Network 10.6.106, 2026-10-08",
+ "policies": [
+  {
+   "_id": "68f6f3c26a76db72f4a72235",
+   "action": "BLOCK",
+   "connection_state_type": "ALL",
+   "connection_states": [],
+   "create_allow_respond": false,
+   "description": "",
+   "destination": {
+    "ips": [
+     "192.168.2.1"
+    ],
+    "match_opposite_ips": false,
+    "match_opposite_ports": false,
+    "matching_target": "IP",
+    "matching_target_type": "SPECIFIC",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a72220"
+   },
+   "enabled": false,
+   "icmp_typename": "ANY",
+   "icmp_v6_typename": "ANY",
+   "index": 10000,
+   "ip_version": "BOTH",
+   "logging": false,
+   "match_ip_sec": false,
+   "match_opposite_protocol": false,
+   "name": "Website Blocking Rule",
+   "predefined": false,
+   "protocol": "all",
+   "schedule": {
+    "mode": "ALWAYS"
+   },
+   "source": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221e"
+   }
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a72237",
+   "action": "ALLOW",
+   "connection_state_type": "ALL",
+   "connection_states": [],
+   "create_allow_respond": false,
+   "destination": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "matching_target_type": "SPECIFIC",
+    "port_group_id": "673ee9c383fa664e642c2567",
+    "port_matching_type": "OBJECT",
+    "zone_id": "68f6f3c26a76db72f4a72220"
+   },
+   "enabled": false,
+   "icmp_typename": "ANY",
+   "icmp_v6_typename": "ANY",
+   "index": 10000,
+   "ip_version": "IPV4",
+   "logging": false,
+   "match_ip_sec": false,
+   "match_ip_sec_type": "MATCH_IP_SEC",
+   "match_opposite_protocol": false,
+   "name": "HTTPS Zabbix Monitoring",
+   "predefined": false,
+   "protocol": "tcp_udp",
+   "schedule": {
+    "mode": "ALWAYS",
+    "repeat_on_days": [],
+    "time_all_day": false
+   },
+   "source": {
+    "ip_group_id": "6512830dfec7594ce5c67803",
+    "ips": [],
+    "match_mac": false,
+    "match_opposite_ips": false,
+    "match_opposite_ports": false,
+    "matching_target": "IP",
+    "matching_target_type": "OBJECT",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221f"
+   }
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a72238",
+   "action": "ALLOW",
+   "connection_state_type": "ALL",
+   "connection_states": [],
+   "create_allow_respond": false,
+   "destination": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "matching_target_type": "SPECIFIC",
+    "port_group_id": "65014c80c650554068d9b210",
+    "port_matching_type": "OBJECT",
+    "zone_id": "68f6f3c26a76db72f4a72220"
+   },
+   "enabled": false,
+   "icmp_typename": "ANY",
+   "icmp_v6_typename": "ANY",
+   "index": 10001,
+   "ip_version": "IPV4",
+   "logging": false,
+   "match_ip_sec": false,
+   "match_ip_sec_type": "MATCH_IP_SEC",
+   "match_opposite_protocol": false,
+   "name": "SSH from MSP",
+   "predefined": false,
+   "protocol": "all",
+   "schedule": {
+    "mode": "ALWAYS",
+    "repeat_on_days": [],
+    "time_all_day": false
+   },
+   "source": {
+    "ip_group_id": "6512830dfec7594ce5c67803",
+    "ips": [],
+    "match_mac": false,
+    "match_opposite_ips": false,
+    "match_opposite_ports": false,
+    "matching_target": "IP",
+    "matching_target_type": "OBJECT",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221f"
+   }
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a72239",
+   "action": "ALLOW",
+   "connection_state_type": "ALL",
+   "connection_states": [],
+   "create_allow_respond": false,
+   "destination": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "matching_target_type": "SPECIFIC",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a72220"
+   },
+   "enabled": false,
+   "icmp_typename": "ANY",
+   "icmp_v6_typename": "ANY",
+   "index": 10002,
+   "ip_version": "IPV4",
+   "logging": false,
+   "match_ip_sec": false,
+   "match_ip_sec_type": "MATCH_IP_SEC",
+   "match_opposite_protocol": false,
+   "name": "ICMP",
+   "predefined": false,
+   "protocol": "all",
+   "schedule": {
+    "mode": "ALWAYS",
+    "repeat_on_days": [],
+    "time_all_day": false
+   },
+   "source": {
+    "ip_group_id": "6512830dfec7594ce5c67803",
+    "ips": [],
+    "match_mac": false,
+    "match_opposite_ips": false,
+    "match_opposite_ports": false,
+    "matching_target": "IP",
+    "matching_target_type": "OBJECT",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221f"
+   }
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a7221e68f6f3c26a76db72f4a7221e2147483647",
+   "action": "ALLOW",
+   "connection_state_type": "ALL",
+   "connection_states": [],
+   "create_allow_respond": true,
+   "destination": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221e"
+   },
+   "enabled": true,
+   "hits": 34,
+   "icmp_typename": "ANY",
+   "icmp_v6_typename": "ANY",
+   "index": 2147483647,
+   "ip_version": "BOTH",
+   "last_hit": 1790146685729,
+   "logging": false,
+   "match_ip_sec": false,
+   "match_opposite_protocol": false,
+   "name": "Allow All Traffic",
+   "origin_id": "68f6f3c36a76db72f4a72276",
+   "predefined": true,
+   "protocol": "all",
+   "schedule": {
+    "mode": "ALWAYS"
+   },
+   "source": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221e"
+   }
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a7221e68f6f3c26a76db72f4a7221f2147483647",
+   "action": "ALLOW",
+   "connection_state_type": "ALL",
+   "connection_states": [],
+   "create_allow_respond": true,
+   "destination": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221f"
+   },
+   "enabled": true,
+   "hits": 717432395,
+   "icmp_typename": "ANY",
+   "icmp_v6_typename": "ANY",
+   "index": 2147483647,
+   "ip_version": "BOTH",
+   "last_hit": 1791433959839,
+   "logging": false,
+   "match_ip_sec": false,
+   "match_opposite_protocol": false,
+   "name": "Allow All Traffic",
+   "origin_id": "68f6f3c36a76db72f4a72279",
+   "predefined": true,
+   "protocol": "all",
+   "schedule": {
+    "mode": "ALWAYS"
+   },
+   "source": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221e"
+   }
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a7221e68f6f3c26a76db72f4a7221f30000",
+   "action": "BLOCK",
+   "connection_state_type": "CUSTOM",
+   "connection_states": [
+    "INVALID"
+   ],
+   "create_allow_respond": true,
+   "destination": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221f"
+   },
+   "enabled": true,
+   "hits": 222950,
+   "icmp_typename": "ANY",
+   "icmp_v6_typename": "ANY",
+   "index": 30000,
+   "ip_version": "BOTH",
+   "last_hit": 1791433959839,
+   "logging": false,
+   "match_ip_sec": false,
+   "match_opposite_protocol": false,
+   "name": "Block Invalid Traffic",
+   "origin_id": "68f6f3c36a76db72f4a72274",
+   "predefined": true,
+   "protocol": "all",
+   "schedule": {
+    "mode": "ALWAYS"
+   },
+   "source": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221e"
+   }
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a7221e68f6f3c26a76db72f4a722202147483647",
+   "action": "ALLOW",
+   "connection_state_type": "ALL",
+   "connection_states": [],
+   "create_allow_respond": true,
+   "destination": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a72220"
+   },
+   "enabled": true,
+   "hits": 2997426151,
+   "icmp_typename": "ANY",
+   "icmp_v6_typename": "ANY",
+   "index": 2147483647,
+   "ip_version": "BOTH",
+   "last_hit": 1791433959839,
+   "logging": false,
+   "match_ip_sec": false,
+   "match_opposite_protocol": false,
+   "name": "Allow All Traffic",
+   "origin_id": "68f6f3c36a76db72f4a72271",
+   "predefined": true,
+   "protocol": "all",
+   "schedule": {
+    "mode": "ALWAYS"
+   },
+   "source": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221e"
+   }
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a7221e68f6f3c26a76db72f4a7222030000",
+   "action": "ALLOW",
+   "connection_state_type": "ALL",
+   "connection_states": [],
+   "create_allow_respond": true,
+   "destination": {
+    "ips": [
+     "224.0.0.251",
+     "ff02::fb"
+    ],
+    "match_opposite_ips": false,
+    "match_opposite_ports": false,
+    "matching_target": "IP",
+    "matching_target_type": "SPECIFIC",
+    "port": "5353",
+    "port_matching_type": "SPECIFIC",
+    "zone_id": "68f6f3c26a76db72f4a72220"
+   },
+   "enabled": true,
+   "hits": 497972,
+   "icmp_typename": "ANY",
+   "icmp_v6_typename": "ANY",
+   "index": 30000,
+   "ip_version": "BOTH",
+   "last_hit": 1791433959839,
+   "logging": false,
+   "match_ip_sec": false,
+   "match_opposite_protocol": false,
+   "name": "Allow mDNS",
+   "origin_id": "68f6f3c36a76db72f4a72272",
+   "predefined": true,
+   "protocol": "udp",
+   "schedule": {
+    "mode": "ALWAYS"
+   },
+   "source": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port": "5353",
+    "port_matching_type": "SPECIFIC",
+    "zone_id": "68f6f3c26a76db72f4a7221e"
+   }
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a7221e68f6f3c26a76db72f4a722212147483647",
+   "action": "ALLOW",
+   "connection_state_type": "ALL",
+   "connection_states": [],
+   "create_allow_respond": true,
+   "destination": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a72221"
+   },
+   "enabled": true,
+   "hits": 84098095,
+   "icmp_typename": "ANY",
+   "icmp_v6_typename": "ANY",
+   "index": 2147483647,
+   "ip_version": "BOTH",
+   "last_hit": 1791433959839,
+   "logging": false,
+   "match_ip_sec": false,
+   "match_opposite_protocol": false,
+   "name": "Allow All Traffic",
+   "origin_id": "68f6f3c36a76db72f4a72277",
+   "predefined": true,
+   "protocol": "all",
+   "schedule": {
+    "mode": "ALWAYS"
+   },
+   "source": {
+    "match_opposite_ports": false,
+    "matching_target": "ANY",
+    "port_matching_type": "ANY",
+    "zone_id": "68f6f3c26a76db72f4a7221e"
+   }
+  }
+ ],
+ "zones": [
+  {
+   "_id": "68f6f3c26a76db72f4a7221e",
+   "attr_no_edit": false,
+   "cloud_template": null,
+   "default_zone": true,
+   "external_id": "784ead56-1bae-41b3-945c-fe31d7f2d072",
+   "name": "Internal",
+   "network_ids": [
+    "64ad8f886d97770af8737c51"
+   ],
+   "zone_key": "internal"
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a7221f",
+   "attr_no_edit": true,
+   "cloud_template": null,
+   "default_zone": true,
+   "external_id": "08cc9afe-291f-48e8-be6a-692596d28f18",
+   "name": "External",
+   "network_ids": [
+    "64ad8f886d97770af8737c4f",
+    "64ad8f886d97770af8737c50"
+   ],
+   "zone_key": "external"
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a72220",
+   "attr_no_edit": true,
+   "cloud_template": null,
+   "default_zone": true,
+   "external_id": "3fcfc8ee-3169-49b6-9e65-9bb5d1bd1920",
+   "name": "Gateway",
+   "network_ids": [],
+   "zone_key": "gateway"
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a72221",
+   "attr_no_edit": true,
+   "cloud_template": null,
+   "default_zone": true,
+   "external_id": "bf5b4977-14a7-45a2-9107-7168f2494167",
+   "name": "Vpn",
+   "network_ids": [
+    "68f591eaa4d6ed412d199768",
+    "69203f787c640768c37d4411",
+    "69bb618d931fd4a41c870dbe",
+    "6a0bdaef9b23194a5dc6cd23"
+   ],
+   "zone_key": "vpn"
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a72222",
+   "attr_no_edit": false,
+   "cloud_template": null,
+   "default_zone": true,
+   "external_id": "e3542503-45db-45ca-979c-00236581243c",
+   "name": "Hotspot",
+   "network_ids": [],
+   "zone_key": "hotspot"
+  },
+  {
+   "_id": "68f6f3c26a76db72f4a72223",
+   "attr_no_edit": false,
+   "cloud_template": null,
+   "default_zone": true,
+   "external_id": "d2145313-fd4e-4e3a-b9fe-9ae64368a469",
+   "name": "Dmz",
+   "network_ids": [],
+   "zone_key": "dmz"
+  }
+ ]
+}

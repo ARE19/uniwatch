@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Config change · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>{{ s.client }} <span class="muted">· {{ label }}</span></h1>
+  <a href="/config">← Config backups</a>
+</div>
+<section class="card">
+  <p><strong>{{ s.summary }}</strong></p>
+  <p class="muted small">Seen by the backup at {{ s.taken_at | ts_short(s.timezone) }}{% if s.previous %}; the previous backup of this
+    section was {{ s.previous | ts_short(s.timezone) }}, so the change happened in between{% endif %}.</p>
+  {% for c in s.changes or [] %}
+    <h3>{% if c.change == "added" %}<span class="state state-up">+ added</span>{% elif c.change == "removed" %}<span class="state state-down">− removed</span>{% else %}changed{% endif %}: {{ c.object }}</h3>
+    {% if c.fields %}<table class="dense"><thead><tr><th>Setting</th><th>Before</th><th>After</th></tr></thead><tbody>
+      {% for f in c.fields %}<tr><td><code>{{ f.field }}</code></td>
+        <td class="small">{% if f.before.startswith("redacted:") %}<span class="muted">(secret)</span>{% else %}<code>{{ f.before }}</code>{% endif %}</td>
+        <td class="small">{% if f.after.startswith("redacted:") %}<span class="muted">(secret{{ ", changed" if f.before.startswith("redacted:") }})</span>{% else %}<code>{{ f.after }}</code>{% endif %}</td></tr>{% endfor %}
+    </tbody></table>{% endif %}
+  {% endfor %}
+</section>
+{% if admins %}
+<section class="card">
+  <h2>Admin activity in that time (gateway change log)</h2>
+  <table class="dense"><thead><tr><th>Time</th><th>Admin</th><th>From</th><th>Logged change</th></tr></thead><tbody>
+    {% for a in admins %}<tr><td class="nowrap">{{ a.ts | ts_short(s.timezone) }}</td><td>{{ a.admin_user or "" }}</td><td>{% if a.ip %}<code>{{ a.ip }}</code>{% endif %}</td><td class="small">{{ a.summary }}</td></tr>{% endfor %}
+  </tbody></table>
+</section>
+{% endif %}
+{% endblock %}

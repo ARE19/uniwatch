@@ -1,0 +1,29 @@
+Uniwatch
+Copyright (C) 2026 ARE19
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General
+Public License as published by the Free Software Foundation, version 3 (see LICENSE). It is distributed WITHOUT ANY
+WARRANTY. If you run a modified version for users over a network, you must offer them its source code (AGPL section 13).
+Report packs are separate works by their publisher and are not covered by this licence.
+
+Third-party components shipped in this repository
+-------------------------------------------------
+- Apache ECharts (app/static/echarts.min.js) - Apache License 2.0, https://echarts.apache.org
+- htmx (app/static/htmx.min.js) - BSD 2-Clause / Zero-Clause BSD, https://htmx.org
+- Montserrat font (app/assets/fonts) - SIL Open Font License 1.1, see app/assets/fonts/OFL.txt
+- World map (app/static/world.geo.json) - Natural Earth 1:110m, public domain, https://www.naturalearthdata.com
+
+Data downloaded at run time (not shipped)
+-----------------------------------------
+- IP geolocation: DB-IP Lite, CC BY 4.0 (attribution "IP Geolocation by DB-IP" is shown in the UI), https://db-ip.com
+- Threat-intelligence feeds: abuse.ch Feodo Tracker and URLhaus, Spamhaus DROP, Emerging Threats compromised IPs,
+  CINS Army - each under its provider's terms of use; check them for your use (some are free for non-commercial use only).
+
+Run-time dependencies (installed, not shipped)
+----------------------------------------------
+Python packages listed in requirements.txt (MIT, BSD, Apache-2.0 and similar permissive licences), PostgreSQL
+(PostgreSQL Licence), TimescaleDB (the community image: compression and continuous aggregates are under the Timescale
+License), Caddy (Apache-2.0), CoreDNS (Apache-2.0), WeasyPrint (BSD).
+
+UniFi, UniFi Protect and Site Manager are trademarks of Ubiquiti Inc. Uniwatch is an independent project, not
+affiliated with or endorsed by Ubiquiti.

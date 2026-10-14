@@ -1,0 +1,32 @@
+<button type="button" class="link detail-close" data-close-detail aria-label="Close details">Close ×</button>
+<h2>Event details</h2>
+<dl class="kv">
+  <dt>Time</dt><dd>{{ ev.ts | ts(scope_tz) }} <span class="muted">({{ ev.ts.isoformat() }})</span></dd>
+  <dt>Received</dt><dd>{{ ev.ts_received | ts(scope_tz) if ev.ts_received else "" }} <span class="muted">via {{ ev.transport }} from {{ ev.sender }}</span></dd>
+  <dt>Client / device</dt><dd>{{ ev.client }} / {{ ev.device }}</dd>
+  <dt>Severity</dt><dd><span class="sev sev-{{ ev.severity }}"><i aria-hidden="true">■</i> {{ ev.severity }}</span>{% if ev.severity_raw %} <span class="muted">(device: {{ ev.severity_raw }})</span>{% endif %}</dd>
+  <dt>Category</dt><dd>{{ ev.category }}</dd>
+  <dt>Event</dt><dd>{{ ev.event_name or "" }} <code>{{ ev.event_class }}</code></dd>
+  {% for label, key in [("Action", "action"), ("Outcome", "outcome"), ("User", "user_name"), ("Rule", "rule"),
+                        ("Interface", "interface"), ("Protocol", "protocol"), ("Process", "process"), ("Host", "host")] %}
+    {% if ev[key] %}<dt>{{ label }}</dt><dd>{{ ev[key] }}</dd>{% endif %}
+  {% endfor %}
+  {% if ev.src_host %}<dt>Source</dt><dd><a href="/ip/{{ ev.src_host }}">{{ ev.src_host }}</a>{% if ev.src_port %}:{{ ev.src_port }}{% endif %}
+      {% if ev.src_country %} · {{ ev.src_country }}{% endif %}{% if ev.src_asn %} · AS{{ ev.src_asn }}{% endif %}{% if ev.src_mac %} · {{ ev.src_mac }}{% endif %}</dd>{% endif %}
+  {% if ev.dst_host %}<dt>Destination</dt><dd><a href="/ip/{{ ev.dst_host }}">{{ ev.dst_host }}</a>{% if ev.dst_port %}:{{ ev.dst_port }}{% endif %}
+      {% if ev.dst_country %} · {{ ev.dst_country }}{% endif %}{% if ev.dst_asn %} · AS{{ ev.dst_asn }}{% endif %}{% if ev.dst_mac %} · {{ ev.dst_mac }}{% endif %}</dd>{% endif %}
+  {% if ev.bytes_in is not none or ev.bytes_out is not none %}<dt>Bytes in / out</dt><dd>{{ ev.bytes_in or 0 }} / {{ ev.bytes_out or 0 }}</dd>{% endif %}
+  {% if ev.message %}<dt>Message</dt><dd>{{ ev.message }}</dd>{% endif %}
+</dl>
+<h3>Vendor fields</h3>
+<pre class="json">{{ extra_json }}</pre>
+{% if incidents %}
+<form method="post" action="/incidents/link-event" class="inline-incident">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <input type="hidden" name="event_id" value="{{ ev.id }}"><input type="hidden" name="event_ts" value="{{ ev.ts.isoformat() }}">
+  <label>Add to incident <select name="incident_id">{% for i in incidents %}<option value="{{ i.id }}">#{{ i.id }} {{ i.title[:60] }}</option>{% endfor %}</select></label>
+  <button type="submit">Add</button>
+</form>
+{% endif %}
+<h3>Original log line{% if ev.truncated %} <span class="muted">(truncated on receipt)</span>{% endif %}</h3>
+<pre class="raw">{{ ev.raw or "(raw line no longer retained)" }}</pre>

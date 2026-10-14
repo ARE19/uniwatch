@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}NOC wall · {{ app_name() }}{% endblock %}
+{% block head %}<script src="/static/wall.js" defer></script>{% endblock %}
+{% block content %}
+<div id="wall" class="wall" data-seconds="{{ seconds }}" data-range="{{ range }}">
+  <div class="wall-head">
+    <h1 data-client>…</h1>
+    <div class="wall-controls">
+      <span class="muted" data-pos></span>
+      <button type="button" class="button-secondary button-small" id="wall-pause">❚❚ Pause</button>
+      <button type="button" class="button-secondary button-small" id="wall-full">⛶ Full screen</button>
+      <nav class="segmented" aria-label="Rotate every">
+        {% for s in (15, 30, 60) %}<a href="/wall?seconds={{ s }}&amp;range={{ range }}" {% if s == seconds %}aria-current="true"{% endif %}>{{ s }} s</a>{% endfor %}
+      </nav>
+    </div>
+  </div>
+  <div class="wall-tiles" data-tiles></div>
+  <div class="wall-grid">
+    <section class="card"><h2>WAN &amp; internet</h2><table class="dense"><tbody data-wan></tbody></table></section>
+    <section class="card"><h2>Top threats (IDS/IPS)</h2><table class="dense"><tbody data-threats></tbody></table></section>
+    <section class="card"><h2>Top apps</h2><table class="dense"><tbody data-apps></tbody></table></section>
+  </div>
+  <p class="muted small" data-updated></p>
+  <p class="muted small">← → switch client · space pauses · rotates every {{ seconds }} s</p>
+</div>
+<script type="application/json" id="wall-clients">{{ wall_clients | tojson }}</script>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Fleet · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Fleet <span class="muted">· every UniFi site in Site Manager</span></h1>
+  <span class="muted small">{% if summary.synced %}Synced {{ summary.synced | ts_short(scope_tz) }} · every 5 minutes{% else %}Not synced yet{% endif %}</span>
+</div>
+<section class="tiles" aria-label="Fleet summary">
+  <div class="tile"><span class="tile-label">Sites</span><span class="tile-value">{{ summary.total }}</span></div>
+  <div class="tile {{ 'sev-high' if summary.problems }}"><span class="tile-label">Sites with problems</span><span class="tile-value">{{ summary.problems }}</span></div>
+  <div class="tile {{ 'sev-critical' if summary.offline }}"><span class="tile-label">Consoles offline</span><span class="tile-value">{{ summary.offline }}</span></div>
+  <div class="tile"><span class="tile-label">Firmware updates</span><span class="tile-value">{{ summary.updates }}</span></div>
+  <div class="tile"><span class="tile-label">Open alerts</span><span class="tile-value">{{ summary.alerts }}</span></div>
+</section>
+<section class="card">
+  {% if rows %}
+  <table class="dense fleet">
+    <thead><tr><th>Site</th><th>Internet</th><th class="num">24 h</th><th>WAN links</th><th class="num">Latency</th><th class="num">Loss</th>
+      <th class="num">Devices</th><th class="num">Updates</th><th>Logs</th><th class="num">Alerts</th><th></th></tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr class="fleet-row sev{{ r.severity }}">
+        <td><strong>{% if r.client_id %}<a href="/site/{{ r.client_id }}">{{ r.name }}</a>{% else %}{{ r.name }}{% endif %}</strong> <span class="muted small">{{ r.model or "" }}</span>
+          {% if r.client != r.name %}<br><span class="muted small">{{ r.client }}</span>{% endif %}
+          {% if r.problems %}<br><span class="fleet-problems">{{ r.problems | join(" · ") }}</span>{% endif %}</td>
+        <td>{% if r.state != "connected" %}<span class="state state-down">▼ console offline</span>
+            {% elif r.internet == "up" %}<span class="state state-up">▲ up</span>
+            {% elif r.internet == "down" %}<span class="state state-down">▼ down</span>
+            {% else %}<span class="muted">–</span>{% endif %}
+            {% if r.isp %}<br><span class="muted small">{{ r.isp }}</span>{% endif %}</td>
+        <td class="num">{{ "%.2f %%" | format(r.availability) if r.availability is not none else "–" }}</td>
+        <td class="small">{% for w in r.wans %}
+            <div>{{ w.wan_name }}: {% if w.state == "up" %}<span class="state state-up">▲</span>{% elif w.ever_up %}<span class="state state-down">▼ down</span>{% else %}<span class="muted">not in use</span>{% endif %}
+              {% if w.ip %}<code>{{ w.ip }}</code>{% endif %}{% if w.label %} <span class="muted">{{ w.label }}</span>{% endif %}</div>
+          {% else %}<span class="muted">{{ "local API (see dashboard)" if r.local_api else "–" }}</span>{% endfor %}</td>
+        <td class="num">{% if r.no_health %}<span class="muted" title="Site Manager measures the WAN with failover priority 1; that port is not connected, so it reports nothing. Make the working WAN the primary.">n/a</span>
+            {% elif r.latency is not none %}{{ r.latency }} ms{% else %}–{% endif %}</td>
+        <td class="num">{% if r.loss is not none and not r.no_health %}<span class="{{ 'outcome-blocked' if r.loss >= 5 }}">{{ "%g" | format(r.loss) }} %</span>{% else %}–{% endif %}</td>
+        <td class="num">{% if r.dev_total %}<span class="{{ 'outcome-blocked' if r.dev_online < r.dev_total }}">{{ r.dev_online }} / {{ r.dev_total }}</span>{% else %}–{% endif %}</td>
+        <td class="num">{{ r.dev_updates or "" }}</td>
+        <td>{% if r.syslog %}<span class="status-ok">● syslog</span>{% elif r.last_log %}<span class="status-silent" title="last log {{ r.last_log | ts_short(scope_tz) }}">▲ quiet</span>{% else %}<span class="muted small">cloud only</span>{% endif %}</td>
+        <td class="num">{% if r.open_alerts %}<a href="/event-monitor">{{ r.open_alerts }}</a>{% endif %}</td>
+        <td class="actions">
+          <form method="post" action="/scope"><input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <input type="hidden" name="client" value="{{ r.client_id }}"><input type="hidden" name="next" value="/">
+            <button type="submit" class="link">dashboard →</button></form></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p class="muted small">From UniFi Site Manager (read-only, every 5 minutes). Latency and loss are the last hour. Site Manager
+    does not report internet <em>usage</em> (its “speed” values are the line speed); usage comes from the local API or NetFlow.
+    “cloud only” = the site sends no syslog to this server yet.</p>
+  {% else %}
+  <p class="muted">No Site Manager data yet{% if not scope_selected %} — add the Site Manager API key on <a href="/admin/site-manager">System Settings → UniFi Site Manager</a>{% endif %}.</p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Incidents · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Incidents <span class="muted">· {{ scope_label }}</span></h1>
+  <nav class="segmented" aria-label="Status">
+    {% for s, label in [("open", "Open"), ("closed", "Resolved / closed"), ("all", "All")] %}<a href="/incidents?status={{ s }}" {% if s == status %}aria-current="true"{% endif %}>{{ label }}</a>{% endfor %}
+  </nav>
+</div>
+<section class="card">
+  <div class="card-head"><h2>Incidents</h2><button type="button" class="link" data-dialog="new-incident">+ Create new</button></div>
+  <table class="dense">
+    <thead><tr><th>#</th><th>Severity</th><th>Title</th><th>Client</th><th>Status</th><th>Assignee</th><th class="num">Alerts</th><th class="num">Events</th><th>Updated</th></tr></thead>
+    <tbody>
+    {% for i in rows %}
+      <tr><td><a href="/incidents/{{ i.id }}">#{{ i.id }}</a></td>
+        <td><span class="sev sev-{{ i.severity }}"><i aria-hidden="true">■</i> {{ i.severity }}</span></td>
+        <td><a href="/incidents/{{ i.id }}">{{ i.title }}</a></td><td>{{ i.client }}</td><td>{{ i.status }}</td>
+        <td>{{ i.assignee or "—" }}</td><td class="num">{{ i.alerts }}</td><td class="num">{{ i.events }}</td>
+        <td class="nowrap">{{ i.updated_at | ts_short(i.timezone) }}</td></tr>
+    {% else %}<tr><td colspan="9" class="muted">No incidents.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+</section>
+<dialog id="new-incident" class="dialog" aria-labelledby="new-incident-title">
+  <h2 id="new-incident-title">New incident</h2>
+  <form method="post" action="/incidents">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Client <select name="client_id">{% for c in scope_clients %}<option value="{{ c.id }}" {% if scope_selected and scope_selected.id == c.id %}selected{% endif %}>{{ c.name }}</option>{% endfor %}</select></label>
+    <label>Title <input name="title" required maxlength="300"></label>
+    <label>Severity <select name="severity">{% for s in severities %}<option {% if s == "medium" %}selected{% endif %}>{{ s }}</option>{% endfor %}</select></label>
+    <label>Description <textarea name="description" rows="4"></textarea></label>
+    <div class="dialog-actions"><button type="button" class="button-secondary" data-dialog-close>Cancel</button>
+      <button type="submit">Create</button></div>
+  </form>
+  <p class="muted small">Incidents can also be opened from an alert (Event Monitor) or automatically by an alert rule.</p>
+</dialog>
+{% endblock %}

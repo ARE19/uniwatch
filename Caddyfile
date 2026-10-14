@@ -1,0 +1,17 @@
+{
+	# No public domain yet: Caddy issues certificates from its own internal CA.
+	# Switch to a real domain + ACME only when internet exposure is approved.
+	admin off
+	# Clients connecting by IP send no SNI; serve this name's certificate to them.
+	default_sni {$DEFAULT_SNI:localhost}
+}
+
+{$SITE_ADDRESSES} {
+	tls internal
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		-Server
+	}
+	reverse_proxy web:8000
+}

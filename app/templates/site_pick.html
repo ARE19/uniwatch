@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Site overview · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head"><h1>Site overview</h1></div>
+<section class="card narrow">
+  <p class="muted">Pick a site (or choose one in the client picker at the top).</p>
+  <ul class="site-list">{% for s in sites %}<li><a href="/site/{{ s.id }}">{{ s.name }}</a></li>{% else %}<li class="muted">No sites.</li>{% endfor %}</ul>
+</section>
+{% endblock %}

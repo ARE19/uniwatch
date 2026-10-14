@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}{{ name | person }} · VPN user · {{ app_name() }}{% endblock %}
+{% block content %}
+{% set staff = user.role.name in ("admin", "engineer") %}
+<div class="page-head">
+  <h1>{{ name | person }} <span class="muted">· remote-access VPN user</span></h1>
+  <nav class="segmented" aria-label="Period">
+    {% for d in (7, 30, 90) %}<a href="/vpn/user?name={{ name | urlencode }}&amp;days={{ d }}" {% if d == days %}aria-current="true"{% endif %}>{{ d }} days</a>{% endfor %}
+  </nav>
+</div>
+<p class="muted small">VPN client name on the firewall: <code>{{ name }}</code> · <a href="/vpn">← VPN monitor</a></p>
+
+<section class="tiles" aria-label="Summary">
+  <div class="tile"><span class="tile-label">Sessions</span><span class="tile-value">{{ totals.sessions }}</span>
+    {% if totals.open %}<span class="tile-sub"><span class="state state-up">● connected now</span></span>{% endif %}</div>
+  <div class="tile"><span class="tile-label">Time connected</span><span class="tile-value">{{ human(totals.time.total_seconds()) }}</span></div>
+  <div class="tile"><span class="tile-label">Data ↓ / ↑</span><span class="tile-value small-value">{{ totals.down | bsize }} / {{ totals.up | bsize }}</span></div>
+  <div class="tile"><span class="tile-label">Connected from</span><span class="tile-value">{{ sources | length }}</span><span class="tile-sub muted">address{{ "es" if sources | length != 1 }}</span></div>
+  <div class="tile"><span class="tile-label">Last activity</span><span class="tile-value small-value">{{ totals.last | ts_short(scope_tz) if totals.last else "–" }}</span>
+    <span class="tile-sub muted">{{ totals.devices | join(", ") }}</span></div>
+</section>
+
+<div class="grid">
+  <section class="card">
+    <h2>Where they connected from</h2>
+    <table class="dense"><thead><tr><th>Address</th><th>Where</th><th class="num">Sessions</th><th>Last</th></tr></thead><tbody>
+    {% for s in sources %}<tr><td>{% if staff %}<a href="/ip/{{ s.ip }}">{{ s.ip }}</a>{% else %}{{ s.ip }}{% endif %}</td><td>{{ s.where }}</td>
+      <td class="num">{{ s.sessions }}</td><td class="nowrap">{{ s.last | ts_short(scope_tz) if s.last else "" }}</td></tr>
+    {% else %}<tr><td colspan="4" class="muted">No source addresses logged.</td></tr>{% endfor %}
+    </tbody></table>
+  </section>
+  <section class="card">
+    <h2>When they connect <span class="muted">sessions started per hour of day ({{ scope_tz }})</span></h2>
+    <div class="hourbars" role="img" aria-label="Sessions started per hour of day">
+      {% for n in hours %}<span class="hourbar" style="height: {{ (100 * n / hours_max) | round(1) }}%" title="{{ '%02d' | format(loop.index0) }}:00 – {{ n }} session{{ 's' if n != 1 }}"></span>{% endfor %}
+    </div>
+    <div class="hourlabels muted small"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></div>
+  </section>
+</div>
+
+<section class="card">
+  <h2>Sessions <span class="muted">last {{ days }} days</span></h2>
+  <table class="dense"><thead><tr><th>Start</th><th>End</th><th>Duration</th><th>From</th><th>VPN address</th><th class="num">Data ↓ / ↑</th><th>Firewall</th><th>Status</th></tr></thead><tbody>
+  {% for s in sessions %}<tr>
+    <td class="nowrap">{{ s.started_at | ts_short(scope_tz) if s.started_at else "not logged" }}</td>
+    <td class="nowrap">{{ s.ended_at | ts_short(scope_tz) if s.ended_at else "" }}</td>
+    <td>{{ human(s.dur.total_seconds()) if s.dur else "" }}</td>
+    <td>{% if s.source_ip %}{% if staff %}<a href="/ip/{{ s.source_ip }}">{{ s.source_ip }}</a>{% else %}{{ s.source_ip }}{% endif %}{% endif %}</td>
+    <td>{{ s.assigned_ip or "" }}</td>
+    <td class="num nowrap">{% if s.bytes_in or s.bytes_out %}{{ s.bytes_in | bsize }} / {{ s.bytes_out | bsize }}{% endif %}</td>
+    <td>{{ s.device }}</td>
+    <td>{{ s.status }}{% if s.close_reason and s.close_reason != "disconnect" %} <span class="muted">({{ s.close_reason }})</span>{% endif %}</td></tr>
+  {% else %}<tr><td colspan="8" class="muted">No sessions in this period.</td></tr>{% endfor %}
+  </tbody></table>
+</section>
+{% endblock %}

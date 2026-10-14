@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}UniFi Site Manager · {{ app_name() }}{% endblock %}
+{% block content %}
+<div class="page-head"><h1>UniFi Site Manager</h1></div>
+{% if errors %}<ul class="error" role="alert">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+{% if saved %}<p class="ok" role="status">API key saved. The consoles of the account appear within a few minutes (Dashboards → Fleet).</p>{% endif %}
+{% if removed %}<p class="ok" role="status">The saved API key was removed.</p>{% endif %}
+{% if test_result %}<p class="{{ 'ok' if test_ok else 'error' }}" role="status">Test: {{ test_result }}</p>{% endif %}
+
+<section class="card narrow">
+  <h2>API key</h2>
+  <p class="muted small">With the API key of your Site Manager account (unifi.ui.com) this server finds every console of the
+    account by itself and reads their health, devices, clients, configuration and CCTV access log. It only reads.
+    {% if source == "web" %}A key is saved here (by {{ row.updated_by or "?" }}, {{ row.updated_at | ts_short(scope_tz) }}).
+    {% elif source == "env" %}A key is currently taken from the server's <code>.env</code> file; saving one here replaces it.
+    {% else %}<strong>No key is set: Site Manager is not used.</strong>{% endif %}</p>
+  <form method="post" action="/admin/site-manager" autocomplete="off">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>API key <input type="password" name="api_key" required autocomplete="new-password"
+      placeholder="{{ 'set; paste a new key to replace it' if source else 'paste the key' }}"></label>
+    <button type="submit">Save</button>
+  </form>
+  <p class="muted small">Where to get it: at <code>unifi.ui.com</code> → <strong>API</strong>, create a Site Manager API key
+    with the account that owns the consoles. It is stored here encrypted and never shown again.</p>
+</section>
+
+{% if source %}
+<section class="card narrow">
+  <h2>Connection</h2>
+  <p class="muted small">Consoles known: {{ consoles }}{% if last_sync %} · last sync {{ last_sync | ts_short(scope_tz) }}{% endif %}.</p>
+  <form method="post" action="/admin/site-manager/test">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button type="submit">Test connection</button>
+  </form>
+</section>
+{% endif %}
+
+{% if source == "web" %}
+<section class="card narrow">
+  <h2>Remove the key</h2>
+  <form method="post" action="/admin/site-manager/remove"
+        data-confirm="Remove the saved API key? Polling through Site Manager stops unless the server's .env file has a key; the consoles and their history stay.">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button type="submit" class="link danger">Forget the key saved here</button>
+  </form>
+</section>
+{% endif %}
+{% endblock %}
