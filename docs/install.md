@@ -84,6 +84,29 @@ sudo docker compose --profile test run --rm tests
 
 ## 6. Connect your UniFi sites
 
+### How Uniwatch gets its data: two channels, both recommended
+
+| | **API: UniFi Site Manager key** (6a) | **SIEM / syslog from each gateway** (6b) |
+|---|---|---|
+| Direction | Uniwatch **asks** UniFi's cloud (outbound HTTPS to api.ui.com) | each gateway **sends** its logs to Uniwatch (inbound UDP 5141) |
+| Set up | once, one key for all consoles of the account | once per gateway |
+| What it gives | the **state** of everything: which sites, devices and WAN links are up, inventory and firmware, CPU / memory / clients, VPN tunnel state, configuration backups, CCTV access log | the **events**: every allowed and blocked connection, IDS / IPS and threat detections, VPN sign-ins and failures, admin sign-ins and changes, DHCP and Wi-Fi events, with exact times |
+| Without it | no fleet view, no device-offline / internet-down / firmware alerts, no inventory, config backups or CCTV log | no log search, no security / failed-login / scan alerts, no traffic, websites and VPN-user reports |
+
+In short, the **API answers "how is it now?"** and the **SIEM feed answers "what happened, and who did it?"**. Site
+Manager only reports current state and a few metrics; it does not hand over the gateway's logs. The gateway's logs, in
+turn, say nothing about devices that are silent or offline. The executive reports use both.
+
+### Ports
+
+| Port | Direction | Needed for |
+|---|---|---|
+| **UDP 5141** (or 514) | gateways → Uniwatch, **inbound** | the SIEM / syslog feed (6b). For remote sites: a port-forward on the Uniwatch site's router plus a firewall rule allowing only your gateways' WAN IPs |
+| TCP 443 | outbound to api.ui.com | the Site Manager API (6a); nothing to open inbound |
+| TCP 443 (and 80) | your staff → Uniwatch, inbound | the web portal; keep it to your management network or a VPN |
+| UDP 2055 | gateways → Uniwatch, inbound | only if you use NetFlow (6c) |
+| TCP 443 | Uniwatch → each console | only for the optional local API (6c) |
+
 ### a) UniFi Site Manager (recommended: covers every console with one key)
 
 1. At **unifi.ui.com → API**, create a Site Manager API key (owner of the consoles).
