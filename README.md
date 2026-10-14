@@ -100,6 +100,14 @@ contains program code. Packs are not part of this repository and are licensed se
 To publish your own packs, make a signing key with `scripts/make_pack.py keygen`, put its public key in `.env` as
 `PACK_PUBLIC_KEY`, and build pack and licence files with the same script. `PACK_PUBLIC_KEY=` (empty) switches packs off.
 
+## Roadmap
+
+- **Fortinet FortiGate support** (next release): FortiGate firewalls as log sources next to UniFi gateways, with their
+  traffic, security (IPS, antivirus, web filter), VPN and admin events in the same dashboards, alerts and reports. Device
+  health and configuration backups through the FortiGate REST API to follow.
+
+Suggestions are welcome: open an issue.
+
 ## Branding
 
 Reports and alert e-mails use neutral Uniwatch branding by default. Put your own company name, address, colours and
